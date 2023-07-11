@@ -5,6 +5,7 @@
     height: 100dvh;
     @include flex(center, center, auto);
     background: nth($colors, 4);
+    z-index: 99;
     .battery {
         width: 50px;
         height: 100px;

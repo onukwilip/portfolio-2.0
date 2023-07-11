@@ -94,15 +94,15 @@
                     font-family: "friendlyRobot";
                     font-size: 120px;
                     color: white;
-                    text-shadow: 0px 0px 10px nth($colors, 2);
+                    text-shadow: 0px 0px 10px rgba(nth($colors, 2), 0.3);
                 }
                 @include media(max, 870px) {
                     color: nth($colors, 2);
-                    text-shadow: 0px 0px 10px nth($colors, 4);
+                    text-shadow: 0px 0px 10px rgba(nth($colors, 4), 0.3);
                 }
             }
             & > span {
-                font-weight: 100;
+                font-weight: 200;
                 color: white;
                 font-size: 30px;
                 text-shadow: 0px 0px 10px nth($colors, 2);
