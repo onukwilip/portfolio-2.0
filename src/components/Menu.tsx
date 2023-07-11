@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import css from "../styles/Menu.module.scss";
 import me from "../assets/images/me.svg";
 import { MenuClass } from "../utils";
@@ -32,9 +32,39 @@ const EachMenu: FC<{ menu: MenuClass }> = ({ menu }) => {
 };
 
 const Menu: FC = () => {
+  const variants = useMemo<Variants>(() => {
+    if (window.innerWidth > 550)
+      return {
+        far: {
+          x: -200,
+        },
+        enter: {
+          x: 0,
+        },
+      };
+    else
+      return {
+        far: {
+          y: 200,
+        },
+        enter: {
+          y: 0,
+        },
+      };
+  }, []);
+
   return (
     <div className={css["menu-container"]}>
-      <div className={css["menu"]}>
+      <motion.div
+        variants={variants}
+        initial="far"
+        animate="enter"
+        transition={{
+          ease: "easeOut",
+          duration: 1,
+        }}
+        className={css["menu"]}
+      >
         <img src={me} alt="logo" />
         <nav>
           {menus.map((menu, i) => (
@@ -43,7 +73,7 @@ const Menu: FC = () => {
             </>
           ))}
         </nav>
-      </div>
+      </motion.div>
     </div>
   );
 };

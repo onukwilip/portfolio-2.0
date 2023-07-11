@@ -1,12 +1,71 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import bigSplash from "../assets/images/big-splash.png";
 import me from "../assets/images/me-2.svg";
 import paintSplash from "../assets/images/paint-splash.svg";
 import paintSplash2 from "../assets/images/paint-splash-2.svg";
 import css from "../styles/Landing.module.scss";
 import { gsap } from "gsap";
+import { motion, Variants } from "framer-motion";
+import useLoadImage from "../hooks/useLoadImage";
+import Loader from "../components/Loader";
 
 const Landing = () => {
+  // HOOKS
+  const bigSplashVariants = useMemo<Variants>(
+    () => ({
+      far: {
+        y: -200,
+        x: 200,
+      },
+      enter: {
+        y: 0,
+        x: 0,
+      },
+    }),
+    []
+  );
+  const scaleVariants = useMemo<Variants>(
+    () => ({
+      small: {
+        scale: 0,
+      },
+      big: {
+        scale: 1,
+      },
+    }),
+    []
+  );
+  const h1Variants = useMemo<Variants>(
+    () => ({
+      up: {
+        y: -300,
+        opacity: 0,
+      },
+      down: {
+        y: 0,
+        opacity: 1,
+      },
+    }),
+    []
+  );
+  const spanVariants = useMemo<Variants>(
+    () => ({
+      down: {
+        y: 300,
+        opacity: 0,
+      },
+      up: {
+        y: 0,
+        opacity: 1,
+      },
+    }),
+    []
+  );
+  const { loading } = useLoadImage({
+    images: [bigSplash, me, paintSplash, paintSplash2],
+  });
+
+  // FUNCTIONS
   const parallaxEffect = (e: MouseEvent) => {
     const parallaxElements = document.getElementsByClassName(
       "parallax"
@@ -28,51 +87,101 @@ const Landing = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("mousemove", parallaxEffect);
+    setTimeout(
+      () => window.addEventListener("mousemove", parallaxEffect),
+      2000
+    );
 
     return () => {
       window.removeEventListener("mousemove", parallaxEffect);
     };
   }, []);
 
+  if (loading)
+    return (
+      <>
+        <Loader isAnimating={loading} />
+      </>
+    );
+
   return (
     <div className={css.landing}>
       <div className={css["right"]}>
-        <img
+        <motion.img
+          variants={bigSplashVariants}
+          transition={{
+            ease: "easeOut",
+            duration: 1,
+          }}
+          initial="far"
+          animate="near"
           src={bigSplash}
           className={`${css["big-splash"]} parallax`}
           alt="big-splash"
           data-speedz={0.01}
         />
-        <img
+        <motion.img
           src={me}
+          variants={scaleVariants}
+          transition={{
+            delay: 0.7,
+          }}
+          initial="small"
+          animate="big"
           className={`${css["me"]} parallax`}
           alt="me"
           data-speedz={0.05}
         />
-        <img
+        <motion.img
+          variants={scaleVariants}
+          transition={{
+            delay: 1.0,
+          }}
+          initial="small"
+          animate="big"
           src={paintSplash}
           className={`${css["paint-splash"]} parallax`}
           alt="paint-splash"
           data-speedz={0.09}
         />
-        <img
+        <motion.img
+          variants={scaleVariants}
+          transition={{
+            delay: 1.5,
+          }}
+          initial="small"
+          animate="big"
           src={paintSplash2}
           className={`${css["paint-splash-2"]} parallax`}
           alt="paint-splash-2"
           data-speedz={0.1}
         />
       </div>
-
       <div className={css["heading"]}>
         <div className={css["text"]}>
-          <h1>
+          <motion.h1
+            variants={h1Variants}
+            transition={{
+              delay: 0.3,
+              duration: 1,
+            }}
+            initial="up"
+            animate="down"
+          >
             Hello👋🏾! I'm <span>Prince</span>
-          </h1>
-          <span>
+          </motion.h1>
+          <motion.span
+            variants={spanVariants}
+            transition={{
+              delay: 0.9,
+              duration: 1,
+            }}
+            initial="down"
+            animate="up"
+          >
             A software developer with about two years of experience developing
             industry level applications using the trending technologies
-          </span>
+          </motion.span>
         </div>
       </div>
     </div>

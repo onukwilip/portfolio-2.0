@@ -13,7 +13,7 @@
         border-radius: 50%;
         border: 3px solid white;
     }
-    @include media(max, 550px) {
+    @include media(max, 440px) {
         display: block;
     }
 }

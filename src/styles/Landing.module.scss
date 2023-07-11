@@ -106,6 +106,7 @@
                 color: white;
                 font-size: 30px;
                 text-shadow: 0px 0px 10px nth($colors, 2);
+                display: block;
                 @include media(max, 375px) {
                     font-size: 24px;
                 }

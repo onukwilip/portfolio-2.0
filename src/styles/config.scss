@@ -10,12 +10,15 @@ $light-black: lighten(black, 40);
   gap: $gap;
 }
 
-@mixin flex($ai, $jc, $gap, $fld) {
+@mixin flex($ai, $jc, $gap, $fld: false) {
   display: flex;
   align-items: $ai;
   justify-content: $jc;
   gap: $gap;
-  flex-direction: $fld;
+
+  @if ($fld != false) {
+    flex-direction: $fld;
+  }
 }
 
 @mixin media($prefix, $size) {
