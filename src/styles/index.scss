@@ -16,7 +16,9 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #000;
+  background: url(../assets/images/doodle.png) nth($colors, 1);
+  background-size: 400px 400px;
+  background-attachment: fixed;
   width: 100vw;
   height: 100vh;
 }
@@ -34,9 +36,6 @@ body {
   overflow-y: hidden;
   overflow-x: hidden;
   position: relative;
-  background: url(../assets/images/doodle.png) nth($colors, 1);
-  background-size: 400px 400px;
-  background-attachment: fixed;
 }
 
 code {
