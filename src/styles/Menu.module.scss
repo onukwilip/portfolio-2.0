@@ -13,44 +13,44 @@
 
     .menu {
         @include flex(center, center, 1rem, column);
-        filter: drop-shadow(0px 0px 5px rgba(nth($colors, 1), 0.5));
+        filter: drop-shadow(0px 0px 5px rgba(nth($colors, 2), 1));
         & > img {
-            width: 65px;
-            height: 65px;
+            width: 55px;
+            height: 55px;
             object-fit: cover;
             border-radius: 50%;
             border: 3px solid white;
         }
         nav {
             list-style-type: none;
-            padding: 0.7rem;
-            background: nth($colors, 1);
+            padding: 0.5rem;
+            background: linear-gradient(to bottom right, nth($colors, 4), nth($colors, 5));
             border-radius: 50px;
             @include flex(center, center, 1rem, column);
             li {
-                width: 50px;
-                height: 50px;
+                width: 40px;
+                height: 40px;
                 @include flex(center, center, auto, row);
                 border-radius: 50%;
-                background: nth($colors, 4);
+                background: nth($colors, 1);
                 position: relative;
                 cursor: pointer;
                 transition: 200ms;
                 i {
-                    font-size: 24px;
-                    color: nth($colors, 1);
+                    font-size: 20px;
+                    color: nth($colors, 4);
                     transition: 200ms;
                 }
                 span {
                     @include flex(center, center, 10px, row);
                     position: absolute;
-                    left: calc(50px + 0.7rem);
-                    padding: 0 1rem;
-                    min-width: 100px;
-                    height: 50px;
+                    left: calc(40px + 0.5rem);
+                    padding: 0 0.5rem;
+                    min-width: 110px;
+                    height: 40px;
                     border-top-right-radius: 50px;
                     border-bottom-right-radius: 50px;
-                    background: nth($colors, 4);
+                    background: nth($colors, 5);
                     color: nth($colors, 1);
                     z-index: -1;
                     &::before {
@@ -58,16 +58,59 @@
                         position: absolute;
                         width: 30px;
                         height: 100%;
-                        background: nth($colors, 4);
+                        background: nth($colors, 5);
                         top: 0;
                         left: -1rem;
                     }
                 }
                 &:hover {
-                    background: nth($colors, 1);
+                    background: transparent;
                     i {
-                        color: nth($colors, 4);
-                        font-size: 30px;
+                        color: nth($colors, 1);
+                        font-size: 24px;
+                    }
+                }
+            }
+        }
+    }
+    @include media(max, 550px) {
+        height: auto;
+        width: 100vw;
+        top: unset;
+        bottom: 0;
+        left: 0;
+        padding-left: 0;
+        padding: 1rem;
+        position: sticky;
+        align-items: start;
+        .menu {
+            flex-direction: row;
+            nav {
+                flex-direction: row;
+                gap: auto;
+                justify-content: space-between;
+            }
+        }
+    }
+    @include media(max, 440px) {
+        .menu > img {
+            display: none;
+        }
+    }
+    @include media(max, 340px) {
+        .menu {
+            nav {
+                gap: 10px;
+                li {
+                    width: 35px;
+                    height: 35px;
+                    i {
+                        font-size: 15px;
+                    }
+                    &:hover {
+                        i {
+                            font-size: 18px;
+                        }
                     }
                 }
             }

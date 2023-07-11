@@ -1,0 +1,19 @@
+@import "./config.scss";
+
+.logo-container {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 5;
+    display: none;
+    & > img {
+        width: 55px;
+        height: 55px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid white;
+    }
+    @include media(max, 550px) {
+        display: block;
+    }
+}

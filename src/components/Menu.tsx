@@ -17,33 +17,16 @@ const EachMenu: FC<{ menu: MenuClass }> = ({ menu }) => {
   const [showLabel, setShowLabel] = useState(false);
 
   const onMouseOver: React.MouseEventHandler<HTMLLIElement> = () => {
-    setShowLabel(true);
+    if (window.innerWidth > 550) setShowLabel(true);
   };
   const onMouseOut: React.MouseEventHandler<HTMLLIElement> = () => {
-    setShowLabel(false);
-  };
-
-  const variants: Variants = {
-    initial: {},
-    animate: {},
-    exit: {},
+    if (window.innerWidth > 550) setShowLabel(false);
   };
 
   return (
     <li onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
       <i className={menu.icon}></i>
-      <AnimatePresence>
-        {showLabel && (
-          <motion.span
-            variants={variants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            {menu.name}
-          </motion.span>
-        )}
-      </AnimatePresence>
+      <AnimatePresence>{showLabel && <span>{menu.name}</span>}</AnimatePresence>
     </li>
   );
 };
@@ -53,7 +36,6 @@ const Menu: FC = () => {
     <div className={css["menu-container"]}>
       <div className={css["menu"]}>
         <img src={me} alt="logo" />
-
         <nav>
           {menus.map((menu, i) => (
             <>
