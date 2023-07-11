@@ -1,0 +1,76 @@
+@import "./config.scss";
+
+.menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100dvh;
+    background: transparent;
+    z-index: 100;
+    @include flex(center, center, auto, row);
+    padding-left: 1rem;
+
+    .menu {
+        @include flex(center, center, 1rem, column);
+        filter: drop-shadow(0px 0px 5px rgba(nth($colors, 1), 0.5));
+        & > img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+        nav {
+            list-style-type: none;
+            padding: 0.7rem;
+            background: nth($colors, 1);
+            border-radius: 50px;
+            @include flex(center, center, 1rem, column);
+            li {
+                width: 50px;
+                height: 50px;
+                @include flex(center, center, auto, row);
+                border-radius: 50%;
+                background: nth($colors, 4);
+                position: relative;
+                cursor: pointer;
+                transition: 200ms;
+                i {
+                    font-size: 24px;
+                    color: nth($colors, 1);
+                    transition: 200ms;
+                }
+                span {
+                    @include flex(center, center, 10px, row);
+                    position: absolute;
+                    left: calc(50px + 0.7rem);
+                    padding: 0 1rem;
+                    min-width: 100px;
+                    height: 50px;
+                    border-top-right-radius: 50px;
+                    border-bottom-right-radius: 50px;
+                    background: nth($colors, 4);
+                    color: nth($colors, 1);
+                    z-index: -1;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        width: 30px;
+                        height: 100%;
+                        background: nth($colors, 4);
+                        top: 0;
+                        left: -1rem;
+                    }
+                }
+                &:hover {
+                    background: nth($colors, 1);
+                    i {
+                        color: nth($colors, 4);
+                        font-size: 30px;
+                    }
+                }
+            }
+        }
+    }
+}

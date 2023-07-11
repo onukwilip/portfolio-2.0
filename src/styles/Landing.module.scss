@@ -1,0 +1,70 @@
+@import "./config.scss";
+
+.landing {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: relative;
+    pointer-events: none;
+
+    img.bg {
+        width: 110vw;
+        height: 110vh;
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+    }
+    .floor-container {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .laptop-container {
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 60vw;
+        background: transparent;
+        img.laptop-bg {
+            position: absolute;
+            right: -19rem;
+            top: -3.5rem;
+            transform: rotateZ(55deg);
+            height: 120vh;
+            width: auto;
+        }
+    }
+    .heading {
+        z-index: 3;
+        position: relative;
+        width: 60vw;
+        height: 100vh;
+        @include flex(start, center, auto, row);
+        padding: 1rem;
+        padding-left: 3rem;
+        .text {
+            width: 80%;
+            h1 {
+                font-family: "friendlyRobot";
+                font-size: 100px;
+                span {
+                    text-transform: uppercase;
+                    font-family: "friendlyRobot";
+                    font-size: 120px;
+                    color: white;
+                }
+            }
+            & > span {
+                font-weight: 100;
+                color: white;
+                font-size: 30px;
+            }
+        }
+    }
+}

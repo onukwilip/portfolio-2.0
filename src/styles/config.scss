@@ -1,0 +1,31 @@
+$colors: (#060930, #1a5ea1, #337897, #58afd4);
+$shadow: 0 0 5px rgba(black, 0.5);
+$trans-black: rgba(black, 0.3);
+$light-black: lighten(black, 40);
+
+@mixin grid($col, $row, $gap) {
+  display: grid;
+  grid-template-columns: $col;
+  grid-auto-rows: $row;
+  gap: $gap;
+}
+
+@mixin flex($ai, $jc, $gap, $fld) {
+  display: flex;
+  align-items: $ai;
+  justify-content: $jc;
+  gap: $gap;
+  flex-direction: $fld;
+}
+
+@mixin media($prefix, $size) {
+  @media (#{$prefix}-width: $size) {
+    @content;
+  }
+}
+
+@mixin media-h($prefix, $size) {
+  @media (#{$prefix}-height: $size) {
+    @content;
+  }
+}
