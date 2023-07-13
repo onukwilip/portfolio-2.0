@@ -3,6 +3,7 @@ import css from "../styles/Menu.module.scss";
 import me from "../assets/images/me.svg";
 import { MenuClass } from "../utils";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const menus: MenuClass[] = [
   new MenuClass("Home", "/", "fa-solid fa-person-shelter"),
@@ -15,6 +16,7 @@ const menus: MenuClass[] = [
 
 const EachMenu: FC<{ menu: MenuClass }> = ({ menu }) => {
   const [showLabel, setShowLabel] = useState(false);
+  const navigate = useNavigate();
 
   const onMouseOver: React.MouseEventHandler<HTMLLIElement> = () => {
     if (window.innerWidth > 550) setShowLabel(true);
@@ -22,9 +24,16 @@ const EachMenu: FC<{ menu: MenuClass }> = ({ menu }) => {
   const onMouseOut: React.MouseEventHandler<HTMLLIElement> = () => {
     if (window.innerWidth > 550) setShowLabel(false);
   };
+  const onClickHandler = (url: string) => {
+    navigate(url);
+  };
 
   return (
-    <li onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+    <li
+      onMouseOver={onMouseOver}
+      onMouseOut={onMouseOut}
+      onClick={() => onClickHandler(menu.link)}
+    >
       <i className={menu.icon}></i>
       <AnimatePresence>{showLabel && <span>{menu.name}</span>}</AnimatePresence>
     </li>
