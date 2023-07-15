@@ -5,7 +5,7 @@ import {
   Text3D,
   Sphere,
 } from "@react-three/drei";
-import { toRadians } from "./FloorScene";
+import { toRadians } from "../../utils";
 import { useFrame } from "@react-three/fiber";
 import { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { motion } from "framer-motion-3d";
@@ -40,6 +40,7 @@ const AboutHeaderTextScene = () => {
     <>
       <PerspectiveCamera makeDefault position={[0, 0, 5]} />
       <OrbitControls
+        enablePan={false}
         makeDefault
         enableZoom={false}
         maxAzimuthAngle={toRadians(5)}

@@ -30,11 +30,6 @@ const AboutContentEaselScene = () => {
     3
   );
   useFrame((state, _) => {
-    if (orbitControlRef.current) {
-      const {
-        mouse: { x, y },
-      } = state;
-    }
     orbitControlRef.current?.update();
   });
   const easelVariants = useMemo<Variants>(
@@ -54,10 +49,8 @@ const AboutContentEaselScene = () => {
         makeDefault
         target={[0, -1, 0]}
         enableZoom={false}
-        maxAzimuthAngle={toRadians(-80)}
-        minAzimuthAngle={toRadians(80)}
-        maxPolarAngle={toRadians(1)}
-        minPolarAngle={toRadians(1)}
+        enableRotate={false}
+        enablePan={false}
         ref={orbitControlRef}
       />
       <motion.group
@@ -67,13 +60,10 @@ const AboutContentEaselScene = () => {
         transition={{ type: "keyframes", duration: 1 }}
       >
         <Easel
-          position-y={-1.535}
+          position={[0.3, -1.535, 0]}
           scale={5.2}
-          rotation-x={toRadians(0)}
+          rotation={[0, toRadians(-45), 0]}
         ></Easel>
-        <Html position={[-0.17, -0.82, 0]}>
-          <div className={css.description}>{typedText}</div>
-        </Html>
       </motion.group>
       <ambientLight args={["white", 1]} />
       <directionalLight args={["#8fb2ff", 2]} position={[-1, 2, 3]} castShadow>
