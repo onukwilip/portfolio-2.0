@@ -23,6 +23,10 @@ const AboutHeaderTextScene = () => {
     }
     orbitControlRef.current?.update();
   });
+  const textSize = window.innerWidth > 650 ? 1.7 : 1.2;
+  const meTextPositionY = window.innerWidth > 650 ? 0 : -1.5;
+  const meTextPositionX = window.innerWidth > 650 ? 0 : -4.0;
+  const aboutTextPositionX = window.innerWidth > 650 ? -9 : -5.5;
 
   const textVariants = useMemo<Variants>(
     () => ({
@@ -61,10 +65,10 @@ const AboutHeaderTextScene = () => {
         >
           <Text3D
             font={"/fonts/Goma Block_Regular.json"}
-            size={1.7}
+            size={textSize}
             height={1}
             castShadow
-            position-x={-9}
+            position-x={aboutTextPositionX}
             rotation-y={toRadians(10)}
           >
             ABOUT
@@ -85,10 +89,12 @@ const AboutHeaderTextScene = () => {
         >
           <Text3D
             font={"/fonts/Block Helvetica_Regular.json"}
-            size={1.7}
+            size={textSize}
             height={1}
             castShadow
             rotation-y={toRadians(-10)}
+            position-y={meTextPositionY}
+            position-x={meTextPositionX}
           >
             ME
             <meshStandardMaterial color={"#8fb2ff"} />

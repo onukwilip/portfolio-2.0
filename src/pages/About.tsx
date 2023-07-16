@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { FC, useEffect, useMemo, useState, Suspense } from "react";
 import paintSplash from "../assets/images/paint-splash.svg";
 import paintSplash2 from "../assets/images/paint-splash-2.svg";
 import smear2 from "../assets/images/smear2.svg";
@@ -14,6 +14,8 @@ import { PaintBrush } from "../components/scenes/PaintBrush";
 import ServiceItems from "../components/scenes/AboutServiceItemsScene";
 import AboutContentEaselScene from "../components/scenes/AboutContentEaselScene";
 import { motion, Variants } from "framer-motion";
+import { gsap } from "gsap";
+import { Link } from "react-router-dom";
 
 const services: ServiceClass[] = [
   new ServiceClass("Software development", {
@@ -45,8 +47,51 @@ const services: ServiceClass[] = [
   }),
 ];
 
+const EachServiceItem: FC<{ service: ServiceClass; index: number }> = ({
+  service,
+  index,
+}) => {
+  const [showServiceItemCanvas, setShowServiceItemCanvas] = useState(false);
+  const eachServiceVariants = useMemo<Variants>(
+    () => ({
+      small: {
+        scale: 0,
+      },
+      big: {
+        scale: 1.3,
+      },
+    }),
+    []
+  );
+
+  useEffect(() => {
+    setTimeout(() => setShowServiceItemCanvas(true), 100);
+  }, []);
+  return (
+    <>
+      <motion.div
+        variants={eachServiceVariants}
+        exit={"small"}
+        animate={"big"}
+        initial={"small"}
+        transition={{
+          delay: index * 0.1,
+        }}
+        className={css["each-service"]}
+      >
+        {showServiceItemCanvas && (
+          <Canvas shadows className={css["each-service-canvas"]}>
+            <ServiceItems model={service.model} />
+          </Canvas>
+        )}
+        <span>{service.name}</span>
+      </motion.div>
+    </>
+  );
+};
+
 const About = () => {
-  const { typedText } = useType(
+  const { typedText, isTypingComplete } = useType(
     `I'm a seasoned software engineer with a track record of delivering
             high-quality software products. With two years of experience, I have
             developed a plethora of industry-level applications, including
@@ -74,22 +119,11 @@ const About = () => {
     () => ({
       down: {
         y: 1000,
-        rotateZ: -90,
+        ...(window.innerWidth > 480 ? { rotateZ: -90 } : { rotateZ: 0 }),
       },
       up: {
         y: "-50%",
-        rotateZ: -90,
-      },
-    }),
-    []
-  );
-  const eachServiceVariants = useMemo<Variants>(
-    () => ({
-      small: {
-        scale: 0,
-      },
-      big: {
-        scale: 1.3,
+        ...(window.innerWidth > 480 ? { rotateZ: -90 } : { rotateZ: 0 }),
       },
     }),
     []
@@ -105,58 +139,50 @@ const About = () => {
         </div>
         <div className={css.content}>
           <img src={smear2} alt="smear2" className={css.smear2} />
-          <div className={css.description}>{typedText}</div>
+          <div className={css.description}>
+            {typedText}
+            {isTypingComplete && (
+              <div>
+                <Link to="/about/#services">Wanna know more?</Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-      <div className={css.right}>
-        <motion.div
-          variants={rightHeadingVariants}
-          initial={"down"}
-          animate="up"
-          transition={{
-            duration: 1,
-            type: "tween",
-          }}
-          className={css["right-heading"]}
-        >
-          WHAT I DO
-        </motion.div>
-        <motion.div
-          className={css["right-heading-line"]}
-          variants={rightHeadingLineVariants}
-          initial={"up"}
-          animate="down"
-          transition={{
-            duration: 1,
-            type: "tween",
-          }}
-        ></motion.div>
-        {/* <img src={paintSplash} alt="splash1" className={css.splash1} />
-        <img src={paintSplash2} alt="splash2" className={css.splash2} /> */}
+      <div className={css.right} id="services">
+        <div className={css["right-heading-container"]}>
+          <motion.div
+            variants={rightHeadingVariants}
+            initial={"down"}
+            animate="up"
+            transition={{
+              duration: 1,
+              type: "tween",
+            }}
+            className={css["right-heading"]}
+          >
+            WHAT I DO
+          </motion.div>
+          <motion.div
+            className={css["right-heading-line"]}
+            variants={rightHeadingLineVariants}
+            initial={"up"}
+            animate="down"
+            transition={{
+              duration: 1,
+              type: "tween",
+            }}
+          ></motion.div>
+        </div>
+
         <div className={css.services}>
           {services.map((service, i) => (
-            <motion.div
-              variants={eachServiceVariants}
-              exit={"small"}
-              // animate={"big"}
-              // initial={"small"}
-              transition={{
-                delay: i * 0.1,
-              }}
-              className={css["each-service"]}
-              key={i}
-            >
-              <Canvas shadows>
-                <ServiceItems model={service.model} />
-              </Canvas>
-              <span>{service.name}</span>
-            </motion.div>
+            <EachServiceItem service={service} index={i} />
           ))}
         </div>
       </div>
       <div className={css["easel-container"]}>
         <Canvas shadows>
-          {/* <AboutPisaScene /> */}
           <AboutContentEaselScene />
         </Canvas>
       </div>
