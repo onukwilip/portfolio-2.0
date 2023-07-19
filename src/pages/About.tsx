@@ -1,4 +1,12 @@
-import React, { FC, useEffect, useMemo, useState, Suspense } from "react";
+import React, {
+  FC,
+  useEffect,
+  useMemo,
+  useState,
+  Suspense,
+  useRef,
+  useCallback,
+} from "react";
 import paintSplash from "../assets/images/paint-splash.svg";
 import paintSplash2 from "../assets/images/paint-splash-2.svg";
 import smear2 from "../assets/images/smear2.svg";
@@ -13,9 +21,10 @@ import { PaintPalette } from "../components/scenes/PaintPalette";
 import { PaintBrush } from "../components/scenes/PaintBrush";
 import ServiceItems from "../components/scenes/AboutServiceItemsScene";
 import AboutContentEaselScene from "../components/scenes/AboutContentEaselScene";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useAnimation } from "framer-motion";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
 const services: ServiceClass[] = [
   new ServiceClass("Software development", {
@@ -63,20 +72,34 @@ const EachServiceItem: FC<{ service: ServiceClass; index: number }> = ({
     }),
     []
   );
+  const [ref, inView] = useInView();
+  const controls = useAnimation();
+
+  const animate = window.innerWidth > 1100 ? "big" : controls;
 
   useEffect(() => {
     setTimeout(() => setShowServiceItemCanvas(true), 100);
   }, []);
+  useEffect(() => {
+    if (inView) controls.start("big");
+    else controls.start("small");
+  }, [ref, inView, controls]);
+
   return (
     <>
       <motion.div
         variants={eachServiceVariants}
         exit={"small"}
-        animate={"big"}
+        animate={animate}
+        ref={ref}
         initial={"small"}
-        transition={{
-          delay: index * 0.1,
-        }}
+        transition={
+          window.innerWidth > 1100
+            ? {
+                delay: index * 0.1,
+              }
+            : undefined
+        }
         className={css["each-service"]}
       >
         {showServiceItemCanvas && (
@@ -102,15 +125,23 @@ const About = () => {
             latest industry trends. Throughout my career, I have achieved a 90%
             customer satisfaction rate and consistently delivered projects
             within agreed timelines.`,
-    3
+    0.5
   );
   const rightHeadingLineVariants = useMemo<Variants>(
     () => ({
       up: {
-        y: -1000,
+        ...(window.innerWidth <= 480
+          ? { x: -100 }
+          : window.innerWidth <= 1100
+          ? {}
+          : { y: -1000 }),
       },
       down: {
-        y: 0,
+        ...(window.innerWidth <= 480
+          ? { x: 0 }
+          : window.innerWidth <= 1100
+          ? {}
+          : { y: 0 }),
       },
     }),
     []
@@ -118,19 +149,116 @@ const About = () => {
   const rightHeadingVariants = useMemo<Variants>(
     () => ({
       down: {
-        y: 1000,
-        ...(window.innerWidth > 480 ? { rotateZ: -90 } : { rotateZ: 0 }),
+        ...(window.innerWidth <= 480
+          ? { x: 100, rotateZ: 0, y: "-50%" }
+          : window.innerWidth <= 1100
+          ? { rotateZ: -90, y: "-50%" }
+          : { y: 1000, rotateZ: -90 }),
       },
       up: {
-        y: "-50%",
-        ...(window.innerWidth > 480 ? { rotateZ: -90 } : { rotateZ: 0 }),
+        ...(window.innerWidth <= 480
+          ? { x: 0, rotateZ: 0, y: "-50%" }
+          : window.innerWidth <= 1100
+          ? { rotateZ: -90, y: "-50%" }
+          : { y: "-50%", rotateZ: -90 }),
       },
     }),
     []
   );
+  const rightHeadingContainerVariants = useMemo<Variants>(
+    () => ({
+      far: {
+        ...(window.innerWidth <= 480
+          ? {}
+          : window.innerWidth <= 1100
+          ? { x: -200 }
+          : {}),
+      },
+      near: {
+        ...(window.innerWidth <= 480
+          ? {}
+          : window.innerWidth <= 1100
+          ? { x: 0 }
+          : {}),
+      },
+    }),
+    []
+  );
+  const paintVariants = useMemo<Variants>(
+    () => ({
+      small: {
+        scale: 0,
+      },
+      big: {
+        scale: 1,
+      },
+    }),
+    []
+  );
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const [rightHeadingLineRef, rightHeadingLineIsInView] = useInView();
+  const rightHeadingLineControl = useAnimation();
+  const [rightHeadingRef, rightHeadingIsInView] = useInView();
+  const rightHeadingControl = useAnimation();
+  const rightHeadingContainerControl = useAnimation();
+
+  const rhAnimation = window.innerWidth <= 1100 ? rightHeadingControl : "up";
+  const rhlAnimation =
+    window.innerWidth <= 1100 ? rightHeadingLineControl : "down";
+  const rhcAnimation =
+    window.innerWidth <= 1100 ? rightHeadingContainerControl : "near";
+
+  const scrollToServices = () => {
+    if (!servicesRef.current) return;
+
+    servicesRef.current.scrollIntoView({ behavior: "smooth" });
+    // console.log("sd", servicesRef.current?.getBoundingClientRect().top);
+  };
+
+  const animateServicesItems = () => {
+    const serviceDistanceFromTop =
+      servicesRef.current?.getBoundingClientRect().top;
+
+    if (serviceDistanceFromTop !== undefined && serviceDistanceFromTop < 600) {
+      rightHeadingContainerControl.start("near");
+      // console.log("near");
+    } else {
+      rightHeadingContainerControl.start("far");
+      // console.log("far");
+    }
+    // console.log("d", serviceDistanceFromTop);
+  };
+
+  useEffect(() => {
+    const abboutElement = aboutRef.current;
+    aboutRef.current?.addEventListener("scroll", animateServicesItems);
+    return () => {
+      abboutElement?.removeEventListener("scroll", animateServicesItems);
+    };
+  }, [aboutRef.current]);
+
+  useEffect(() => {
+    if (rightHeadingLineIsInView) {
+      rightHeadingLineControl.start("down");
+    } else {
+      rightHeadingLineControl.start("up");
+    }
+
+    if (rightHeadingIsInView) {
+      rightHeadingControl.start("up");
+    } else {
+      rightHeadingControl.start("down");
+    }
+  }, [
+    rightHeadingControl,
+    rightHeadingLineControl,
+    rightHeadingIsInView,
+    rightHeadingLineIsInView,
+  ]);
 
   return (
-    <section className={css.about}>
+    <section className={css.about} ref={aboutRef}>
       <div className={css.left}>
         <div className={css.heading}>
           <Canvas shadows>
@@ -138,23 +266,47 @@ const About = () => {
           </Canvas>
         </div>
         <div className={css.content}>
-          <img src={smear2} alt="smear2" className={css.smear2} />
+          <motion.img
+            src={smear2}
+            variants={paintVariants}
+            initial="small"
+            animate="big"
+            transition={{ type: "spring", mass: 1, duration: 0.2 }}
+            alt="smear2"
+            className={css.smear2}
+          />
           <div className={css.description}>
             {typedText}
             {isTypingComplete && (
-              <div>
-                <Link to="/about/#services">Wanna know more?</Link>
+              <div className={css["action-container"]}>
+                <Link
+                  className={css.action}
+                  to="/about/#services"
+                  onClick={scrollToServices}
+                >
+                  Wanna know more?
+                </Link>
               </div>
             )}
+            <br />
           </div>
         </div>
       </div>
-      <div className={css.right} id="services">
-        <div className={css["right-heading-container"]}>
+      <div className={css.right} ref={servicesRef} id="services">
+        <motion.div
+          variants={rightHeadingContainerVariants}
+          initial="far"
+          animate={rhcAnimation}
+          className={css["right-heading-container"]}
+          transition={{
+            type: "tween",
+          }}
+        >
           <motion.div
             variants={rightHeadingVariants}
             initial={"down"}
-            animate="up"
+            animate={rhAnimation}
+            ref={rightHeadingRef}
             transition={{
               duration: 1,
               type: "tween",
@@ -167,13 +319,14 @@ const About = () => {
             className={css["right-heading-line"]}
             variants={rightHeadingLineVariants}
             initial={"up"}
-            animate="down"
+            animate={rhlAnimation}
+            ref={rightHeadingLineRef}
             transition={{
               duration: 1,
               type: "tween",
             }}
           ></motion.div>
-        </div>
+        </motion.div>
 
         <div className={css.services}>
           {services.map((service, i) => (
