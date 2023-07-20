@@ -113,7 +113,7 @@ const EachServiceItem: FC<{ service: ServiceClass; index: number }> = ({
   );
 };
 
-const About = () => {
+const About: React.FC<{ style?: React.CSSProperties }> = ({ style }) => {
   const rightHeadingLineVariants = useMemo<Variants>(
     () => ({
       up: {
@@ -257,7 +257,7 @@ const About = () => {
   ]);
 
   return (
-    <section className={css.about} ref={aboutRef}>
+    <section className={css.about} ref={aboutRef} style={{ ...(style || {}) }}>
       <div className={css.left}>
         <div className={css.heading}>
           <Canvas shadows>
@@ -281,18 +281,6 @@ const About = () => {
             className={css.description}
             transition={{ duration: 0.7, type: "keyframes", delay: 2 }}
           >
-            {/* {typedText}
-            {isTypingComplete && (
-              <div className={css["action-container"]}>
-                <Link
-                  className={css.action}
-                  to="/about/#services"
-                  onClick={scrollToServices}
-                >
-                  Wanna know more?
-                </Link>
-              </div>
-            )} */}
             {aboutme}
             <div className={css["action-container"]}>
               <Link
