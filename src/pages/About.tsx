@@ -1,14 +1,4 @@
-import React, {
-  FC,
-  useEffect,
-  useMemo,
-  useState,
-  Suspense,
-  useRef,
-  useCallback,
-} from "react";
-import paintSplash from "../assets/images/paint-splash.svg";
-import paintSplash2 from "../assets/images/paint-splash-2.svg";
+import React, { FC, useEffect, useMemo, useState, useRef } from "react";
 import smear2 from "../assets/images/smear2.svg";
 import css from "../styles/About.module.scss";
 import { Canvas } from "@react-three/fiber";
@@ -22,7 +12,6 @@ import { PaintBrush } from "../components/scenes/PaintBrush";
 import ServiceItems from "../components/scenes/AboutServiceItemsScene";
 import AboutContentEaselScene from "../components/scenes/AboutContentEaselScene";
 import { motion, Variants, useAnimation } from "framer-motion";
-import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 
@@ -56,6 +45,17 @@ const services: ServiceClass[] = [
   }),
 ];
 
+const aboutme = `I'm a seasoned software engineer with a track record of delivering
+            high-quality software products. With two years of experience, I have
+            developed a plethora of industry-level applications, including
+            GOPack, NigTrak, and Online Auction. My problem-solving skills have
+            led to elegant solutions that drive business results and empower
+            users. I specialize in 3D web development using tools like Three Js,
+            React Js, Next Js, and other frameworks, staying updated with the
+            latest industry trends. Throughout my career, I have achieved a 90%
+            customer satisfaction rate and consistently delivered projects
+            within agreed timelines.`;
+
 const EachServiceItem: FC<{ service: ServiceClass; index: number }> = ({
   service,
   index,
@@ -82,7 +82,7 @@ const EachServiceItem: FC<{ service: ServiceClass; index: number }> = ({
   }, []);
   useEffect(() => {
     if (inView) controls.start("big");
-    else controls.start("small");
+    // else controls.start("small");
   }, [ref, inView, controls]);
 
   return (
@@ -114,19 +114,6 @@ const EachServiceItem: FC<{ service: ServiceClass; index: number }> = ({
 };
 
 const About = () => {
-  const { typedText, isTypingComplete } = useType(
-    `I'm a seasoned software engineer with a track record of delivering
-            high-quality software products. With two years of experience, I have
-            developed a plethora of industry-level applications, including
-            GOPack, NigTrak, and Online Auction. My problem-solving skills have
-            led to elegant solutions that drive business results and empower
-            users. I specialize in 3D web development using tools like Three Js,
-            React Js, Next Js, and other frameworks, staying updated with the
-            latest industry trends. Throughout my career, I have achieved a 90%
-            customer satisfaction rate and consistently delivered projects
-            within agreed timelines.`,
-    0.5
-  );
   const rightHeadingLineVariants = useMemo<Variants>(
     () => ({
       up: {
@@ -195,6 +182,14 @@ const About = () => {
     }),
     []
   );
+  const descriptionVariants = useMemo<Variants>(
+    () => ({
+      hidden: { opacity: 0, y: 500 },
+      // displayed: { opacity: [0.3, 1], y: [250, 0] },
+      displayed: { opacity: 1, y: 0 },
+    }),
+    []
+  );
   const aboutRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const [rightHeadingLineRef, rightHeadingLineIsInView] = useInView();
@@ -213,7 +208,6 @@ const About = () => {
     if (!servicesRef.current) return;
 
     servicesRef.current.scrollIntoView({ behavior: "smooth" });
-    // console.log("sd", servicesRef.current?.getBoundingClientRect().top);
   };
 
   const animateServicesItems = () => {
@@ -223,10 +217,11 @@ const About = () => {
     if (serviceDistanceFromTop !== undefined && serviceDistanceFromTop < 600) {
       rightHeadingContainerControl.start("near");
       // console.log("near");
-    } else {
-      rightHeadingContainerControl.start("far");
-      // console.log("far");
     }
+    // else {
+    //   rightHeadingContainerControl.start("far");
+    //   // console.log("far");
+    // }
     // console.log("d", serviceDistanceFromTop);
   };
 
@@ -241,15 +236,19 @@ const About = () => {
   useEffect(() => {
     if (rightHeadingLineIsInView) {
       rightHeadingLineControl.start("down");
-    } else {
-      rightHeadingLineControl.start("up");
     }
+
+    // else {
+    //   rightHeadingLineControl.start("up");
+    // }
 
     if (rightHeadingIsInView) {
       rightHeadingControl.start("up");
-    } else {
-      rightHeadingControl.start("down");
     }
+
+    // else {
+    //   rightHeadingControl.start("down");
+    // }
   }, [
     rightHeadingControl,
     rightHeadingLineControl,
@@ -275,8 +274,14 @@ const About = () => {
             alt="smear2"
             className={css.smear2}
           />
-          <div className={css.description}>
-            {typedText}
+          <motion.div
+            variants={descriptionVariants}
+            initial="hidden"
+            animate="displayed"
+            className={css.description}
+            transition={{ duration: 0.7, type: "keyframes", delay: 2 }}
+          >
+            {/* {typedText}
             {isTypingComplete && (
               <div className={css["action-container"]}>
                 <Link
@@ -287,9 +292,19 @@ const About = () => {
                   Wanna know more?
                 </Link>
               </div>
-            )}
+            )} */}
+            {aboutme}
+            <div className={css["action-container"]}>
+              <Link
+                className={css.action}
+                to="/about/#services"
+                onClick={scrollToServices}
+              >
+                Wanna know more?
+              </Link>
+            </div>
             <br />
-          </div>
+          </motion.div>
         </div>
       </div>
       <div className={css.right} ref={servicesRef} id="services">
