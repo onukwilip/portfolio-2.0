@@ -103,7 +103,11 @@ const EachServiceItem: FC<{ service: ServiceClass; index: number }> = ({
         className={css["each-service"]}
       >
         {showServiceItemCanvas && (
-          <Canvas shadows className={css["each-service-canvas"]}>
+          <Canvas
+            shadows
+            className={css["each-service-canvas"]}
+            style={{ pointerEvents: "none" }}
+          >
             <ServiceItems model={service.model} />
           </Canvas>
         )}
