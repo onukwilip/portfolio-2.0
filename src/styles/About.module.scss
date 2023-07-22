@@ -114,6 +114,7 @@
                 }
                 .each-service-canvas {
                     display: block;
+                    pointer-events: none;
                 }
                 &:nth-of-type(1) {
                     background: url(../assets/images/single-splash-1.svg);
