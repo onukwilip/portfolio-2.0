@@ -290,7 +290,7 @@ const About: React.FC<{ style?: React.CSSProperties }> = ({ style }) => {
             initial="hidden"
             animate="displayed"
             className={css.description}
-            transition={{ duration: 0.7, type: "keyframes", delay: 2 }}
+            transition={{ duration: 0.7, type: "keyframes", delay: 1.4 }}
           >
             {aboutme}
             <div className={css["action-container"]}>
