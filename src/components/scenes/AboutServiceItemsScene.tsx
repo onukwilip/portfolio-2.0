@@ -39,6 +39,7 @@ const ServiceItems: FC<{
         ref={orbitControlRef}
         enableZoom={false}
         enablePan={false}
+        enableRotate={false}
       />
       <motion.group
         variants={serviceItemVariants}
