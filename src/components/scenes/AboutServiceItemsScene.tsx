@@ -4,13 +4,15 @@ import { OrbitControls, PerspectiveCamera, Sphere } from "@react-three/drei";
 import { motion } from "framer-motion-3d";
 import { Variants } from "framer-motion";
 import { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { useFrame } from "@react-three/fiber";
+import { GroupProps, useFrame } from "@react-three/fiber";
 import { toRadians } from "../../utils";
+import { Group } from "three";
 
 const ServiceItems: FC<{
   model: ModelType;
 }> = ({ model }) => {
   const orbitControlRef = useRef<OrbitControlsImpl>(null);
+  const serviceItemRef = useRef<GroupProps>(null);
   const serviceItemVariants = useMemo<Variants>(
     () => ({
       hidden: {
@@ -23,10 +25,13 @@ const ServiceItems: FC<{
     []
   );
   useFrame((state, _) => {
-    if (orbitControlRef.current) {
-      const { x, y } = state.mouse;
-      orbitControlRef.current.setAzimuthalAngle(x * toRadians(45));
-      orbitControlRef.current.setAzimuthalAngle((y + 1) * toRadians(60));
+    // if (orbitControlRef.current) {
+    //   const { x, y } = state.mouse;
+    //   orbitControlRef.current.setAzimuthalAngle(x * toRadians(45));
+    //   orbitControlRef.current.setAzimuthalAngle((y + 1) * toRadians(60));
+    // }
+    if (serviceItemRef.current !== null) {
+      if (serviceItemRef.current.rotateY) serviceItemRef.current.rotateY(0.01);
     }
     orbitControlRef.current?.update();
   });
@@ -46,6 +51,7 @@ const ServiceItems: FC<{
         initial="hidden"
         animate="visible"
         transition={{ duration: 1 }}
+        ref={serviceItemRef}
       >
         <model.component {...model.props} />
       </motion.group>
