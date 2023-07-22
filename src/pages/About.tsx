@@ -228,6 +228,8 @@ const About: React.FC<{ style?: React.CSSProperties }> = ({ style }) => {
   };
 
   useEffect(() => {
+    if (document.readyState === "complete") handleLoading();
+
     window.addEventListener("load", handleLoading);
 
     return () => {
