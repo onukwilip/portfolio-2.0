@@ -12,7 +12,7 @@ function App() {
       <Logo />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/about" element={<AboutPageWrapper />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<Landing />} />
       </Routes>
       <Menu />

@@ -14,6 +14,7 @@ import AboutContentEaselScene from "../components/scenes/AboutContentEaselScene"
 import { motion, Variants, useAnimation } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+import Loader from "../components/Loader";
 
 const services: ServiceClass[] = [
   new ServiceClass("Software development", {
@@ -82,7 +83,6 @@ const EachServiceItem: FC<{ service: ServiceClass; index: number }> = ({
   }, []);
   useEffect(() => {
     if (inView) controls.start("big");
-    // else controls.start("small");
   }, [ref, inView, controls]);
 
   return (
@@ -118,6 +118,7 @@ const EachServiceItem: FC<{ service: ServiceClass; index: number }> = ({
 };
 
 const About: React.FC<{ style?: React.CSSProperties }> = ({ style }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const rightHeadingLineVariants = useMemo<Variants>(
     () => ({
       up: {
@@ -189,7 +190,6 @@ const About: React.FC<{ style?: React.CSSProperties }> = ({ style }) => {
   const descriptionVariants = useMemo<Variants>(
     () => ({
       hidden: { opacity: 0, y: 500 },
-      // displayed: { opacity: [0.3, 1], y: [250, 0] },
       displayed: { opacity: 1, y: 0 },
     }),
     []
@@ -220,14 +220,20 @@ const About: React.FC<{ style?: React.CSSProperties }> = ({ style }) => {
 
     if (serviceDistanceFromTop !== undefined && serviceDistanceFromTop < 600) {
       rightHeadingContainerControl.start("near");
-      // console.log("near");
     }
-    // else {
-    //   rightHeadingContainerControl.start("far");
-    //   // console.log("far");
-    // }
-    // console.log("d", serviceDistanceFromTop);
   };
+
+  const handleLoading = () => {
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("load", handleLoading);
+
+    return () => {
+      window.removeEventListener("load", handleLoading);
+    };
+  }, []);
 
   useEffect(() => {
     const abboutElement = aboutRef.current;
@@ -242,23 +248,22 @@ const About: React.FC<{ style?: React.CSSProperties }> = ({ style }) => {
       rightHeadingLineControl.start("down");
     }
 
-    // else {
-    //   rightHeadingLineControl.start("up");
-    // }
-
     if (rightHeadingIsInView) {
       rightHeadingControl.start("up");
     }
-
-    // else {
-    //   rightHeadingControl.start("down");
-    // }
   }, [
     rightHeadingControl,
     rightHeadingLineControl,
     rightHeadingIsInView,
     rightHeadingLineIsInView,
   ]);
+
+  if (isLoading)
+    return (
+      <>
+        <Loader isAnimating={true} />
+      </>
+    );
 
   return (
     <section className={css.about} ref={aboutRef} style={{ ...(style || {}) }}>
