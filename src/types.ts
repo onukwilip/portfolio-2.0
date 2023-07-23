@@ -11,3 +11,4 @@ export type ModelType = {
   >;
   props: JSX.IntrinsicElements["group"];
 };
+export type Stacktype = "frontend" | "backend" | "database";
