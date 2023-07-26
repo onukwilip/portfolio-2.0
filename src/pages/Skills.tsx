@@ -128,6 +128,7 @@ const EachStack: React.FC<{ eachStack: EachStackClass; index: number }> = ({
       variants={variants}
       initial="low"
       whileInView="high"
+      viewport={{ once: true }}
       transition={{ delay: index * 0.2 }}
       ref={ref}
     >
@@ -201,6 +202,7 @@ const SkillsComponent: React.FC = () => {
               variants={skillsVariants}
               initial="far"
               whileInView="near"
+              viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 0.5, ease: "easeOut" }}
             >
               <span className={css["skill-group-name"]}>{key}</span>
@@ -221,6 +223,7 @@ const SkillsComponent: React.FC = () => {
           variants={brainVariants}
           initial="small"
           whileInView="big"
+          viewport={{ once: true }}
           transition={{
             duration: 0.2,
             type: "spring",
