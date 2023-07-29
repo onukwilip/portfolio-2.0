@@ -103,7 +103,7 @@
                     width: 100%;
                     list-style-type: none;
                     padding: 0;
-                    padding-right: 5rem;
+                    // padding-right: 5rem;
                     cursor: pointer;
                     .skill-group-name {
                         font-size: 25px;
@@ -114,6 +114,7 @@
                     & > div {
                         @include flex(start, start, 1rem, column);
                         width: 100%;
+                        transition: 500ms;
                         li {
                             @include flex(center, start, 1rem, row);
                             width: 100%;
@@ -121,11 +122,42 @@
                                 width: 50px;
                                 height: 50px;
                                 object-fit: contain;
+                                filter: grayscale(100%);
+                                transition: 500ms;
                             }
                             span {
                                 text-transform: capitalize;
                                 color: white;
+                                transition: 500ms;
                             }
+                            &:hover {
+                                img {
+                                    filter: grayscale(0%);
+                                }
+                                span {
+                                    color: nth($colors, 4);
+                                }
+                            }
+                            &.active {
+                                img {
+                                    filter: grayscale(0%);
+                                }
+                                span {
+                                    color: nth($colors, 4);
+                                }
+                            }
+                        }
+                    }
+                    &:hover {
+                        & > div {
+                            padding: 0.5rem;
+                            border: 1px solid nth($colors, 4);
+                        }
+                    }
+                    &.active {
+                        & > div {
+                            padding: 0.5rem;
+                            border: 1px solid nth($colors, 4);
                         }
                     }
                 }
