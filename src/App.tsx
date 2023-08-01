@@ -6,6 +6,7 @@ import About from "./pages/About";
 import React, { useEffect, useState, Suspense } from "react";
 import Loader from "./components/Loader";
 import Skills from "./pages/Skills";
+import Experience from "./pages/Experience";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/about" element={<About />} />
         <Route path="/skills" element={<Skills />} />
+        <Route path="/experience" element={<Experience />} />
         <Route path="*" element={<Landing />} />
       </Routes>
       <Menu />

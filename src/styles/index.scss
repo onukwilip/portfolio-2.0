@@ -13,6 +13,10 @@
   font-family: "paintBrush";
   src: url(../fonts/Paintbrush-14Bj.ttf);
 }
+@font-face {
+  font-family: "blockHelvetica";
+  src: url(../fonts/BlockHelvetica-gxpM6.ttf);
+}
 
 body {
   margin: 0;
@@ -26,6 +30,25 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+// .h1,
+// .h2,
+// .h3,
+// .h4,
+// .h5,
+// .h6,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   margin-top: auto;
+//   margin-bottom: auto;
+//   font-weight: initial;
+//   line-height: initial;
+//   color: initial;
+// }
 
 * {
   box-sizing: border-box;

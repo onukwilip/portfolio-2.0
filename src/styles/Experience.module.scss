@@ -1,0 +1,176 @@
+@import "./config.scss";
+
+.experience {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 100px;
+    padding: 0 3rem;
+    .work-experience {
+        padding-top: 5rem;
+        position: relative;
+        perspective: 100px;
+        transform-style: preserve-3d;
+        overflow-y: hidden;
+        .heading {
+            text-align: center;
+            color: white;
+            font-size: 40px;
+            position: relative;
+            z-index: 1;
+            @include flex(center, center, 0.5rem, column);
+            .line-container {
+                width: 700px;
+                span {
+                    display: block;
+                    height: 3px;
+                    width: 700px;
+                    background: nth($colors, 4);
+                }
+            }
+        }
+        .timeline-container {
+            color: white;
+            font-size: 18px;
+            z-index: 2;
+            position: relative;
+            .work-element-container {
+                .work-element {
+                    background: rgba(39, 160, 214, 0.4);
+                    .work-title {
+                        text-decoration: none;
+                        color: lightblue;
+                        font-size: 24px;
+                    }
+                    .work-date {
+                        font-size: 17px;
+                        color: white !important;
+                    }
+                    .each-work-list {
+                        padding-left: 1rem;
+                        font-size: 17px;
+                        span {
+                            margin-bottom: 1rem;
+                            display: block;
+                        }
+                    }
+                }
+                &:nth-of-type(2n) {
+                    .work-element {
+                        background: rgba(#060930, 0.4);
+                        border-top: 3px solid white;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+        .blob {
+            position: absolute;
+            // transform: translateY(210rem) translateX(30rem) translateZ(-100px) scale(18);
+        }
+    }
+    .education-container {
+        color: white;
+        font-size: 18px;
+        z-index: 2;
+        position: relative;
+        min-height: 100vh;
+        @include grid(repeat(2, 1fr), auto, 0);
+        .left {
+            position: relative;
+            @include flex(center, center, auto, row);
+            font-size: 50px;
+            h2 {
+                font-family: "blockHelvetica" !important;
+                letter-spacing: 5px;
+                text-align: center;
+                @include flex(center, center, 0.5rem, column);
+                span {
+                    font-size: 70px;
+                    font-family: paintBrush;
+                }
+            }
+        }
+        .right {
+            @include flex(center, center, 1rem, column);
+            position: relative;
+            & > div {
+                width: 80%;
+            }
+            .degree {
+                font-weight: bold;
+            }
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: -5rem;
+            width: 110vw;
+            img {
+                mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
+                height: 59vh;
+                width: 100%;
+                object-fit: cover;
+                mask-size: 59vh;
+            }
+        }
+
+        @include media(max, 1030px) {
+            grid-template-columns: repeat(1, 1fr);
+            .left h2 {
+                text-shadow: 0 0 10px rgba(nth($colors, 1), 0.9);
+            }
+        }
+    }
+}
+
+.accordion {
+    // min-width: 700px;
+    transition: 500ms;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(nth($colors, 1), 0.4);
+    span {
+        display: block;
+    }
+    .heading-container {
+        padding: 1rem;
+        background: rgba(nth($colors, 4), 0.4);
+        border-radius: 5px;
+        @include flex(center, space-between, 1rem);
+        backdrop-filter: blur(6px);
+        .heading {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        i {
+            cursor: pointer;
+        }
+    }
+    .content-container {
+        display: grid;
+        grid-template-rows: 0fr;
+        backdrop-filter: blur(6px);
+        background: rgba(white, 1);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        transition: 500ms;
+        overflow: hidden;
+        padding: 0;
+        & > .content {
+            overflow-y: hidden;
+            color: nth($colors, 1);
+            min-height: 0;
+        }
+    }
+    &.active {
+        .heading-container {
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+        .content-container {
+            grid-template-rows: 1fr;
+            padding: 1rem;
+        }
+    }
+}

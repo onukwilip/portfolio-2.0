@@ -233,6 +233,7 @@ const SkillsComponent: React.FC = () => {
             </motion.ul>
           ))}
         </div>
+
         <motion.div
           variants={brainVariants}
           initial="small"
