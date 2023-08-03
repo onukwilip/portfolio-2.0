@@ -10,6 +10,7 @@ const menus: MenuClass[] = [
   new MenuClass("About", "/about", "fa-regular fa-user"),
   new MenuClass("Skills", "/skills", "fa-brands fa-react"),
   new MenuClass("Experience", "/experience", "fas fa-briefcase"),
+  new MenuClass("Achievements", "/achievements", "fas fa-trophy"),
   new MenuClass("Testimonials", "/testimonials", "fa-regular fa-face-smile"),
   new MenuClass("Contact", "/contact", "fa-regular fa-address-book"),
 ];
