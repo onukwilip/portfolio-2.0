@@ -189,7 +189,7 @@ const Experience = () => {
         backgroundPositionY: "50rem",
       },
       up: {
-        backgroundPositionY: "5rem",
+        backgroundPositionY: rdd.isIOS ? "10rem" : "5rem",
       },
     }),
     []
@@ -235,7 +235,7 @@ const Experience = () => {
         initial="down"
         animate="up"
         className={`${css["work-experience"]} ${
-          rdd.isIOS ? "" : css["not-ios"]
+          rdd.isIOS ? css["is-ios"] : css["not-ios"]
         }`}
       >
         <div className={css.heading}>

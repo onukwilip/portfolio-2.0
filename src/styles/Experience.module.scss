@@ -23,6 +23,33 @@
         &.not-ios {
             background-attachment: fixed;
         }
+        &.is-ios {
+            // .blob-container {
+            //     width: 120vw;
+            //     height: 1600px;
+            //     overflow-y: hidden;
+            //     position: absolute;
+            //     top: 10rem;
+            //     left: -5rem;
+            //     .blob {
+            //         position: absolute;
+            //         width: 120vw;
+            //         height: 1600px;
+            //     }
+            // }
+
+            // position: static;
+            // .blob {
+            //     height: 100vh;
+            //     position: fixed;
+            //     top: 0;
+            //     left: 0;
+            //     width: 100%;
+            //     background: red;
+            // }
+
+            background-size: auto 6000px;
+        }
         .heading {
             text-align: center;
             color: white;
@@ -149,22 +176,6 @@
             .left h2 {
                 text-shadow: 0 0 10px rgba(nth($colors, 1), 0.4);
             }
-        }
-    }
-    .blob-container {
-        width: 120vw;
-        height: 1600px;
-        overflow-y: hidden;
-        position: absolute;
-        top: 10rem;
-        left: -5rem;
-        .blob {
-            position: absolute;
-            // top: 10rem;
-            // left: -5rem;
-            width: 120vw;
-            height: 1600px;
-            background: red;
         }
     }
 
