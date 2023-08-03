@@ -4,6 +4,7 @@ import gopack from "../assets/images/gopack_logo_new.png";
 import momas from "../assets/images/momas-logo-2.png";
 import upwork from "../assets/images/upwork-logo.png";
 import eduBg from "../assets/images/education-bg.jpg";
+import blob from "../assets/images/blob.svg";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -215,11 +216,13 @@ const Experience = () => {
             ))}
           </VerticalTimeline>
         </div>
-        {/* <img src={blob} alt="blob" className={css.blob} /> */}
+        <br />
+        <br />
+        <br />
       </div>
-      <br />
-      <br />
-      <br />
+      {/* <div className={css["blob-container"]}>
+        <img src={blob} alt="blob" className={css.blob} />
+      </div> */}
       <div className={css["education-container"]}>
         <div className={css.background}>
           <img src={eduBg} alt="" />

@@ -7,12 +7,22 @@
     overflow-y: auto;
     perspective: 100px;
     padding: 0 3rem;
+    position: relative;
     .work-experience {
         padding-top: 5rem;
         position: relative;
         perspective: 100px;
         transform-style: preserve-3d;
         overflow-y: hidden;
+        overflow-x: hidden;
+        z-index: 1;
+
+        background-image: url(../assets/images/blob.svg);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center 5rem;
+        background-size: 120vw;
+
         .heading {
             text-align: center;
             color: white;
@@ -27,6 +37,12 @@
                     height: 3px;
                     width: 700px;
                     background: nth($colors, 4);
+                }
+                @include media(max, 710px) {
+                    width: 90vw;
+                    span {
+                        width: 100%;
+                    }
                 }
             }
         }
@@ -65,10 +81,6 @@
                 }
             }
         }
-        .blob {
-            position: absolute;
-            // transform: translateY(210rem) translateX(30rem) translateZ(-100px) scale(18);
-        }
     }
     .education-container {
         color: white;
@@ -101,6 +113,12 @@
             .degree {
                 font-weight: bold;
             }
+            @include media-h(max, 930px) {
+                padding-bottom: 10vh;
+            }
+            @include media-h(max, 770px) {
+                padding-bottom: 15vh;
+            }
         }
         .background {
             position: absolute;
@@ -115,7 +133,6 @@
                 mask-size: 59vh;
             }
         }
-
         @include media(max, 1030px) {
             grid-template-columns: repeat(1, 1fr);
             .left h2 {
@@ -123,10 +140,32 @@
             }
         }
     }
+    .blob-container {
+        width: 120vw;
+        height: 1600px;
+        overflow-y: hidden;
+        position: absolute;
+        top: 10rem;
+        left: -5rem;
+        .blob {
+            position: absolute;
+            // top: 10rem;
+            // left: -5rem;
+            width: 120vw;
+            height: 1600px;
+            background: red;
+        }
+    }
+
+    @include media(max, 550px) {
+        padding: 0 5px;
+        .education-container .background {
+            left: -2rem;
+        }
+    }
 }
 
 .accordion {
-    // min-width: 700px;
     transition: 500ms;
     position: relative;
     box-shadow: 0px 0px 10px rgba(nth($colors, 1), 0.4);
