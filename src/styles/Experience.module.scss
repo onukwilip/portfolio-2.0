@@ -6,7 +6,6 @@
     overflow-x: hidden;
     overflow-y: auto;
     perspective: 100px;
-    padding: 0 3rem;
     position: relative;
     .work-experience {
         padding-top: 5rem;
@@ -22,7 +21,6 @@
         background-repeat: no-repeat;
         background-position: center 5rem;
         background-size: 120vw;
-
         .heading {
             text-align: center;
             color: white;
@@ -30,13 +28,14 @@
             position: relative;
             z-index: 1;
             @include flex(center, center, 0.5rem, column);
+            padding: 0 3rem;
             .line-container {
                 width: 700px;
                 span {
                     display: block;
                     height: 3px;
                     width: 700px;
-                    background: nth($colors, 4);
+                    background: nth($colors, 5);
                 }
                 @include media(max, 710px) {
                     width: 90vw;
@@ -51,9 +50,11 @@
             font-size: 18px;
             z-index: 2;
             position: relative;
+            padding: 0 3rem;
             .work-element-container {
                 .work-element {
-                    background: rgba(39, 160, 214, 0.4);
+                    background: rgba(nth($colors, 5), 0.4);
+                    color: nth($colors, 1);
                     .work-title {
                         text-decoration: none;
                         color: lightblue;
@@ -77,9 +78,13 @@
                         background: rgba(#060930, 0.4);
                         border-top: 3px solid white;
                         box-shadow: none;
+                        color: white;
                     }
                 }
             }
+        }
+        @include media(max, 900px) {
+            background-size: 1500px 1600px;
         }
     }
     .education-container {
@@ -107,6 +112,7 @@
         .right {
             @include flex(center, center, 1rem, column);
             position: relative;
+            padding: 0 3rem;
             & > div {
                 width: 80%;
             }
@@ -114,16 +120,16 @@
                 font-weight: bold;
             }
             @include media-h(max, 930px) {
-                padding-bottom: 10vh;
+                padding-bottom: 10vh !important;
             }
             @include media-h(max, 770px) {
-                padding-bottom: 15vh;
+                padding-bottom: 15vh !important;
             }
         }
         .background {
             position: absolute;
             top: 0;
-            left: -5rem;
+            // left: -5rem;
             width: 110vw;
             img {
                 mask-image: linear-gradient(to bottom, black 50%, transparent 95%);
@@ -158,9 +164,10 @@
     }
 
     @include media(max, 550px) {
-        padding: 0 5px;
-        .education-container .background {
-            left: -2rem;
+        .work-experience .heading,
+        .work-experience .timeline-container,
+        .education-container .right {
+            padding: 0px 5px;
         }
     }
 }

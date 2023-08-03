@@ -149,7 +149,7 @@ const Experience = () => {
                   className={`vertical-timeline-element--work ${css["work-element-container"]}`}
                   contentStyle={{
                     backdropFilter: "blur(3px)",
-                    color: "white",
+                    // color: "white",
                   }}
                   contentArrowStyle={{
                     borderRight: "7px solid rgba(39, 160, 214, 0.4)",
@@ -220,9 +220,6 @@ const Experience = () => {
         <br />
         <br />
       </div>
-      {/* <div className={css["blob-container"]}>
-        <img src={blob} alt="blob" className={css.blob} />
-      </div> */}
       <div className={css["education-container"]}>
         <div className={css.background}>
           <img src={eduBg} alt="" />
