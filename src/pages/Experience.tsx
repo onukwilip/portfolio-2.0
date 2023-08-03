@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import css from "../styles/Experience.module.scss";
 import gopack from "../assets/images/gopack_logo_new.png";
 import momas from "../assets/images/momas-logo-2.png";
@@ -11,6 +11,7 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import { AccordionClass, WorkClass, WorkDurationClass } from "../utils";
 import { Variants, motion } from "framer-motion";
+import Loader from "../components/Loader";
 
 const workExperience: WorkClass[] = [
   new WorkClass(
@@ -155,6 +156,7 @@ const Accordion: FC<AccordionClass & { index?: number }> = ({
 };
 
 const Experience = () => {
+  const [loading, setLoading] = useState(true);
   const workHeadingVariants = useMemo<Variants>(
     () => ({
       far: {
@@ -196,6 +198,22 @@ const Experience = () => {
     []
   );
 
+  const handleLoading = () => {
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (document.readyState === "complete") handleLoading();
+
+    window.addEventListener("load", handleLoading);
+
+    return () => {
+      window.removeEventListener("load", handleLoading);
+    };
+  }, []);
+
+  if (loading) return <Loader isAnimating={true} />;
+
   return (
     <div className={css.experience}>
       {" "}
@@ -234,7 +252,6 @@ const Experience = () => {
                   className={`vertical-timeline-element--work ${css["work-element-container"]}`}
                   contentStyle={{
                     backdropFilter: "blur(3px)",
-                    // color: "white",
                   }}
                   contentArrowStyle={{
                     borderRight: "7px solid rgba(39, 160, 214, 0.4)",

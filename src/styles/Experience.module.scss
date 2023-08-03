@@ -55,6 +55,8 @@
                 .work-element {
                     background: rgba(nth($colors, 5), 0.4);
                     color: nth($colors, 1);
+                    box-shadow: 0 0 10px rgba(nth($colors, 1), 0.4);
+                    border-bottom: 3px solid white;
                     .work-title {
                         text-decoration: none;
                         color: lightblue;
@@ -77,6 +79,7 @@
                     .work-element {
                         background: rgba(#060930, 0.4);
                         border-top: 3px solid white;
+                        border-bottom: none;
                         box-shadow: none;
                         color: white;
                     }
