@@ -1,16 +1,16 @@
-import React, { FC, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import css from "../styles/Experience.module.scss";
 import gopack from "../assets/images/gopack_logo_new.png";
 import momas from "../assets/images/momas-logo-2.png";
 import upwork from "../assets/images/upwork-logo.png";
 import eduBg from "../assets/images/education-bg.jpg";
-import blob from "../assets/images/blob.svg";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { AccordionClass, WorkClass, WorkDurationClass } from "../utils";
+import { Variants, motion } from "framer-motion";
 
 const workExperience: WorkClass[] = [
   new WorkClass(
@@ -109,10 +109,37 @@ const educationList: AccordionClass[] = [
   ),
 ];
 
-const Accordion: FC<AccordionClass> = ({ Heading, Content }) => {
+const Accordion: FC<AccordionClass & { index?: number }> = ({
+  Heading,
+  Content,
+  index,
+}) => {
   const [show, setShow] = useState(false);
+  const variants = useMemo<Variants>(
+    () => ({
+      down: {
+        y: 100,
+        opacity: 0,
+      },
+      up: {
+        y: 0,
+        opacity: 1,
+      },
+    }),
+    []
+  );
+
   return (
-    <div className={`${css.accordion} ${show ? css.active : ""}`}>
+    <motion.div
+      variants={variants}
+      initial="down"
+      whileInView="up"
+      viewport={{ once: true }}
+      transition={{
+        delay: (index || 0) * 0.1,
+      }}
+      className={`${css.accordion} ${show ? css.active : ""}`}
+    >
       <div className={css["heading-container"]}>
         <div className={css.heading}>{Heading}</div>
         <i
@@ -123,19 +150,77 @@ const Accordion: FC<AccordionClass> = ({ Heading, Content }) => {
       <div className={css["content-container"]}>
         <div className={css.content}>{Content}</div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const Experience = () => {
+  const workHeadingVariants = useMemo<Variants>(
+    () => ({
+      far: {
+        x: -200,
+      },
+      near: { x: 0 },
+    }),
+    []
+  );
+  const workHeadingLineVariants = useMemo<Variants>(
+    () => ({
+      far: {
+        x: 300,
+      },
+      near: { x: 0 },
+    }),
+    []
+  );
+  const workExperienceBgVariants = useMemo<Variants>(
+    () => ({
+      down: {
+        backgroundPositionY: "50rem",
+      },
+      up: {
+        backgroundPositionY: "5rem",
+      },
+    }),
+    []
+  );
+  const educationHeadingVariants = useMemo<Variants>(
+    () => ({
+      small: {
+        scale: 0,
+      },
+      big: {
+        scale: 1,
+      },
+    }),
+    []
+  );
+
   return (
     <div className={css.experience}>
       {" "}
-      <div className={css["work-experience"]}>
+      <motion.div
+        variants={workExperienceBgVariants}
+        initial="down"
+        animate="up"
+        className={css["work-experience"]}
+      >
         <div className={css.heading}>
-          <span>WORKED AT ALL THESE COMPANIES</span>
+          <motion.span
+            variants={workHeadingVariants}
+            initial="far"
+            animate="near"
+            transition={{ mass: 0, ease: "easeOut", duration: 0.5 }}
+          >
+            WORKED AT ALL THESE COMPANIES
+          </motion.span>
           <div className={css["line-container"]}>
-            <span></span>
+            <motion.span
+              variants={workHeadingLineVariants}
+              initial="far"
+              animate="near"
+              transition={{ mass: 0, ease: "easeOut", duration: 0.5 }}
+            ></motion.span>
           </div>
         </div>
         <br />
@@ -219,15 +304,20 @@ const Experience = () => {
         <br />
         <br />
         <br />
-      </div>
+      </motion.div>
       <div className={css["education-container"]}>
         <div className={css.background}>
           <img src={eduBg} alt="" />
         </div>
         <div className={css.left}>
-          <h2>
+          <motion.h2
+            variants={educationHeadingVariants}
+            initial="small"
+            whileInView="big"
+            viewport={{ once: true }}
+          >
             WHERE I <span>STUDIED</span>
-          </h2>
+          </motion.h2>
         </div>
         <div className={css.right}>
           {educationList.map((education, i) => (
@@ -235,6 +325,7 @@ const Experience = () => {
               key={i}
               Heading={education.Heading}
               Content={education.Content}
+              index={i}
             />
           ))}
         </div>
