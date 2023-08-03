@@ -17,10 +17,12 @@
         z-index: 1;
 
         background-image: url(../assets/images/blob.svg);
-        background-attachment: fixed;
         background-repeat: no-repeat;
         background-position: center 5rem;
         background-size: 120vw;
+        &.not-ios {
+            background-attachment: fixed;
+        }
         .heading {
             text-align: center;
             color: white;

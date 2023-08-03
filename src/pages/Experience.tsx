@@ -13,6 +13,7 @@ import { AccordionClass, WorkClass, WorkDurationClass } from "../utils";
 import { Variants, motion, useAnimation } from "framer-motion";
 import Loader from "../components/Loader";
 import { useInView } from "react-intersection-observer";
+import * as rdd from "react-device-detect";
 
 const workExperience: WorkClass[] = [
   new WorkClass(
@@ -233,7 +234,9 @@ const Experience = () => {
         variants={workExperienceBgVariants}
         initial="down"
         animate="up"
-        className={css["work-experience"]}
+        className={`${css["work-experience"]} ${
+          rdd.isIOS ? "" : css["not-ios"]
+        }`}
       >
         <div className={css.heading}>
           <motion.span
