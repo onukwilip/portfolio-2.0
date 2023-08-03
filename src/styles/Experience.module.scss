@@ -145,7 +145,7 @@
         @include media(max, 1030px) {
             grid-template-columns: repeat(1, 1fr);
             .left h2 {
-                text-shadow: 0 0 10px rgba(nth($colors, 1), 0.9);
+                text-shadow: 0 0 10px rgba(nth($colors, 1), 0.4);
             }
         }
     }

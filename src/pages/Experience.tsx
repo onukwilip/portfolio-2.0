@@ -10,8 +10,9 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { AccordionClass, WorkClass, WorkDurationClass } from "../utils";
-import { Variants, motion } from "framer-motion";
+import { Variants, motion, useAnimation } from "framer-motion";
 import Loader from "../components/Loader";
+import { useInView } from "react-intersection-observer";
 
 const workExperience: WorkClass[] = [
   new WorkClass(
@@ -110,12 +111,14 @@ const educationList: AccordionClass[] = [
   ),
 ];
 
-const Accordion: FC<AccordionClass & { index?: number }> = ({
+const Accordion: FC<AccordionClass & { index?: number; inView?: boolean }> = ({
   Heading,
   Content,
   index,
+  inView,
 }) => {
   const [show, setShow] = useState(false);
+  const control = useAnimation();
   const variants = useMemo<Variants>(
     () => ({
       down: {
@@ -130,11 +133,15 @@ const Accordion: FC<AccordionClass & { index?: number }> = ({
     []
   );
 
+  useEffect(() => {
+    if (inView) control.start("up");
+  }, [inView, control]);
+
   return (
     <motion.div
       variants={variants}
       initial="down"
-      whileInView="up"
+      animate={control}
       viewport={{ once: true }}
       transition={{
         delay: (index || 0) * 0.1,
@@ -197,6 +204,8 @@ const Experience = () => {
     }),
     []
   );
+  const [rightDivRef, rightDivInView] = useInView();
+  const [animateAccordions, setAnimateAccordions] = useState(false);
 
   const handleLoading = () => {
     setLoading(false);
@@ -211,6 +220,9 @@ const Experience = () => {
       window.removeEventListener("load", handleLoading);
     };
   }, []);
+  useEffect(() => {
+    if (rightDivInView) setAnimateAccordions(true);
+  }, [rightDivRef, rightDivInView]);
 
   if (loading) return <Loader isAnimating={true} />;
 
@@ -336,16 +348,17 @@ const Experience = () => {
             WHERE I <span>STUDIED</span>
           </motion.h2>
         </div>
-        <div className={css.right}>
+        <motion.div ref={rightDivRef} className={css.right}>
           {educationList.map((education, i) => (
             <Accordion
               key={i}
               Heading={education.Heading}
               Content={education.Content}
               index={i}
+              inView={animateAccordions}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
