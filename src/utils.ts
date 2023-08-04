@@ -1,3 +1,4 @@
+import React from "react";
 import { ModelType, Stacktype } from "./types";
 
 export class MenuClass {
@@ -48,6 +49,31 @@ export class AccordionClass {
     public Heading: string | React.ReactNode,
     public Content: string | React.ReactNode
   ) {}
+}
+
+export class AchievementClass {
+  constructor(
+    public image: string,
+    public name: string,
+    public description: string,
+    public skills: string[],
+    public links: [string, string],
+    public className?: string
+  ) {}
+}
+
+export class ProjectClass extends AchievementClass {
+  constructor(
+    public image: string,
+    public name: string,
+    public description: string,
+    public skills: string[],
+    public links: [string, string],
+    public className?: string,
+    public is3D?: boolean
+  ) {
+    super(image, name, description, skills, links, className);
+  }
 }
 
 export const toRadians = (deg: number) => (Math.PI / 180) * deg;

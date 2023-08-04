@@ -1,0 +1,402 @@
+@import "config.scss";
+
+.achievements {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 3rem 5rem;
+    .bg {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -1;
+    }
+    .achievements-container {
+        position: relative;
+        z-index: 1;
+        & > .heading {
+            @include flex(center, center, 1rem);
+            text-align: center;
+            color: white;
+            font-family: friendlyRobot;
+            font-size: 30px;
+            text-transform: uppercase;
+            span {
+                display: block;
+                width: 400px;
+                height: 0.2px;
+                background: white;
+            }
+        }
+        .projects {
+            @include flex(center, center, 5rem, column);
+            & > div {
+                width: 100%;
+            }
+        }
+    }
+    .projects-container {
+        position: relative;
+        z-index: 1;
+        & > .heading {
+            @include flex(center, center, 1rem);
+            text-align: center;
+            color: white;
+            font-family: friendlyRobot;
+            font-size: 30px;
+            text-transform: uppercase;
+            span {
+                display: block;
+                width: 400px;
+                height: 0.2px;
+                background: white;
+            }
+        }
+        .projects {
+            @include flex(center, center, 2rem);
+            flex-wrap: wrap;
+            & > div {
+                width: 100%;
+            }
+        }
+    }
+    @include media(max, 550px) {
+        padding: 3rem 5px;
+    }
+}
+
+.achievement {
+    position: relative;
+    color: white !important;
+    max-width: 1000px;
+    height: 400px;
+    .img-container {
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+        img {
+            width: 600px;
+            height: 400px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 5px;
+            mix-blend-mode: multiply;
+            position: relative;
+            filter: grayscale(100%);
+            transition: 200ms;
+        }
+        &::before {
+            content: "";
+            width: 600px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(nth($colors, 5), 0.9);
+            transition: 200ms;
+            border-radius: 5px;
+        }
+        &:hover {
+            img {
+                filter: grayscale(0%);
+            }
+            &::before {
+                background: rgba(nth($colors, 5), 0);
+            }
+        }
+    }
+    .content-container {
+        position: absolute;
+        max-width: 550px;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        @include flex(start, center, 0.5rem, column);
+        .heading-container {
+            @include flex(start, start, 0.2rem, column);
+            span {
+                &:first-of-type {
+                    font-weight: bold;
+                }
+                &.heading {
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+            }
+            a {
+                color: white;
+                text-decoration: none;
+            }
+        }
+        .content {
+            padding: 10px;
+            // background: lighten(nth($colors, 1), 7);
+            background: nth($colors, 2);
+            border-radius: 3px;
+            font-weight: 100;
+            // background: nth($colors, 5);
+            // font-weight: 400;
+            // color: nth($colors, 1);
+        }
+        .skills {
+            list-style-type: none;
+            padding: 0;
+            @include flex(center, start, 1rem);
+            flex-wrap: wrap;
+            li {
+                color: nth($colors, 1);
+                padding: 5px;
+                border-radius: 3px;
+                background: white;
+            }
+        }
+        .links {
+            @include flex(center, start, 1rem);
+            a {
+                color: white;
+                transition: 200ms;
+                width: 50px;
+                text-decoration: none;
+                height: 50px;
+                @include flex(center, center, 0);
+                border-radius: 50%;
+                i {
+                    font-size: 24px;
+                }
+                &:hover {
+                    color: nth($colors, 1);
+                    background: nth($colors, 5);
+                }
+            }
+        }
+    }
+    // EVERY SECOND ACHIEVEMENT COMPONENT
+    &:nth-of-type(2n) {
+        .img-container {
+            left: 0;
+            right: unset;
+        }
+        .content-container {
+            right: 0;
+            left: unset;
+            align-items: end;
+            .heading-container {
+                align-items: end;
+            }
+            .content {
+                text-align: right;
+            }
+            .skills {
+                justify-content: end;
+            }
+            .links {
+                justify-content: end;
+            }
+        }
+    }
+    @include media(max, 720px) {
+        height: 500px;
+        .img-container {
+            position: absolute;
+            left: 0;
+            img {
+                height: 500px;
+            }
+            &::before {
+                height: 500px;
+                background: rgba(nth($colors, 1), 0.8);
+                border-radius: 5px;
+            }
+        }
+        .content-container {
+            position: relative !important;
+            padding-left: 2rem;
+            .heading-container {
+                & > span {
+                    color: nth($colors, 5) !important;
+                }
+            }
+            .content {
+                background: none;
+                padding: 0;
+                font-weight: normal;
+            }
+        }
+    }
+    @include media(max, 690px) {
+        .img-container {
+            img {
+                width: 80vw;
+            }
+            &::before {
+                width: 80vw;
+            }
+        }
+    }
+    @include media(max, 550px) {
+        @include flex(center, start, 0);
+        .img-container {
+            img,
+            &::before {
+                width: 97vw;
+            }
+        }
+        .content-container {
+            max-width: 97vw;
+            padding: 0px 1rem;
+            top: 0;
+            transform: translateY(0);
+        }
+    }
+    &.nigtrak-project {
+        @include media(max, 308px) {
+            height: 650px;
+            .img-container {
+                img,
+                &::before {
+                    height: 650px;
+                }
+            }
+        }
+    }
+    &.online-auction-project {
+        @include media(max, 410px) {
+            height: 650px;
+            .img-container {
+                img,
+                &::before {
+                    height: 650px;
+                }
+            }
+        }
+        @include media(max, 320px) {
+            height: 700px;
+            .img-container {
+                img,
+                &::before {
+                    height: 700px;
+                }
+            }
+        }
+        @include media(max, 280px) {
+            height: 770px;
+            .img-container {
+                img,
+                &::before {
+                    height: 770px;
+                }
+            }
+        }
+    }
+}
+.project {
+    max-width: 600px;
+    height: 600px;
+    position: relative;
+    .img-container {
+        position: absolute;
+        left: 0;
+        img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            object-position: top left;
+            box-shadow: 0 0 10px rgba(nth($colors, 2), 0.3);
+        }
+        .links {
+            position: absolute;
+            top: 0.3rem;
+            right: 0.3rem;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            @include flex(center, space-between, 2rem);
+            background: nth($colors, 1);
+            a {
+                color: white;
+                font-size: 24px;
+                transition: 200ms;
+                &:hover {
+                    transform: scale(1.15);
+                }
+            }
+        }
+        .threeD {
+            position: absolute;
+            top: 0.3rem;
+            left: 0.3rem;
+            width: 60px;
+            height: 60px;
+            @include flex(center, center, auto);
+            border-radius: 50%;
+            background: linear-gradient(to bottom right, nth($colors, 4), nth($colors, 5));
+            color: nth($colors, 2);
+            font-weight: bold;
+            border: 10px solid nth($colors, 2);
+        }
+    }
+    .content-container {
+        position: absolute;
+        right: 0;
+        top: 200px;
+        max-width: 350px;
+        padding: 1rem;
+        background: nth($colors, 5);
+        box-shadow: 0 0 10px rgba(nth($colors, 2), 0.3);
+        border-radius: 5px;
+        .heading {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        .skills {
+            list-style-type: none;
+            padding: 0;
+            @include flex(center, start, 1rem);
+            row-gap: 0;
+            flex-wrap: wrap;
+            li {
+                font-size: 14px;
+                color: blue;
+                &:nth-of-type(2n) {
+                    color: white;
+                }
+                &:nth-of-type(3n) {
+                    color: purple;
+                }
+                &:nth-of-type(4n) {
+                    color: red;
+                }
+                &:nth-of-type(5n) {
+                    color: beige;
+                }
+            }
+        }
+    }
+    @include media(max, 370px) {
+        padding: 0.5rem;
+        height: auto;
+        background: nth($colors, 5);
+        box-shadow: 0 0 10px rgba(nth($colors, 2), 0.3);
+        border-radius: 5px;
+        .img-container {
+            position: relative;
+            img {
+                width: 100%;
+                height: 200px;
+            }
+        }
+        .content-container {
+            position: relative;
+            top: 0;
+            box-shadow: none;
+            background: none;
+        }
+    }
+}
