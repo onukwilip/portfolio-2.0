@@ -11,6 +11,8 @@ import mdHubImg from "../assets/images/Manassel-data-hub.png";
 import onlineAuctionImg from "../assets/images/online-auction-img.png";
 import { AchievementClass, ProjectClass } from "../utils";
 
+// trying to trigger redeploy
+
 const achievements: AchievementClass[] = [
   new AchievementClass(
     gopackImg,
