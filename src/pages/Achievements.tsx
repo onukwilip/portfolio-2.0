@@ -377,7 +377,7 @@ const Achievements = () => {
   const headingLeftVariants = useMemo<Variants>(
     () => ({
       far: {
-        x: -300,
+        x: window.innerWidth > 765 ? -300 : -50,
       },
       near: {
         x: 0,
@@ -389,7 +389,7 @@ const Achievements = () => {
   const headingRightVariants = useMemo<Variants>(
     () => ({
       far: {
-        x: 300,
+        x: window.innerWidth > 765 ? 300 : 50,
       },
       near: {
         x: 0,
