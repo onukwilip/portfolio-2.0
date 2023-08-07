@@ -9,7 +9,13 @@ import goCyclopedia from "../assets/images/GOCyclopaedia.png";
 import threeJsMLImg from "../assets/images/three-js-ml-practice.png";
 import mdHubImg from "../assets/images/Manassel-data-hub.png";
 import onlineAuctionImg from "../assets/images/online-auction-img.png";
-import { AchievementClass, ProjectClass } from "../utils";
+import udemyLogo from "../assets/images/udemy.png";
+import reactJsCertificateImg from "../assets/images/react-certificate-1.png";
+import mernStackCertificateImg from "../assets/images/mern-certificate -1.png";
+import dsaCSharpCertificateImg from "../assets/images/data-structures-csharp-certificate-1.png";
+import reactThreeFiberCertificateImg from "../assets/images/react-3-fiber-certification.png";
+import { AchievementClass, CertificationClass, ProjectClass } from "../utils";
+import * as rdd from "react-device-detect";
 
 // trying to trigger redeploy
 
@@ -121,6 +127,36 @@ const otherProjects: ProjectClass[] = [
     undefined
   ),
 ];
+const certifications: CertificationClass[] = [
+  new CertificationClass(
+    "React.Js development",
+    `UC-7532cd2f-b81d-4542-94a5-f3bf03972087`,
+    `https://bit.ly/41BSKOu`,
+    reactJsCertificateImg,
+    udemyLogo
+  ),
+  new CertificationClass(
+    `React, NodeJS, Express & MongoDB - MERN`,
+    `UC-7937db50-b59c-4389-8299-e4e6f3bd266a`,
+    ` https://bit.ly/3n2Fgwc`,
+    mernStackCertificateImg,
+    udemyLogo
+  ),
+  new CertificationClass(
+    `React three fiber`,
+    `UC-14588fae-ba37-4b10-919d-1077f9f84abc`,
+    `https://bit.ly/3K7U58V`,
+    reactThreeFiberCertificateImg,
+    udemyLogo
+  ),
+  new CertificationClass(
+    "Data structures and algorithms.: In depth in C#",
+    `UC-7532cd2f-b81d-4542-94a5-f3bf03972087`,
+    `https://bit.ly/41BSKOu`,
+    dsaCSharpCertificateImg,
+    udemyLogo
+  ),
+];
 
 const Achievement: FC<{ achievement: AchievementClass }> = ({
   achievement,
@@ -203,6 +239,72 @@ const Project: FC<{ project: ProjectClass }> = ({ project }) => {
     </div>
   );
 };
+const Certification: FC<{ certification: CertificationClass }> = ({
+  certification,
+}) => {
+  return (
+    <>
+      <div
+        className={`${css.certification} ${
+          rdd.isMobile ? css["mobile-certification"] : ""
+        }`}
+      >
+        <div className={css["img-container"]}>
+          <img
+            src={certification["certificate-image"]}
+            alt={certification["certificate-name"]}
+          />
+          <a
+            href={certification["certificate-URL"]}
+            target="_blank"
+            rel="noreferrer"
+            className={css["issued-by"]}
+          >
+            <img src={certification["certificate-issuedBy"]} alt={""} />{" "}
+          </a>
+        </div>
+        <div className={css.content}>
+          <a
+            href={certification["certificate-URL"]}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={certification["certificate-issuedBy"]} alt={""} />{" "}
+          </a>
+          {window.innerWidth > 360 && (
+            <>
+              <br />
+              <br />
+            </>
+          )}
+          {Object.keys(certification)
+            .filter(
+              (key) =>
+                key !== "certificate-image" && key !== "certificate-issuedBy"
+            )
+            .map((key) => (
+              <>
+                <li>
+                  <span>{key.split("-")[1]}</span>:{" "}
+                  {key === "certificate-URL" ? (
+                    <a
+                      href={certification[key]}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {certification[key as "certificate-name"]}
+                    </a>
+                  ) : (
+                    <span>{certification[key as "certificate-name"]}</span>
+                  )}
+                </li>
+              </>
+            ))}
+        </div>
+      </div>
+    </>
+  );
+};
 
 const Achievements = () => {
   return (
@@ -229,6 +331,18 @@ const Achievements = () => {
         <div className={css.projects}>
           {otherProjects.map((project, i) => (
             <Project project={project} key={i} />
+          ))}
+        </div>
+      </div>
+      <div className={css["certifications-container"]}>
+        <h2 className={css["heading"]}>
+          My certifications <span></span>
+        </h2>
+        <div className={css["certifications"]}>
+          {certifications.map((certificate, i) => (
+            <>
+              <Certification certification={certificate} />
+            </>
           ))}
         </div>
       </div>

@@ -76,4 +76,25 @@ export class ProjectClass extends AchievementClass {
   }
 }
 
+export class CertificationClass {
+  public ["certificate-name"]: string;
+  public ["certificate-Id"]: string;
+  public ["certificate-URL"]: string;
+  public ["certificate-image"]: string;
+  public ["certificate-issuedBy"]: string;
+  constructor(
+    name: string,
+    certificateId: string,
+    certificateURL: string,
+    image: string,
+    issuedBy: string
+  ) {
+    this["certificate-name"] = name;
+    this["certificate-Id"] = certificateId;
+    this["certificate-URL"] = certificateURL;
+    this["certificate-image"] = image;
+    this["certificate-issuedBy"] = issuedBy;
+  }
+}
+
 export const toRadians = (deg: number) => (Math.PI / 180) * deg;
