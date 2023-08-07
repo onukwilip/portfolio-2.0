@@ -133,7 +133,7 @@ const certifications: CertificationClass[] = [
   new CertificationClass(
     "React.Js development",
     `UC-7532cd2f-b81d-4542-94a5-f3bf03972087`,
-    `https://bit.ly/41BSKOu`,
+    `https://bit.ly/3HgG6MD`,
     reactJsCertificateImg,
     udemyLogo
   ),
