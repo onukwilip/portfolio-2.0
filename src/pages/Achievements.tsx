@@ -398,6 +398,20 @@ const Achievements = () => {
     []
   );
 
+  const bigSplashVariants = useMemo<Variants>(
+    () => ({
+      far: {
+        x: "98vw",
+        y: "-98vh",
+      },
+      near: {
+        x: "0vw",
+        y: "0vh",
+      },
+    }),
+    []
+  );
+
   const handleLoading = () => {
     setLoading(false);
   };
@@ -416,7 +430,15 @@ const Achievements = () => {
 
   return (
     <section className={css.achievements}>
-      <img className={css.bg} src={bigSplash} alt="Splash" />
+      <motion.img
+        variants={bigSplashVariants}
+        initial="far"
+        animate="near"
+        className={css.bg}
+        src={bigSplash}
+        transition={{ mass: 0 }}
+        alt="Splash"
+      />
       <div className={css["achievements-container"]}>
         <h2 className={css["heading"]}>
           <motion.span
