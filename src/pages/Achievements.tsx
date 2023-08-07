@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useMemo, useState, useEffect } from "react";
 import css from "../styles/Achievements.module.scss";
 import bigSplash from "../assets/images/big-splash.png";
 import gopackImg from "../assets/images/GOPack.gif";
@@ -16,6 +16,8 @@ import dsaCSharpCertificateImg from "../assets/images/data-structures-csharp-cer
 import reactThreeFiberCertificateImg from "../assets/images/react-3-fiber-certification.png";
 import { AchievementClass, CertificationClass, ProjectClass } from "../utils";
 import * as rdd from "react-device-detect";
+import { Variants, motion } from "framer-motion";
+import Loader from "../components/Loader";
 
 // trying to trigger redeploy
 
@@ -158,11 +160,33 @@ const certifications: CertificationClass[] = [
   ),
 ];
 
-const Achievement: FC<{ achievement: AchievementClass }> = ({
+const Achievement: FC<{ achievement: AchievementClass; index: number }> = ({
   achievement,
+  index,
 }) => {
+  const variants = useMemo<Variants>(
+    () => ({
+      down: {
+        y: 300,
+        opacity: 0,
+      },
+      up: {
+        y: 0,
+        opacity: 1,
+      },
+    }),
+    []
+  );
+
   return (
-    <div className={`${css.achievement} ${achievement.className}`}>
+    <motion.div
+      variants={variants}
+      initial="down"
+      whileInView="up"
+      transition={{ delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className={`${css.achievement} ${achievement.className}`}
+    >
       <div className={css["img-container"]}>
         <img src={achievement.image} alt={achievement.name} />
       </div>
@@ -202,12 +226,34 @@ const Achievement: FC<{ achievement: AchievementClass }> = ({
           </a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
-const Project: FC<{ project: ProjectClass }> = ({ project }) => {
+const Project: FC<{ project: ProjectClass; index: number }> = ({
+  project,
+  index,
+}) => {
+  const variants = useMemo<Variants>(
+    () => ({
+      small: {
+        scale: 0,
+      },
+      big: {
+        scale: 1,
+      },
+    }),
+    []
+  );
+
   return (
-    <div className={css["project"]}>
+    <motion.div
+      variants={variants}
+      initial="small"
+      whileInView="big"
+      transition={{ delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className={css["project"]}
+    >
       <div className={css["img-container"]}>
         {project.is3D && <span className={css.threeD}>3D</span>}
         <img src={project.image} alt={project.name} />
@@ -236,15 +282,35 @@ const Project: FC<{ project: ProjectClass }> = ({ project }) => {
           ))}
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 };
-const Certification: FC<{ certification: CertificationClass }> = ({
-  certification,
-}) => {
+const Certification: FC<{
+  certification: CertificationClass;
+  index: number;
+}> = ({ certification, index }) => {
+  const variants = useMemo<Variants>(
+    () => ({
+      down: {
+        y: 300,
+        opacity: 0,
+      },
+      up: {
+        y: 0,
+        opacity: 1,
+      },
+    }),
+    []
+  );
+
   return (
     <>
-      <div
+      <motion.div
+        variants={variants}
+        initial="down"
+        whileInView="up"
+        transition={{ delay: index * 0.1 }}
+        viewport={{ once: true }}
         className={`${css.certification} ${
           rdd.isMobile ? css["mobile-certification"] : ""
         }`}
@@ -301,22 +367,78 @@ const Certification: FC<{ certification: CertificationClass }> = ({
               </>
             ))}
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
 
 const Achievements = () => {
+  const [loading, setLoading] = useState(true);
+  const headingLeftVariants = useMemo<Variants>(
+    () => ({
+      far: {
+        x: -300,
+      },
+      near: {
+        x: 0,
+      },
+    }),
+    []
+  );
+
+  const headingRightVariants = useMemo<Variants>(
+    () => ({
+      far: {
+        x: 300,
+      },
+      near: {
+        x: 0,
+      },
+    }),
+    []
+  );
+
+  const handleLoading = () => {
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (document.readyState === "complete") handleLoading();
+
+    window.addEventListener("load", handleLoading);
+
+    return () => {
+      window.removeEventListener("load", handleLoading);
+    };
+  }, []);
+
+  if (loading) return <Loader isAnimating={true} />;
+
   return (
     <section className={css.achievements}>
       <img className={css.bg} src={bigSplash} alt="Splash" />
       <div className={css["achievements-container"]}>
         <h2 className={css["heading"]}>
-          Here are some of my latest achievements <span></span>
+          <motion.span
+            variants={headingLeftVariants}
+            initial="far"
+            whileInView="near"
+            viewport={{ once: true }}
+            className={css.text}
+          >
+            Here are some of my latest achievements
+          </motion.span>{" "}
+          <motion.span
+            variants={headingRightVariants}
+            initial="far"
+            whileInView="near"
+            viewport={{ once: true }}
+            className={css.line}
+          ></motion.span>
         </h2>
         <div className={css["projects"]}>
           {achievements.map((achievement, i) => (
-            <Achievement achievement={achievement} key={i} />
+            <Achievement achievement={achievement} index={i} key={i} />
           ))}
         </div>
       </div>
@@ -326,22 +448,52 @@ const Achievements = () => {
       <br />
       <div className={css["projects-container"]}>
         <h2 className={css["heading"]}>
-          <span></span> Other noteworthy projects
+          <motion.span
+            variants={headingLeftVariants}
+            initial="far"
+            whileInView="near"
+            viewport={{ once: true }}
+            className={css.line}
+          ></motion.span>
+          <motion.span
+            variants={headingRightVariants}
+            initial="far"
+            whileInView="near"
+            viewport={{ once: true }}
+            className={css.text}
+          >
+            Other noteworthy projects
+          </motion.span>{" "}
         </h2>
         <div className={css.projects}>
           {otherProjects.map((project, i) => (
-            <Project project={project} key={i} />
+            <Project project={project} index={i} key={i} />
           ))}
         </div>
       </div>
       <div className={css["certifications-container"]}>
         <h2 className={css["heading"]}>
-          My certifications <span></span>
+          <motion.span
+            variants={headingLeftVariants}
+            initial="far"
+            whileInView="near"
+            viewport={{ once: true }}
+            className={css.text}
+          >
+            My certifications
+          </motion.span>{" "}
+          <motion.span
+            variants={headingRightVariants}
+            initial="far"
+            whileInView="near"
+            viewport={{ once: true }}
+            className={css.line}
+          ></motion.span>
         </h2>
         <div className={css["certifications"]}>
           {certifications.map((certificate, i) => (
             <>
-              <Certification certification={certificate} />
+              <Certification certification={certificate} index={i} key={i} />
             </>
           ))}
         </div>

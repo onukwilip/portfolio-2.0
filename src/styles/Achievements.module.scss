@@ -16,23 +16,25 @@
         object-fit: cover;
         z-index: -1;
     }
+    .heading {
+        @include flex(center, center, 1rem);
+        text-align: center;
+        color: white;
+        font-size: 30px;
+        text-transform: uppercase;
+        .text {
+            font-family: friendlyRobot !important;
+        }
+        .line {
+            display: block;
+            width: 400px;
+            height: 0.2px;
+            background: white;
+        }
+    }
     .achievements-container {
         position: relative;
         z-index: 1;
-        & > .heading {
-            @include flex(center, center, 1rem);
-            text-align: center;
-            color: white;
-            font-family: friendlyRobot;
-            font-size: 30px;
-            text-transform: uppercase;
-            span {
-                display: block;
-                width: 400px;
-                height: 0.2px;
-                background: white;
-            }
-        }
         .projects {
             @include flex(center, center, 5rem, column);
             & > div {
@@ -43,20 +45,6 @@
     .projects-container {
         position: relative;
         z-index: 1;
-        & > .heading {
-            @include flex(center, center, 1rem);
-            text-align: center;
-            color: white;
-            font-family: friendlyRobot;
-            font-size: 30px;
-            text-transform: uppercase;
-            span {
-                display: block;
-                width: 400px;
-                height: 0.2px;
-                background: white;
-            }
-        }
         .projects {
             @include flex(center, center, 2rem);
             flex-wrap: wrap;
@@ -68,20 +56,6 @@
     .certifications-container {
         position: relative;
         z-index: 1;
-        & > .heading {
-            @include flex(center, center, 1rem);
-            text-align: center;
-            color: white;
-            font-family: friendlyRobot;
-            font-size: 30px;
-            text-transform: uppercase;
-            span {
-                display: block;
-                width: 400px;
-                height: 0.2px;
-                background: white;
-            }
-        }
         .certifications {
             @include flex(center, center, 1rem, row);
             flex-wrap: wrap;
