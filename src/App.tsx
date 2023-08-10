@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Skills from "./pages/Skills";
 import Experience from "./pages/Experience";
 import Achievements from "./pages/Achievements";
+import Testimonial from "./pages/Testimonial";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/achievements" element={<Achievements />} />
+        <Route path="/testimonials" element={<Testimonial />} />
         <Route path="*" element={<Landing />} />
       </Routes>
       <Menu />

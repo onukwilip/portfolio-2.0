@@ -10,10 +10,13 @@ import threeJsMLImg from "../assets/images/three-js-ml-practice.png";
 import mdHubImg from "../assets/images/Manassel-data-hub.png";
 import onlineAuctionImg from "../assets/images/online-auction-img.png";
 import udemyLogo from "../assets/images/udemy.png";
+import courseraLogo from "../assets/images/coursera-logo.png";
 import reactJsCertificateImg from "../assets/images/react-certificate-1.png";
 import mernStackCertificateImg from "../assets/images/mern-certificate -1.png";
 import dsaCSharpCertificateImg from "../assets/images/data-structures-csharp-certificate-1.png";
 import reactThreeFiberCertificateImg from "../assets/images/react-3-fiber-certification.png";
+import introToDevOpsCertificateImg from "../assets/images/intro_to_devops_certificate-1.png";
+import cypressE2ETestingCertificateImg from "../assets/images/cypress-e2e-testing-certificate.jpg";
 import { AchievementClass, CertificationClass, ProjectClass } from "../utils";
 import * as rdd from "react-device-detect";
 import { Variants, motion } from "framer-motion";
@@ -152,11 +155,26 @@ const certifications: CertificationClass[] = [
     udemyLogo
   ),
   new CertificationClass(
+    "Cypress E2E testing",
+    `UC-e04d1c7f-9459-4d8a-90de-d271a9f4a49e`,
+    `https://bit.ly/3YtEXZr`,
+    cypressE2ETestingCertificateImg,
+    udemyLogo
+  ),
+  new CertificationClass(
     "Data structures and algorithms.: In depth in C#",
     `UC-7532cd2f-b81d-4542-94a5-f3bf03972087`,
     `https://bit.ly/41BSKOu`,
     dsaCSharpCertificateImg,
     udemyLogo
+  ),
+
+  new CertificationClass(
+    `Introduction to DevOps`,
+    `J3Y8F8R9PQRD`,
+    `https://bit.ly/3YroiWD`,
+    introToDevOpsCertificateImg,
+    courseraLogo
   ),
 ];
 

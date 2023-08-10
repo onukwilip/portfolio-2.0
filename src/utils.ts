@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { ModelType, Stacktype } from "./types";
 
 export class MenuClass {
@@ -95,6 +95,15 @@ export class CertificationClass {
     this["certificate-image"] = image;
     this["certificate-issuedBy"] = issuedBy;
   }
+}
+
+export class TestimonialClass {
+  constructor(
+    public name: string,
+    public title: string | ReactNode,
+    public review: string,
+    public image: string
+  ) {}
 }
 
 export const toRadians = (deg: number) => (Math.PI / 180) * deg;

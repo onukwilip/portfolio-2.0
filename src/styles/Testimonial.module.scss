@@ -1,0 +1,125 @@
+@import "config.scss";
+
+.testimonials {
+    @include flex(center, start, 4rem, column);
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 3rem;
+    .heading {
+        @include flex(baseline, center, 10px);
+        position: relative;
+        img {
+            width: 250px;
+            position: relative;
+            top: -1rem;
+        }
+        h1 {
+            font-size: 70px;
+            color: white;
+            position: relative;
+            left: -5rem;
+            max-width: 800px;
+            font-family: coffeeHealing;
+            letter-spacing: 10px;
+        }
+        .badge {
+            position: absolute;
+            bottom: 0;
+            left: 10rem;
+            padding: 3px 5px;
+            background: nth($colors, 3);
+            border-radius: 2px;
+            color: nth($colors, 1);
+            font-size: 14px;
+        }
+        @include media(max, 900px) {
+            margin-bottom: 5rem;
+            h1 {
+                font-size: 40px;
+                max-width: 100%;
+                left: 5rem;
+                padding-right: 3rem;
+                top: 1.5rem;
+            }
+            img {
+                width: 150px;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .badge {
+                left: 5rem;
+                bottom: -3rem;
+            }
+        }
+    }
+    .testimonials-container {
+        @include flex(center, center, 4rem, column);
+    }
+    @include media(max, 550px) {
+        padding: 3rem 10px;
+        padding-bottom: 6rem;
+    }
+}
+
+.testimonial {
+    @include flex(top, center, 1rem);
+    max-width: 900px;
+    img {
+        width: 100px;
+        height: auto;
+        border-radius: 50%;
+    }
+    .content-container {
+        @include flex(start, start, 1rem, column);
+        .content {
+            color: white;
+            font-size: 20px;
+        }
+        .name {
+            @include flex(start, start, 0px, column);
+            span {
+                font-weight: bold;
+                font-size: 18px;
+                color: white;
+                &:last-of-type {
+                    color: darken(lightgray, 10);
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+    @include media(max, 650px) {
+        flex-direction: column;
+        align-items: center;
+        padding-left: 3rem;
+        .img-container {
+            position: relative;
+            width: 100%;
+            @include flex(center, center, auto);
+            img {
+                position: relative;
+            }
+            &::before {
+                content: "";
+                width: 100%;
+                height: 1px;
+                position: absolute;
+                background-color: nth($colors, 3);
+            }
+        }
+        .content-container {
+            .content {
+                text-align: justify;
+            }
+        }
+    }
+    @include media(max, 550px) {
+        padding-left: 0;
+    }
+}
