@@ -4,6 +4,8 @@ import quotes from "../assets/images/quotes.svg";
 import mrSegunImg from "../assets/images/mr-segun-img.jpg";
 import sodiqImg from "../assets/images/sodiq-img.png";
 import mrTundeImg from "../assets/images/mr-tunde-img.png";
+import paintSplash2 from "../assets/images/paint-splash-2.svg";
+import paintSplash from "../assets/images/paint-splash.svg";
 import { TestimonialClass } from "../utils";
 import { Variants, motion } from "framer-motion";
 import Loader from "../components/Loader";
@@ -121,6 +123,9 @@ const Testimonials = () => {
 
   return (
     <section className={css.testimonials}>
+      <img src={paintSplash} className={css.paintSplash1} alt="splash1" />
+      <img src={paintSplash2} className={css.paintSplash2} alt="splash2" />
+      <div className={css.overlay}></div>
       <motion.div
         variants={headingVariants}
         initial="up"
