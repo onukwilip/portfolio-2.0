@@ -106,4 +106,16 @@ export class TestimonialClass {
   ) {}
 }
 
+export class ServicesOptionClass {
+  constructor(public label: string, public id: string) {}
+}
+
+export class SocialLinks {
+  constructor(
+    public name: string,
+    public icon: string | React.ReactNode,
+    public url: string
+  ) {}
+}
+
 export const toRadians = (deg: number) => (Math.PI / 180) * deg;

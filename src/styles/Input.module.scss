@@ -1,0 +1,155 @@
+@import "./config.scss";
+
+div.input {
+  @include flex(start, start, 5px, column);
+  width: 100%;
+  & > label {
+    text-transform: capitalize;
+    color: white;
+  }
+  & > .input-holder {
+    width: 100%;
+    cursor: text;
+    @include flex(center, start, 10px, row);
+    border-bottom: 2px solid white;
+    padding: 10px;
+    position: relative;
+    &.error {
+      border-bottom-color: orangered;
+      i {
+        color: orangered;
+      }
+    }
+    input {
+      background: transparent !important;
+      border: none !important;
+      outline: none !important;
+      flex: 1;
+      color: white !important;
+      &:-webkit-autofill,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:hover {
+        -webkit-text-fill-color: white;
+        -webkit-box-shadow: 0 0 0px 1000px rgba(black, 0) inset;
+        transition: background-color 5000s ease-in-out 0s;
+      }
+
+      &::placeholder {
+        color: white !important;
+        font-weight: 400;
+      }
+    }
+    span.error {
+      position: relative;
+    }
+    i {
+      color: white;
+      font-size: 18px;
+    }
+    i.toogle {
+      cursor: pointer;
+    }
+    i.error {
+      font-size: 16px;
+      color: orangered;
+      cursor: pointer;
+      & + span {
+        background: orangered;
+        border-radius: 5px;
+        color: white;
+        font-size: 12px;
+        position: absolute;
+        padding: 5px;
+        white-space: nowrap;
+        text-transform: none;
+        display: none;
+        z-index: 1;
+      }
+      &:hover + span {
+        display: block;
+      }
+    }
+    &::before {
+      content: " ";
+      width: 0;
+      height: 2px;
+      position: absolute;
+      // background: nth($colors, 4);
+      background: white;
+      bottom: -2px;
+      left: -1px;
+      transition: 500ms;
+    }
+    &.active {
+      &::before {
+        content: " ";
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        background: nth($colors, 4);
+        bottom: -2px;
+        left: -1px;
+      }
+      i {
+        color: nth($colors, 4);
+        &.error {
+          color: orangered;
+        }
+      }
+    }
+  }
+}
+
+div.file-upload {
+  label {
+    transition: 500ms;
+    width: 200px;
+    height: 200px;
+    display: block;
+    border-radius: 10px;
+    background: linear-gradient(to bottom right, nth($colors, 4), lighten(nth($colors, 4), 25), nth($colors, 4));
+    cursor: pointer;
+    @include flex(center, center, 10px, column);
+    i {
+      font-size: 60px;
+      @include flex(center, center, 0, row);
+      color: nth($colors, 4);
+    }
+    em {
+      font-size: 20px;
+      color: nth($colors, 4);
+    }
+    &:hover {
+      background: linear-gradient(
+        to bottom right,
+        lighten(nth($colors, 4), 25),
+        nth($colors, 4),
+        lighten(nth($colors, 4), 25)
+      );
+    }
+  }
+  .img-container {
+    position: relative;
+    border-radius: 10px;
+    img {
+      width: 200px;
+      height: 100%;
+      object-fit: contain;
+      object-position: top;
+      border-radius: 10px;
+    }
+    i {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 20px;
+      padding: 10px * 1.5;
+      box-shadow: 0px 0px 10px rgba(black, 0.3);
+      @include flex(center, center, 0, row);
+      background: white;
+      border-radius: 50%;
+      color: nth($colors, 4);
+      cursor: pointer;
+    }
+  }
+}

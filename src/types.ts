@@ -1,5 +1,5 @@
 import { GroupProps } from "@react-three/fiber";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { ForwardRefExoticComponent, RefAttributes, ChangeEvent } from "react";
 import { Group } from "three";
 
 export type useLoadImageType = (params: { images: string[] }) => {
@@ -41,3 +41,47 @@ export type SelectedSkillType =
       // | string;
     }
   | undefined;
+
+export type InputType = {
+  className?: string;
+  activeClassName?: string;
+  label?: string;
+  icon?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  value?: string | undefined;
+  onBlur?: () => void;
+  name?: string;
+  type?: string;
+  placeholder?: string;
+  id: string;
+  hideLabel?: boolean;
+  error?:
+    | {
+        content: string;
+        position?: {
+          top?: string | number;
+          left?: string | number;
+          bottom?: string | number;
+          right?: string | number;
+        };
+      }
+    | boolean;
+};
+
+export type FileUploadType = {
+  onChange: (e: ChangeEvent<HTMLInputElement>) => any;
+  onBlur?: () => any;
+  value?: File | string;
+  label: string;
+  className?: string | any;
+};
+
+export type ImgUploadType = {
+  onChange: (a: any) => any;
+  value?: string | any;
+  label?: string;
+  className?: string | any;
+  triggerReset: boolean;
+  initialImage?: string | null;
+  removeInitialImage?: Function;
+};

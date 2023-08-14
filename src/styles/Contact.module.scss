@@ -1,0 +1,187 @@
+@import "config.scss";
+
+.contact {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+    @include flex(center, center, auto);
+    .inner-container {
+        padding: 2rem;
+        position: relative;
+        background-color: rgba(nth($colors, 3), 0.3);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(nth($colors, 2), 0.5);
+        @include flex(center, center, 1rem);
+        .right,
+        .left {
+            flex: 1;
+            h1 {
+                font-family: coffeeHealing;
+                color: nth($colors, 1);
+                font-size: 50px;
+                letter-spacing: 5px;
+            }
+            span {
+                font-size: 20px;
+                font-family: paintBrush;
+                color: white;
+                // color: nth($colors, 4);
+            }
+            .socials {
+                @include flex(center, center, 1rem);
+                .social-link {
+                    position: relative;
+                    transition: 500ms;
+                    display: block;
+                    .blob {
+                        width: 100px;
+                        height: 100px;
+                        object-fit: contain;
+                        transition: 500ms;
+                        filter: drop-shadow(0px 0px 10px rgba(nth($colors, 1), 0.3));
+                    }
+                    i {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        font-size: 27px;
+                        color: nth($colors, 1);
+                    }
+                    .icon {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 35px;
+                    }
+                    &:hover {
+                        transform: scale(1.2) rotateZ(-90deg);
+                    }
+                }
+            }
+        }
+        .right {
+            form {
+                width: 600px;
+                padding: 2rem;
+                @include flex(start, center, 1rem, column);
+                .active-input {
+                    &::before {
+                        background: nth($colors, 1) !important;
+                    }
+                    i {
+                        transition: 500ms;
+                        color: nth($colors, 1) !important;
+                    }
+                }
+                .heading {
+                    font-family: friendlyRobot;
+                    color: nth($colors, 1);
+                    font-size: 40px;
+                    margin-bottom: 1rem;
+                }
+                .input,
+                .select,
+                .textarea {
+                    width: 100%;
+                    * {
+                        // color: white !important;
+                        color: nth($colors, 1) !important;
+                    }
+                    fieldset {
+                        // border-color: white !important;
+                        border-color: nth($colors, 1) !important;
+                    }
+                    &.error {
+                        * {
+                            color: orangered !important;
+                        }
+                        fieldset {
+                            border-color: orangered !important;
+                        }
+                    }
+                }
+                .button {
+                    // color: white;
+                    color: nth($colors, 1);
+                    // border-color: white;
+                    border-color: nth($colors, 1) !important;
+                    &:hover {
+                        // background: white;
+                        background: nth($colors, 1);
+                        // color: nth($colors, 1);
+                        color: white;
+                    }
+                }
+            }
+        }
+        @include media(max, 810px) {
+            padding: 0.5rem;
+            .right {
+                width: 100%;
+                form {
+                    width: 100%;
+                }
+            }
+        }
+        @include media(max, 500px) {
+            // flex-direction: column-reverse !important;
+            gap: 0;
+            .left {
+                h1,
+                span {
+                    display: none;
+                }
+                .socials {
+                    gap: 0.5rem;
+                    .social-link {
+                        .blob {
+                            width: 70px;
+                            height: 70px;
+                        }
+                        i {
+                            font-size: 20px;
+                        }
+                        .icon {
+                            width: 25px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .map {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    .overlay {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: linear-gradient(to bottom, transparent, rgba(black, 0.5));
+        z-index: -1;
+    }
+    @include media(max, 1500px) {
+        padding: 3rem 5rem;
+        align-items: start;
+        .inner-container {
+            flex-direction: column;
+            .left span {
+                color: nth($colors, 1);
+            }
+        }
+    }
+    @include media(max, 550px) {
+        padding: 3rem 5px;
+    }
+}

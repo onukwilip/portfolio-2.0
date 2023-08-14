@@ -18,6 +18,16 @@
   src: url(../fonts/BlockHelvetica-gxpM6.ttf);
 }
 
+input {
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:hover {
+    -webkit-text-fill-color: nth($colors, 1);
+    -webkit-box-shadow: 0 0 0px 1000px rgba(black, 0) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",

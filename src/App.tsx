@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Contact from "./pages/Contact";
 import Landing from "./pages/Landing";
 import Menu from "./components/Menu";
 import Logo from "./components/Logo";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/experience" element={<Experience />} />
         <Route path="/achievements" element={<Achievements />} />
         <Route path="/testimonials" element={<Testimonial />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Landing />} />
       </Routes>
       <Menu />
