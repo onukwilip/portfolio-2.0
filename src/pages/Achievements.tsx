@@ -16,6 +16,7 @@ import mernStackCertificateImg from "../assets/images/mern-certificate -1.png";
 import dsaCSharpCertificateImg from "../assets/images/data-structures-csharp-certificate-1.png";
 import reactThreeFiberCertificateImg from "../assets/images/react-3-fiber-certification.png";
 import introToDevOpsCertificateImg from "../assets/images/intro_to_devops_certificate-1.png";
+import introToCloudCertificateImg from "../assets/images/introduction-to-cloud-computing-certificate-1.png";
 import cypressE2ETestingCertificateImg from "../assets/images/cypress-e2e-testing-certificate.jpg";
 import { AchievementClass, CertificationClass, ProjectClass } from "../utils";
 import * as rdd from "react-device-detect";
@@ -168,12 +169,18 @@ const certifications: CertificationClass[] = [
     dsaCSharpCertificateImg,
     udemyLogo
   ),
-
   new CertificationClass(
     `Introduction to DevOps`,
     `J3Y8F8R9PQRD`,
     `https://bit.ly/3YroiWD`,
     introToDevOpsCertificateImg,
+    courseraLogo
+  ),
+  new CertificationClass(
+    `Introduction to Cloud Computing`,
+    `LA29LK8GQTNP`,
+    `https://bit.ly/3QE08Gw`,
+    introToCloudCertificateImg,
     courseraLogo
   ),
 ];

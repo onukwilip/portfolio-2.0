@@ -111,6 +111,18 @@
                     font-size: 24px;
                 }
             }
+            .actions {
+                @include flex(center, start, 1rem);
+                flex-wrap: wrap;
+                .btn {
+                    color: white;
+                    border-color: white;
+                    &:hover {
+                        border-color: nth($colors, 4);
+                        background-color: nth($colors, 4);
+                    }
+                }
+            }
         }
         @include media(max, 1160px) {
             width: 100vw;
@@ -130,6 +142,19 @@
         }
         @include media-h(max, 825px) {
             overflow-y: auto;
+            &::-webkit-scrollbar {
+                width: 3px;
+                border-radius: 2px;
+            }
+            &::-webkit-scrollbar-track {
+                width: 3px;
+                border-radius: 2px;
+            }
+            &::-webkit-scrollbar-thumb {
+                width: 3px;
+                border-radius: 2px;
+                background: linear-gradient(to bottom, transparent, nth($colors, 3));
+            }
         }
     }
 }

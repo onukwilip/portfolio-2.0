@@ -8,11 +8,13 @@ import Skills from "./pages/Skills";
 import Experience from "./pages/Experience";
 import Achievements from "./pages/Achievements";
 import Testimonial from "./pages/Testimonial";
+import SocialIcons from "./components/SocialIcons";
 
 function App() {
   return (
     <div className="app">
       <Logo />
+      <SocialIcons />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/about" element={<About />} />

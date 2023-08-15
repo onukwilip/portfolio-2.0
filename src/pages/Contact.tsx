@@ -12,7 +12,7 @@ import socialBlob from "../assets/images/social-blob.svg";
 import Loader from "../components/Loader";
 import { Variants, motion } from "framer-motion";
 
-const socialIcons: SocialLinks[] = [
+export const socialIcons: SocialLinks[] = [
   new SocialLinks(
     "Linkedin",
     "fa-brands fa-linkedin-in",

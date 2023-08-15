@@ -8,6 +8,9 @@ import { gsap } from "gsap";
 import { motion, Variants } from "framer-motion";
 import useLoadImage from "../hooks/useLoadImage";
 import Loader from "../components/Loader";
+import { Button } from "@mui/material";
+import CV from "../assets/images/CV.pdf";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
   // HOOKS
@@ -64,6 +67,7 @@ const Landing = () => {
   const { loading } = useLoadImage({
     images: [bigSplash, me, paintSplash, paintSplash2],
   });
+  const navigate = useNavigate();
 
   // FUNCTIONS
   const parallaxEffect = (e: MouseEvent) => {
@@ -179,8 +183,41 @@ const Landing = () => {
             initial="down"
             animate="up"
           >
-            A software developer with about two years of experience developing
-            industry level applications using the trending technologies
+            A software developer with two years of experience developing
+            enterprise software in Agile and DevOps environments
+            <br />
+            <br />
+            <div className={css.actions}>
+              <a href={CV} download={"Prince CV"}>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  // color="white"
+                  className={css.btn}
+                  startIcon={
+                    <>
+                      <i className="fa-solid fa-download"></i>
+                    </>
+                  }
+                >
+                  Download CV
+                </Button>
+              </a>
+              <Button
+                variant="outlined"
+                size="large"
+                // color="white"
+                className={css.btn}
+                startIcon={
+                  <>
+                    <i className="fa-solid fa-sack-dollar"></i>
+                  </>
+                }
+                onClick={() => navigate("/contact")}
+              >
+                Hire me
+              </Button>
+            </div>
           </motion.span>
         </div>
       </div>

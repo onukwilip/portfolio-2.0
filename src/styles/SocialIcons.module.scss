@@ -1,0 +1,30 @@
+@import "./config.scss";
+
+.social-icons {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 5;
+    padding: 0;
+    margin: 0;
+    @include flex(center, start, 10px);
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        border-radius: 50%;
+        @include flex(center, center, auto);
+        filter: drop-shadow(0 0 10px rgba(nth($colors, 1), 0.3));
+        cursor: pointer;
+        text-decoration: none;
+        color: nth($colors, 1);
+        i {
+            font-size: 22px;
+            @include flex(center, center, auto);
+        }
+        img {
+            width: 23px;
+            @include flex(center, center, auto);
+        }
+    }
+}

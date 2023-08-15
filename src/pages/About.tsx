@@ -46,16 +46,49 @@ const services: ServiceClass[] = [
   }),
 ];
 
-const aboutme = `I'm a seasoned software engineer with a track record of delivering
-            high-quality software products. With two years of experience, I have
-            developed a plethora of industry-level applications, including
-            GOPack, NigTrak, and Online Auction. My problem-solving skills have
-            led to elegant solutions that drive business results and empower
-            users. I specialize in 3D web development using tools like Three Js,
-            React Js, Next Js, and other frameworks, staying updated with the
-            latest industry trends. Throughout my career, I have achieved a 90%
-            customer satisfaction rate and consistently delivered projects
-            within agreed timelines.`;
+const aboutme = (
+  <>
+    I'm Prince Onukwili a software engineer with two years of experience
+    excelling in Agile and DevOps environments. I create immersive 2D and 3D app
+    interfaces using WebGL, Three Js, React Js, Typescript, and Next Js. My
+    backend skills include Node Js and C#.NET. My proficiency in Git and GitHub
+    ensures smooth collaboration and continuous integration. Test and Behavior
+    Driven Development are my forte, leveraging Jest and Cypress. Docker enables
+    me to containerize apps consistently. I grasp cloud concepts like IAAS,
+    PAAS, and SAAS for cloud-based projects. Notable apps i've developed are{" "}
+    <b>
+      <a
+        href="http://gopack.vercel.app"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GOPack
+      </a>
+    </b>{" "}
+    ,{" "}
+    <b>
+      <a
+        href="http://nigtrak.netlify.app"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        NigTrak
+      </a>
+    </b>{" "}
+    , and an{" "}
+    <b>
+      <a
+        href="http://uction-app-s9qv.onrender.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Online Auction
+      </a>
+    </b>{" "}
+    platform. With continuous learning, I provide impactful solutions for users
+    and business success.
+  </>
+);
 
 const EachServiceItem: FC<{ service: ServiceClass; index: number }> = ({
   service,
