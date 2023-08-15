@@ -114,6 +114,9 @@
             .actions {
                 @include flex(center, start, 1rem);
                 flex-wrap: wrap;
+                a {
+                    text-decoration: none;
+                }
                 .btn {
                     color: white;
                     border-color: white;
