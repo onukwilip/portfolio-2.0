@@ -33,6 +33,10 @@ import semanticUILogo from "../assets/images/semantic-ui-logo.png";
 import bootstrapLogo from "../assets/images/bootstrap-logo.png";
 import threeJsLogo from "../assets/images/threejs-logo.png";
 import redisLogo from "../assets/images/redis-logo.png";
+import linuxLogo from "../assets/images/linux-logo.png";
+import cypressLogo from "../assets/images/cypress-logo-2.png";
+import rtlLogo from "../assets/images/rtl-logo.png";
+import jestLogo from "../assets/images/jest-logo.png";
 import VanillaTilt from "vanilla-tilt";
 import { motion, Variants } from "framer-motion";
 import Loader from "../components/Loader";
@@ -84,6 +88,9 @@ const skills: EachSkillClass[] = [
   new EachSkillClass("SCSS", scssLogo, "frontend"),
   new EachSkillClass("Javascript", javascriptLogo, "frontend"),
   new EachSkillClass("Typescript", typescriptLogo, "frontend"),
+  new EachSkillClass("Cypress", cypressLogo, "frontend"),
+  new EachSkillClass("Jest", jestLogo, "frontend"),
+  new EachSkillClass("React testing library", rtlLogo, "frontend"),
   new EachSkillClass("Webpack", webpackLogo, "frontend"),
   new EachSkillClass("Three Js", threeJsLogo, "frontend"),
   new EachSkillClass("React Js", reactJsLogo, "frontend"),
@@ -92,6 +99,7 @@ const skills: EachSkillClass[] = [
   new EachSkillClass("Bootstrap", bootstrapLogo, "frontend"),
   new EachSkillClass("Node Js", nodeJsLogo, "backend"),
   new EachSkillClass("C#", cSharpLogo, "backend"),
+  new EachSkillClass("Linux", linuxLogo, "backend"),
   new EachSkillClass("ASP.NET", dotNetLogo, "backend"),
   new EachSkillClass("Docker", dockerLogo, "backend"),
   new EachSkillClass("Microsoft SQL", mssqlLogo, "database"),
