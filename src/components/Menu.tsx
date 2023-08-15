@@ -4,6 +4,8 @@ import me from "../assets/images/me.svg";
 import { MenuClass } from "../utils";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { MenuReducer, SelectorType } from "../types";
 
 const menus: MenuClass[] = [
   new MenuClass("Home", "/", "fa-solid fa-person-shelter"),
@@ -42,48 +44,91 @@ const EachMenu: FC<{ menu: MenuClass }> = ({ menu }) => {
 };
 
 const Menu: FC = () => {
+  const menuState: MenuReducer = useSelector<SelectorType>(
+    (state) => state.menu
+  ) as MenuReducer;
+
   const variants = useMemo<Variants>(() => {
-    if (window.innerWidth > 550)
-      return {
-        far: {
-          x: -200,
-        },
-        enter: {
-          x: 0,
-        },
-      };
-    else
-      return {
-        far: {
-          y: 200,
-        },
-        enter: {
-          y: 0,
-        },
-      };
+    // if (window.innerWidth > 550)
+    //   return {
+    //     far: {
+    //       x: -200,
+    //     },
+    //     enter: {
+    //       x: 0,
+    //     },
+    //   };
+    // else
+    //   return {
+    //     far: {
+    //       y: 200,
+    //     },
+    //     enter: {
+    //       y: 0,
+    //     },
+    //   };
+    return {
+      far: {
+        x: -200,
+      },
+      enter: {
+        x: 0,
+      },
+    };
   }, []);
 
   return (
     <div className={css["menu-container"]}>
-      <motion.div
-        variants={variants}
-        initial="far"
-        animate="enter"
-        transition={{
-          ease: "easeOut",
-          duration: 1,
-        }}
-        className={css["menu"]}
-      >
-        <img src={me} alt="logo" />
-        <nav>
-          {menus.map((menu, i) => (
-            <>
-              <EachMenu menu={menu} key={i} />
-            </>
-          ))}
-        </nav>
-      </motion.div>
+      {window.innerWidth <= 550 ? (
+        <>
+          <AnimatePresence>
+            {menuState.display === true && (
+              <motion.div
+                variants={variants}
+                initial="far"
+                animate="enter"
+                transition={{
+                  ease: "easeOut",
+                }}
+                exit="far"
+                className={css["menu"]}
+              >
+                <img src={me} alt="logo" />
+                <nav>
+                  {menus.map((menu, i) => (
+                    <>
+                      <EachMenu menu={menu} key={i} />
+                    </>
+                  ))}
+                </nav>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
+      ) : (
+        <>
+          <motion.div
+            variants={variants}
+            initial="far"
+            animate="enter"
+            transition={{
+              ease: "easeOut",
+              duration: 1,
+            }}
+            className={css["menu"]}
+            exit="far"
+          >
+            <img src={me} alt="logo" />
+            <nav>
+              {menus.map((menu, i) => (
+                <>
+                  <EachMenu menu={menu} key={i} />
+                </>
+              ))}
+            </nav>
+          </motion.div>
+        </>
+      )}
     </div>
   );
 };

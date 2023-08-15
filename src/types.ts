@@ -85,3 +85,11 @@ export type ImgUploadType = {
   initialImage?: string | null;
   removeInitialImage?: Function;
 };
+
+export type MenuReducer = {
+  display: boolean;
+};
+
+export type SelectorType = {
+  menu: MenuReducer;
+};

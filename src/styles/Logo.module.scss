@@ -6,6 +6,7 @@
     left: 1rem;
     z-index: 5;
     display: none;
+    filter: drop-shadow(0px 0px 5px rgba(nth($colors, 1), 0.3));
     & > img {
         width: 55px;
         height: 55px;
@@ -13,7 +14,32 @@
         border-radius: 50%;
         border: 3px solid white;
     }
-    @include media(max, 475px) {
+    @include media(max, 550px) {
         display: block;
+    }
+}
+
+.hamburger {
+    width: 40px;
+    height: 40px;
+    @include flex(center, center, auto);
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(nth($colors, 1), 0.3);
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 5rem;
+    z-index: 5;
+    i {
+        font-size: 22px;
+    }
+    @include media(max, 550px) {
+        display: flex;
+    }
+    @include media(max, 338px) {
+        top: 5rem;
+        left: 1.5rem;
     }
 }
