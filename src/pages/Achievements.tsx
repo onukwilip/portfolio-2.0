@@ -213,7 +213,13 @@ const Achievement: FC<{ achievement: AchievementClass; index: number }> = ({
       className={`${css.achievement} ${achievement.className}`}
     >
       <div className={css["img-container"]}>
-        <img src={achievement.image} alt={achievement.name} />
+        <a
+          href={achievement.links[1]}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={achievement.image} alt={achievement.name} />
+        </a>
       </div>
       <div className={css["content-container"]}>
         <div className={css["heading-container"]}>
@@ -340,7 +346,12 @@ const Certification: FC<{
           rdd.isMobile ? css["mobile-certification"] : ""
         }`}
       >
-        <div className={css["img-container"]}>
+        <a
+          href={certification["certificate-URL"]}
+          target="_blank"
+          rel="noreferrer"
+          className={css["img-container"]}
+        >
           <img
             src={certification["certificate-image"]}
             alt={certification["certificate-name"]}
@@ -353,7 +364,7 @@ const Certification: FC<{
           >
             <img src={certification["certificate-issuedBy"]} alt={""} />{" "}
           </a>
-        </div>
+        </a>
         <div className={css.content}>
           <a
             href={certification["certificate-URL"]}
