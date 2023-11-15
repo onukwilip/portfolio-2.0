@@ -48,15 +48,15 @@ const services: ServiceClass[] = [
 
 const aboutme = (
   <>
-    I’m Prince C Onukwili, an experienced software engineer with 2+ years in
+    I'm Prince C Onukwili, an experienced software engineer with 2+ years in
     Agile/DevOps environments. Proficient in WebGL, Three Js, JavaScript, React
     Js, Next.js, TypeScript, and Redux i craft immersive 2D/3D app interfaces. I
     leverage tools like Node Js, Python/Flask and C#.NET in server-side
-    development. I’m also skilled in Jira, Git, GitHub and GitHub actions for
+    development. I'm also skilled in Jira, Git, GitHub and GitHub actions for
     collaboration, CI/CD, sprints, and progress tracking. I also possess a
     strong familiarity with Linux and Bash scripting, enabling me to navigate
     and automate tasks efficiently in diverse computing environments. I'm an
-    expert in Jest, Cypress for test-driven development.I’m familiar with IAAS,
+    expert in Jest, Cypress for test-driven development. I'm familiar with IAAS,
     PAAS, SAAS, Docker and Kubernetes for scalable cloud app deployment. Notable
     apps i've developed are{" "}
     <b>
