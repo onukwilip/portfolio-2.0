@@ -11,7 +11,7 @@ import { EachSkillClass, EachStackClass } from "../utils";
 import frontendImg from "../assets/images/frontend-dev.png";
 import backendImg from "../assets/images/backend-dev.png";
 import databaseImg from "../assets/images/database-dev.png";
-import ecommerceImg from "../assets/images/ecommerce-dev.png";
+import devOpsProcessImg from "../assets/images/devops-process.png";
 import htmlLogo from "../assets/images/html-img-2.png";
 import cssLogo from "../assets/images/css-logo.png";
 import javascriptLogo from "../assets/images/javascript-logo.png";
@@ -30,7 +30,6 @@ import reactJsLogo from "../assets/images/react-logo.png";
 import dockerLogo from "../assets/images/docker.png";
 import scssLogo from "../assets/images/sass.png";
 import semanticUILogo from "../assets/images/semantic-ui-logo.png";
-import bootstrapLogo from "../assets/images/bootstrap-logo.png";
 import threeJsLogo from "../assets/images/threejs-logo.png";
 import redisLogo from "../assets/images/redis-logo.png";
 import linuxLogo from "../assets/images/linux-logo.png";
@@ -61,7 +60,7 @@ const stack: EachStackClass[] = [
     { top: "-3rem", left: "50%", transform: "translateX(-50%) scale(0.9)" }
   ),
   new EachStackClass(
-    "Database development",
+    "Database management",
     databaseImg,
     "I optimize database and i'm experienced in managing SQL (like MicrosoftSQL) and NoSQL databases (like MongoDB, Redis, and Firebase). I ensure efficient data storage and retrieval for smooth application performance.",
     {
@@ -71,13 +70,15 @@ const stack: EachStackClass[] = [
     }
   ),
   new EachStackClass(
-    "Ecommerce development",
-    ecommerceImg,
+    "Agile and Devops engineering",
+    devOpsProcessImg,
     "As full stack developer, i'm skilled in building awesome ecommerce apps. Using React Js, Next Js, Node Js, and Shopify API, I create user-friendly and efficient online stores.",
     {
-      top: "-7rem",
+      top: "-2rem",
       left: "50%",
-      transform: "translateX(-50%) scale(0.9)",
+      transform: "translateX(-50%) scale(0.9) rotatez(30deg)",
+      width: 450,
+      // height: 200,
     }
   ),
 ];

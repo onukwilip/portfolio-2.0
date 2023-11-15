@@ -2,6 +2,7 @@ import React, { FC, useMemo, useState, useEffect } from "react";
 import css from "../styles/Achievements.module.scss";
 import bigSplash from "../assets/images/big-splash.png";
 import gopackImg from "../assets/images/GOPack.gif";
+import freeCodeCampPRImg from "../assets/images/freeCodeCamp-pull-request.png";
 import nigtrakImg from "../assets/images/nigtrak.png";
 import goitImg from "../assets/images/goit-web.png";
 import lendSQRImg from "../assets/images/lend-sqr-dashboard.png";
@@ -29,11 +30,14 @@ import Loader from "../components/Loader";
 
 const achievements: AchievementClass[] = [
   new AchievementClass(
-    gopackImg,
+    freeCodeCampPRImg,
     "FreeCodeCamp",
     `Had the opportunity to contribute to the Freecodecamp project. I collaborated with others on the platform in the creation of E2E tests using Microsoft Playwright. Fixed merge conflicts by rebasing the feature branch to the main branch`,
     [`Playwright`, `React Js`, "JavaScript", "Git", "Open-source"],
-    [`https://github.com/onukwilip/gopack`, `https://gopack.vercel.app/`],
+    [
+      `https://github.com/freeCodeCamp/freeCodeCamp/pull/52104`,
+      `https://freecodecamp.org/`,
+    ],
     css["gopack-project"]
   ),
   new AchievementClass(
