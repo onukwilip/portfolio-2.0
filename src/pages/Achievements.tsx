@@ -3,6 +3,7 @@ import css from "../styles/Achievements.module.scss";
 import bigSplash from "../assets/images/big-splash.png";
 import gopackImg from "../assets/images/GOPack.gif";
 import freeCodeCampPRImg from "../assets/images/freeCodeCamp-pull-request.png";
+import hacktoberfestBadgeImg from "../assets/images/hacktoberfest-badge.png";
 import nigtrakImg from "../assets/images/nigtrak.png";
 import goitImg from "../assets/images/goit-web.png";
 import lendSQRImg from "../assets/images/lend-sqr-dashboard.png";
@@ -39,6 +40,17 @@ const achievements: AchievementClass[] = [
       `https://freecodecamp.org/`,
     ],
     css["gopack-project"]
+  ),
+  new AchievementClass(
+    hacktoberfestBadgeImg,
+    "Hacktoberfest 2023",
+    `Leveled up in the ongoing Hacktoberfest programmme, by contributing to various open-source projects; the likes of Freecodecamp. I wrote E2E tests for the Freecodecamp’s website utilizing JavaScript and Playwright library 📚 `,
+    [`Playwright`, `React Js`, `Next js`, "JavaScript", "Git", "Open-source"],
+    [
+      `https://www.holopin.io/hacktoberfest2023/userbadge/cloovsl7f311290gl3vjg6iy89`,
+      `https://www.holopin.io/hacktoberfest2023/userbadge/cloovsl7f311290gl3vjg6iy89`,
+    ],
+    css["nigtrak-project"]
   ),
   new AchievementClass(
     gopackImg,
