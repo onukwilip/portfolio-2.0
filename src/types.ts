@@ -11,7 +11,7 @@ export type ModelType = {
   >;
   props: JSX.IntrinsicElements["group"];
 };
-export type Stacktype = "frontend" | "backend" | "database";
+export type Stacktype = "frontend" | "backend" | "database" | "other";
 export type Skilltype =
   | "HTML 5"
   | "CSS 3"

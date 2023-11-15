@@ -88,26 +88,30 @@ const skills: EachSkillClass[] = [
   new EachSkillClass("SCSS", scssLogo, "frontend"),
   new EachSkillClass("Javascript", javascriptLogo, "frontend"),
   new EachSkillClass("Typescript", typescriptLogo, "frontend"),
-  new EachSkillClass("Cypress", cypressLogo, "frontend"),
-  new EachSkillClass("Jest", jestLogo, "frontend"),
+  new EachSkillClass("Cypress (TDD)", cypressLogo, "frontend"),
+  new EachSkillClass("Jest (TDD)", jestLogo, "frontend"),
+  new EachSkillClass("Playwright (TDD)", jestLogo, "frontend"),
   new EachSkillClass("React testing library", rtlLogo, "frontend"),
   new EachSkillClass("Webpack", webpackLogo, "frontend"),
   new EachSkillClass("Three Js", threeJsLogo, "frontend"),
   new EachSkillClass("React Js", reactJsLogo, "frontend"),
   new EachSkillClass("Next Js", nextJsLogo, "frontend"),
-  new EachSkillClass("Semantic UI", semanticUILogo, "frontend"),
-  new EachSkillClass("Bootstrap", bootstrapLogo, "frontend"),
+  new EachSkillClass("Material UI", semanticUILogo, "frontend"),
   new EachSkillClass("Node Js", nodeJsLogo, "backend"),
   new EachSkillClass("C#", cSharpLogo, "backend"),
+  new EachSkillClass("Python & Flask", cSharpLogo, "backend"),
   new EachSkillClass("Linux", linuxLogo, "backend"),
   new EachSkillClass("ASP.NET", dotNetLogo, "backend"),
-  new EachSkillClass("Docker", dockerLogo, "backend"),
   new EachSkillClass("Microsoft SQL", mssqlLogo, "database"),
   new EachSkillClass("Mongo DB", mongoDBLogo, "database"),
   new EachSkillClass("Redis", redisLogo, "database"),
   new EachSkillClass("Firebase", firebaseLogo, "database"),
-  new EachSkillClass("Git", gitLogo, "frontend"),
-  new EachSkillClass("GitHub", gitHubLogo, "frontend"),
+  new EachSkillClass("Git", gitLogo, "other"),
+  new EachSkillClass("GitHub", gitHubLogo, "other"),
+  new EachSkillClass("GitHub Actions (CI/CD)", gitHubLogo, "other"),
+  new EachSkillClass("Docker (Microservices)", dockerLogo, "other"),
+  new EachSkillClass("Kubernetes", dockerLogo, "other"),
+  new EachSkillClass("Jira (Agile)", dockerLogo, "other"),
 ];
 
 const EachStack: React.FC<{ eachStack: EachStackClass; index: number }> = ({
@@ -164,16 +168,19 @@ const SkillsComponent: React.FC = () => {
       frontend: EachSkillClass[];
       backend: EachSkillClass[];
       database: EachSkillClass[];
+      other: EachSkillClass[];
     } = {
       frontend: [],
       backend: [],
       database: [],
+      other: [],
     };
 
     for (const skill of skills) {
       if (skill.stack === "frontend") results.frontend.push(skill);
       else if (skill.stack === "backend") results.backend.push(skill);
       else if (skill.stack === "database") results.database.push(skill);
+      else if (skill.stack === "other") results.other.push(skill);
     }
 
     return results;
