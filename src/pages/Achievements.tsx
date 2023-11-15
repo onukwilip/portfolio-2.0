@@ -15,7 +15,9 @@ import reactJsCertificateImg from "../assets/images/react-certificate-1.png";
 import mernStackCertificateImg from "../assets/images/mern-certificate -1.png";
 import dsaCSharpCertificateImg from "../assets/images/data-structures-csharp-certificate-1.png";
 import reactThreeFiberCertificateImg from "../assets/images/react-3-fiber-certification.png";
-import introToDevOpsCertificateImg from "../assets/images/intro_to_devops_certificate-1.png";
+import devopsCertificateImg from "../assets/images/devops-capstone.png";
+import containersCertificateImg from "../assets/images/docker-kubernetes-containerization-certification.png";
+import agileCertificateImg from "../assets/images/intro-to-agile-development-certificate.png";
 import introToCloudCertificateImg from "../assets/images/introduction-to-cloud-computing-certificate-1.png";
 import cypressE2ETestingCertificateImg from "../assets/images/cypress-e2e-testing-certificate.jpg";
 import { AchievementClass, CertificationClass, ProjectClass } from "../utils";
@@ -26,6 +28,14 @@ import Loader from "../components/Loader";
 // trying to trigger redeploy
 
 const achievements: AchievementClass[] = [
+  new AchievementClass(
+    gopackImg,
+    "FreeCodeCamp",
+    `Had the opportunity to contribute to the Freecodecamp project. I collaborated with others on the platform in the creation of E2E tests using Microsoft Playwright. Fixed merge conflicts by rebasing the feature branch to the main branch`,
+    [`Playwright`, `React Js`, "JavaScript", "Git", "Open-source"],
+    [`https://github.com/onukwilip/gopack`, `https://gopack.vercel.app/`],
+    css["gopack-project"]
+  ),
   new AchievementClass(
     gopackImg,
     "GOPack",
@@ -170,10 +180,24 @@ const certifications: CertificationClass[] = [
     udemyLogo
   ),
   new CertificationClass(
-    `Introduction to DevOps`,
-    `J3Y8F8R9PQRD`,
-    `https://bit.ly/3YroiWD`,
-    introToDevOpsCertificateImg,
+    `DevOps certification`,
+    `AC6HCXR4SEM9`,
+    `https://coursera.org/verify/AC6HCXR4SEM9`,
+    devopsCertificateImg,
+    courseraLogo
+  ),
+  new CertificationClass(
+    `Agile project management`,
+    `FTR5HDGKPCV5`,
+    `https://coursera.org/verify/FTR5HDGKPCV5`,
+    agileCertificateImg,
+    courseraLogo
+  ),
+  new CertificationClass(
+    `Managing containers with Docker and Kubernetes`,
+    `RW39WBGMC63W`,
+    `https://coursera.org/verify/RW39WBGMC63W`,
+    containersCertificateImg,
     courseraLogo
   ),
   new CertificationClass(
@@ -475,7 +499,7 @@ const Achievements = () => {
         transition={{ mass: 0 }}
         alt="Splash"
       />
-      <div className={css["achievements-container"]}>
+      <div className={css["achievements-container"]} id="achievements">
         <h2 className={css["heading"]}>
           <motion.span
             variants={headingLeftVariants}
@@ -504,7 +528,7 @@ const Achievements = () => {
       <br />
       <br />
       <br />
-      <div className={css["projects-container"]}>
+      <div className={css["projects-container"]} id="projects">
         <h2 className={css["heading"]}>
           <motion.span
             variants={headingLeftVariants}
@@ -529,7 +553,7 @@ const Achievements = () => {
           ))}
         </div>
       </div>
-      <div className={css["certifications-container"]}>
+      <div className={css["certifications-container"]} id="certifications">
         <h2 className={css["heading"]}>
           <motion.span
             variants={headingLeftVariants}
