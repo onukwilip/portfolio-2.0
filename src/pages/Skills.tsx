@@ -36,6 +36,11 @@ import linuxLogo from "../assets/images/linux-logo.png";
 import cypressLogo from "../assets/images/cypress-logo-2.png";
 import rtlLogo from "../assets/images/rtl-logo.png";
 import jestLogo from "../assets/images/jest-logo.png";
+import jiraLogo from "../assets/images/jira-logo.png";
+import gaLogo from "../assets/images/actions.png";
+import pythonLogo from "../assets/images/python-logo.png";
+import k8logo from "../assets/images/Kubernetes_logo.png";
+import playwrightLogo from "../assets/images/playwright-logo.png";
 import VanillaTilt from "vanilla-tilt";
 import { motion, Variants } from "framer-motion";
 import Loader from "../components/Loader";
@@ -72,13 +77,12 @@ const stack: EachStackClass[] = [
   new EachStackClass(
     "Agile and Devops engineering",
     devOpsProcessImg,
-    "As full stack developer, i'm skilled in building awesome ecommerce apps. Using React Js, Next Js, Node Js, and Shopify API, I create user-friendly and efficient online stores.",
+    "By combining Agile and DevOps, my software development process is efficient, with focus on automation, collaboration, and delivering value to users consistently.",
     {
       top: "-2rem",
       left: "50%",
       transform: "translateX(-50%) scale(0.9) rotatez(30deg)",
       width: 450,
-      // height: 200,
     }
   ),
 ];
@@ -91,7 +95,7 @@ const skills: EachSkillClass[] = [
   new EachSkillClass("Typescript", typescriptLogo, "frontend"),
   new EachSkillClass("Cypress (TDD)", cypressLogo, "frontend"),
   new EachSkillClass("Jest (TDD)", jestLogo, "frontend"),
-  new EachSkillClass("Playwright (TDD)", jestLogo, "frontend"),
+  new EachSkillClass("Playwright (TDD)", playwrightLogo, "frontend"),
   new EachSkillClass("React testing library", rtlLogo, "frontend"),
   new EachSkillClass("Webpack", webpackLogo, "frontend"),
   new EachSkillClass("Three Js", threeJsLogo, "frontend"),
@@ -100,7 +104,7 @@ const skills: EachSkillClass[] = [
   new EachSkillClass("Material UI", semanticUILogo, "frontend"),
   new EachSkillClass("Node Js", nodeJsLogo, "backend"),
   new EachSkillClass("C#", cSharpLogo, "backend"),
-  new EachSkillClass("Python & Flask", cSharpLogo, "backend"),
+  new EachSkillClass("Python & Flask", pythonLogo, "backend"),
   new EachSkillClass("Linux", linuxLogo, "backend"),
   new EachSkillClass("ASP.NET", dotNetLogo, "backend"),
   new EachSkillClass("Microsoft SQL", mssqlLogo, "database"),
@@ -109,10 +113,10 @@ const skills: EachSkillClass[] = [
   new EachSkillClass("Firebase", firebaseLogo, "database"),
   new EachSkillClass("Git", gitLogo, "other"),
   new EachSkillClass("GitHub", gitHubLogo, "other"),
-  new EachSkillClass("GitHub Actions (CI/CD)", gitHubLogo, "other"),
+  new EachSkillClass("GitHub Actions (CI/CD)", gaLogo, "other"),
   new EachSkillClass("Docker (Microservices)", dockerLogo, "other"),
-  new EachSkillClass("Kubernetes", dockerLogo, "other"),
-  new EachSkillClass("Jira (Agile)", dockerLogo, "other"),
+  new EachSkillClass("Kubernetes", k8logo, "other"),
+  new EachSkillClass("Jira (Agile)", jiraLogo, "other"),
 ];
 
 const EachStack: React.FC<{ eachStack: EachStackClass; index: number }> = ({
