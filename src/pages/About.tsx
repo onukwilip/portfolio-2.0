@@ -56,40 +56,10 @@ const aboutme = (
     collaboration, CI/CD, sprints, and progress tracking. I possess a strong
     familiarity with Linux and Bash scripting, enabling me to navigate and
     automate tasks efficiently in diverse computing environments. I'm an expert
-    in Jest, Cypress for test-driven development. I'm familiar with IAAS, PAAS,
-    SAAS, Docker and Kubernetes for scalable cloud app deployment. Notable apps
-    i've developed are{" "}
-    <b>
-      <a
-        href="http://gopack.vercel.app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GOPack
-      </a>
-    </b>{" "}
-    ,{" "}
-    <b>
-      <a
-        href="http://nigtrak.netlify.app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        NigTrak
-      </a>
-    </b>{" "}
-    , and an{" "}
-    <b>
-      <a
-        href="http://uction-app-s9qv.onrender.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Online Auction
-      </a>
-    </b>{" "}
-    platform. With continuous learning, I provide impactful solutions for users
-    and business success.
+    in Jest, Cypress and Playwright for test-driven development. I'm familiar
+    with Docker, Kubernetes and Google cloud for deploying app containers to
+    cloud. With continuous learning, I provide impactful solutions for users and
+    business success.
   </>
 );
 

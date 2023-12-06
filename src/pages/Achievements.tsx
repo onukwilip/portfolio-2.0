@@ -31,6 +31,27 @@ import Loader from "../components/Loader";
 
 const achievements: AchievementClass[] = [
   new AchievementClass(
+    onlineAuctionImg,
+    "Online Auction",
+    `Utilized Next Js which allows for better SEO in the development of an online auctioning web app.
+     Implemented a CI/CD workflow which deploys the app container to Google Cloud Run serverless platform.
+     Made the web app a progressive web app which can not only be installed on a user's device, but aslo supports caching of client-side resources, e.g. pages, images, etc and offline support.`,
+    [
+      `Next Js`,
+      "Typescript",
+      `Progressive web app`,
+      `Google Cloud Run`,
+      `Docker`,
+      "CI/CD (GitHub Actions)",
+    ],
+    [
+      `https://github.com/onukwilip/onlineAuction`,
+      `https://online-auction-ugruz6nlbq-ue.a.run.app`,
+    ],
+    // window.innerWidth < 410 ? css["online-auction-project"] : undefined
+    css["online-auction-project"]
+  ),
+  new AchievementClass(
     freeCodeCampPRImg,
     "FreeCodeCamp",
     `Had the opportunity to contribute to the Freecodecamp project. I collaborated with others on the platform in the creation of E2E tests using Microsoft Playwright. Fixed merge conflicts by rebasing the feature branch to the main branch`,
@@ -79,27 +100,6 @@ const achievements: AchievementClass[] = [
     ],
     // window.innerWidth < 308 ? css["nigtrak-project"] : undefined,
     css["nigtrak-project"]
-  ),
-  new AchievementClass(
-    onlineAuctionImg,
-    "Online Auction",
-    `Utilized Next Js for SSG and SSR which allows for better SEO optimization compared to React Js applications in the development of an online auctioning web application. Integrated the microservices architecture in which React.Js was used for the client side, Next.Js for the REST API development, MongoDB ATLAS, Redis and cloudinary for caching, database management and Docker for deploying to cloud containers`,
-    [
-      `React Js`,
-      "SCSS",
-      `Next Js`,
-      `Redis`,
-      `MongoDB`,
-      `Cloudinary API`,
-      `Docker`,
-      "Typescript",
-    ],
-    [
-      `https://github.com/onukwilip/onlineAuction`,
-      `https://auction-app-s9qv.onrender.com/`,
-    ],
-    // window.innerWidth < 410 ? css["online-auction-project"] : undefined
-    css["online-auction-project"]
   ),
 ];
 const otherProjects: ProjectClass[] = [
