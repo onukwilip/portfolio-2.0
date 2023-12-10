@@ -44,10 +44,7 @@ const achievements: AchievementClass[] = [
       `Docker`,
       "CI/CD (GitHub Actions)",
     ],
-    [
-      `https://github.com/onukwilip/onlineAuction`,
-      `https://online-auction-ugruz6nlbq-ue.a.run.app`,
-    ],
+    [`https://github.com/onukwilip/onlineAuction`, `https://bit.ly/3Thf9PG`],
     // window.innerWidth < 410 ? css["online-auction-project"] : undefined
     css["online-auction-project"]
   ),
