@@ -35,9 +35,10 @@ const achievements: AchievementClass[] = [
     "Online Auction",
     `Utilized Next Js which allows for better SEO in the development of an online auctioning web app.
      Implemented a CI/CD workflow which deploys the app container to Google Cloud Run serverless platform.
-     Made the web app a progressive web app which can not only be installed on a user's device, but aslo supports caching of client-side resources, e.g. pages, images, etc and offline support.`,
+     Made the web app a progressive web app which can not only be installed on a user's device, but aslo supports caching of client-side resources, e.g. pages, images, etc, web-notifications (when a user get's outbid) and offline support.`,
     [
       `Next Js`,
+      `Service workers`,
       "Typescript",
       `Progressive web app`,
       `Google Cloud Run`,

@@ -48,18 +48,20 @@ const services: ServiceClass[] = [
 
 const aboutme = (
   <>
-    I'm Prince C Onukwili, an experienced software engineer with 2+ years in
-    Agile/DevOps environments. Proficient in WebGL, Three Js, JavaScript, React
-    Js, Next.js, TypeScript, and Redux i craft immersive 2D/3D app interfaces. I
-    leverage tools like Node Js, Python/Flask and C#.NET in server-side
-    development. I'm also skilled in Jira, Git, GitHub and GitHub actions for
-    collaboration, CI/CD, sprints, and progress tracking. I possess a strong
-    familiarity with Linux and Bash scripting, enabling me to navigate and
-    automate tasks efficiently in diverse computing environments. I'm an expert
-    in Jest, Cypress and Playwright for test-driven development. I'm familiar
-    with Docker, Kubernetes and Google cloud for deploying app containers to
-    cloud. With continuous learning, I provide impactful solutions for users and
-    business success.
+    I'm Prince Onukwili a software engineer with over two years of experience
+    excelling in Agile and DevOps environments. I create immersive 2D and 3D app
+    interfaces leveraging WebGL, Three Js, React Js, Typescript, Redux, Webpack
+    and Next Js. I'm also capable of creating progressive web apps using Service
+    workers, and implementing features like client-side caching, and
+    web-notifications. My backend skills include Node/Express Js and C#.NET. My
+    proficiency in Jira, Git, GitHub and GitHub Actions ensures smooth
+    collaboration, CI/CD, conducting of sprints and progress tracking.
+    Leveraging Jest, Playwright and Cypress i implement test driven development.
+    I also possess a strong familiarity with Linux and Bash scripting, enabling
+    me to navigate and automate tasks efficiently in diverse computing
+    environments. I'm familiar with Docker, Kubernetes and Google cloud for
+    deploying app containers to cloud platforms. With continuous learning, I
+    provide impactful solutions for users and business success.
   </>
 );
 
