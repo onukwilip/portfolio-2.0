@@ -11,6 +11,7 @@ import goCyclopedia from "../assets/images/GOCyclopaedia.png";
 import threeJsMLImg from "../assets/images/three-js-ml-practice.png";
 import mdHubImg from "../assets/images/Manassel-data-hub.png";
 import onlineAuctionImg from "../assets/images/online-auction-img.png";
+import goCharityAuthServerImg from "../assets/images/GO.Charity Swagger-UI.png";
 import udemyLogo from "../assets/images/udemy.png";
 import courseraLogo from "../assets/images/coursera-logo.png";
 import reactJsCertificateImg from "../assets/images/react-certificate-1.png";
@@ -30,6 +31,29 @@ import Loader from "../components/Loader";
 // trying to trigger redeploy
 
 const achievements: AchievementClass[] = [
+  new AchievementClass(
+    goCharityAuthServerImg,
+    "GO.Charity (Auth microservice)",
+    `Utilized Node, Express Js, Typescript, and MongoDB in the creation of a RESTful API microservice which authenticates user's access to a crowd-funding project.
+     Implemented a CI/CD workflow that tests and builds the feature branch on every pull request to the master branch before merging.
+     Integrated Swagger API for documenting the API endpoints. Implemented Unit and integration testing using libraries like Jest, and SuperTest.`,
+    [
+      `Node Js`,
+      `Express Js`,
+      "Typescript",
+      `Swagger`,
+      `MongoDB`,
+      `TDD - Jest`,
+      `Docker`,
+      "CI/CD (GitHub Actions)",
+    ],
+    [
+      `https://github.com/go-charity/auth-server`,
+      `https://go-charity-auth-server.onrender.com/api-docs`,
+    ],
+    // window.innerWidth < 410 ? css["online-auction-project"] : undefined
+    css["online-auction-project"]
+  ),
   new AchievementClass(
     onlineAuctionImg,
     "Online Auction",
