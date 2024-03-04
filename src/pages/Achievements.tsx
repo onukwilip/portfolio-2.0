@@ -21,6 +21,7 @@ import reactThreeFiberCertificateImg from "../assets/images/react-3-fiber-certif
 import devopsCertificateImg from "../assets/images/devops-capstone.png";
 import containersCertificateImg from "../assets/images/docker-kubernetes-containerization-certification.png";
 import agileCertificateImg from "../assets/images/intro-to-agile-development-certificate.png";
+import goCharityMonitoringImg from "../assets/images/gocharity-grafana.png";
 import introToCloudCertificateImg from "../assets/images/introduction-to-cloud-computing-certificate-1.png";
 import cypressE2ETestingCertificateImg from "../assets/images/cypress-e2e-testing-certificate.jpg";
 import { AchievementClass, CertificationClass, ProjectClass } from "../utils";
@@ -31,6 +32,29 @@ import Loader from "../components/Loader";
 // trying to trigger redeploy
 
 const achievements: AchievementClass[] = [
+  new AchievementClass(
+    goCharityMonitoringImg,
+    "GO.Charity Moitoring Dashboard",
+    `Used 'prom-client' and 'swagger-stats' to expose the metrics of the GO.Charity auth app e.g.
+    The total no. of HTTP requests made to the application, the HTTP response time for each request, average memory being used by the app, etc.
+    Set up Prometheus and Grafana to scrape and visualize said metrics at regular time intervals.
+    Deployed the servers to Docker containers, and enabled continuous deployment on the web services`,
+    [
+      `Prometheus`,
+      `Grafana`,
+      `App monitoring`,
+      `Docker`,
+      "Swagger-stats",
+      "Prom-client",
+      `Node Js`,
+      "Typescript",
+    ],
+    [
+      `https://github.com/go-charity/prometheus`,
+      `https://grafana-buim.onrender.com/`,
+    ],
+    css["online-auction-project"]
+  ),
   new AchievementClass(
     goCharityAuthServerImg,
     "GO.Charity (Auth microservice)",
@@ -51,7 +75,6 @@ const achievements: AchievementClass[] = [
       `https://github.com/go-charity/auth-server`,
       `https://go-charity-auth-server.onrender.com/api-docs`,
     ],
-    // window.innerWidth < 410 ? css["online-auction-project"] : undefined
     css["online-auction-project"]
   ),
   new AchievementClass(

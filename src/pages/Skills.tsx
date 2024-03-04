@@ -22,6 +22,9 @@ import mssqlLogo from "../assets/images/mssql-logo.png";
 import dotNetLogo from "../assets/images/dot-net-logo.png";
 import gitHubLogo from "../assets/images/github.png";
 import gitLogo from "../assets/images/git.png";
+import prometheusLogo from "../assets/images/prometheus-logo.png";
+import grafanaLogo from "../assets/images/grafana-logo.png";
+import swaggerUILogo from "../assets/images/swagger-logo.png";
 import firebaseLogo from "../assets/images/firebase.png";
 import cSharpLogo from "../assets/images/c-sharp-logo.png";
 import nodeJsLogo from "../assets/images/nodejs.png";
@@ -103,6 +106,7 @@ const skills: EachSkillClass[] = [
   new EachSkillClass("Next Js", nextJsLogo, "frontend"),
   new EachSkillClass("Material UI", semanticUILogo, "frontend"),
   new EachSkillClass("Node Js", nodeJsLogo, "backend"),
+  new EachSkillClass("Swagger (API documentation)", swaggerUILogo, "backend"),
   new EachSkillClass("C#", cSharpLogo, "backend"),
   new EachSkillClass("Python & Flask", pythonLogo, "backend"),
   new EachSkillClass("Linux", linuxLogo, "backend"),
@@ -117,6 +121,8 @@ const skills: EachSkillClass[] = [
   new EachSkillClass("Docker (Microservices)", dockerLogo, "other"),
   new EachSkillClass("Kubernetes", k8logo, "other"),
   new EachSkillClass("Jira (Agile)", jiraLogo, "other"),
+  new EachSkillClass("Prometheus (Monitoring)", prometheusLogo, "other"),
+  new EachSkillClass("Grafana (Monitoring)", grafanaLogo, "other"),
 ];
 
 const EachStack: React.FC<{ eachStack: EachStackClass; index: number }> = ({

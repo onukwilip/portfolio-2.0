@@ -57,11 +57,11 @@ const aboutme = (
     proficiency in Jira, Git, GitHub and GitHub Actions ensures smooth
     collaboration, CI/CD, conducting of sprints and progress tracking.
     Leveraging Jest, Playwright and Cypress i implement test driven development.
-    I also possess a strong familiarity with Linux and Bash scripting, enabling
-    me to navigate and automate tasks efficiently in diverse computing
-    environments. I'm familiar with Docker, Kubernetes and Google cloud for
-    deploying app containers to cloud platforms. With continuous learning, I
-    provide impactful solutions for users and business success.
+    I'm also knowledgeable on the Linux OS and Bash scripting. I'm familiar with
+    Docker, Kubernetes for deploying app containers to cloud platforms like
+    Google CLoud, Azure, etc, and monitoring deployed applications metrics using
+    Prometheus, and Grafana. With continuous learning, I provide impactful
+    solutions for users and business success.
   </>
 );
 
