@@ -9,24 +9,37 @@ import Experience from "./pages/Experience";
 import Achievements from "./pages/Achievements";
 import Testimonial from "./pages/Testimonial";
 import SocialIcons from "./components/SocialIcons";
+import { useSelector } from "react-redux";
+import { ModalReducer, SelectorType } from "./types";
+import PopupModal from "./components/Modal";
+import { createPortal } from "react-dom";
 
 function App() {
+  const modal = useSelector<SelectorType, ModalReducer>((state) => state.modal);
   return (
-    <div className="app">
-      <Logo />
-      <SocialIcons />
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/skills" element={<Skills />} />
-        <Route path="/experience" element={<Experience />} />
-        <Route path="/achievements" element={<Achievements />} />
-        <Route path="/testimonials" element={<Testimonial />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<Landing />} />
-      </Routes>
-      <Menu />
-    </div>
+    <>
+      {modal.display &&
+        createPortal(
+          <PopupModal element={modal.element}></PopupModal>,
+          document.getElementById("portal") as Element
+        )}
+
+      <div className="app">
+        <Logo />
+        <SocialIcons />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/achievements" element={<Achievements />} />
+          <Route path="/testimonials" element={<Testimonial />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Landing />} />
+        </Routes>
+        <Menu />
+      </div>
+    </>
   );
 }
 

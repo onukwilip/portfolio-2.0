@@ -24,13 +24,29 @@ import agileCertificateImg from "../assets/images/intro-to-agile-development-cer
 import goCharityMonitoringImg from "../assets/images/gocharity-grafana.png";
 import introToCloudCertificateImg from "../assets/images/introduction-to-cloud-computing-certificate-1.png";
 import cypressE2ETestingCertificateImg from "../assets/images/cypress-e2e-testing-certificate.jpg";
-import { AchievementClass, CertificationClass, ProjectClass } from "../utils";
+import scrumArticleImage from "../assets/images/Scrum-Method-1024x751-1.jpg";
+import prometheusArticleImage from "../assets/images/prometheus-article.png";
+import agileArticleImage from "../assets/images/Agile-Methodology-Illustration.png";
+import serverlessArticleImage from "../assets/images/Serverless-Architecture-A-Detailed-Guide.png";
+import azurePricingArticleImage from "../assets/images/azure-article.png";
+import {
+  AchievementClass,
+  ArticleClass,
+  CertificationClass,
+  ProjectClass,
+} from "../utils";
 import * as rdd from "react-device-detect";
 import { Variants, motion } from "framer-motion";
 import Loader from "../components/Loader";
+import { createPortal } from "react-dom";
+import PopupModal from "../components/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { ModalReducer, SelectorType } from "../types";
+import { modalActions } from "../store/store";
 
 // trying to trigger redeploy
 
+// * The array of achievements
 const achievements: AchievementClass[] = [
   new AchievementClass(
     goCharityMonitoringImg,
@@ -147,6 +163,8 @@ const achievements: AchievementClass[] = [
     css["nigtrak-project"]
   ),
 ];
+
+// * The array of projects
 const otherProjects: ProjectClass[] = [
   new ProjectClass(
     threeJsMLImg,
@@ -204,6 +222,8 @@ const otherProjects: ProjectClass[] = [
     undefined
   ),
 ];
+
+// * The array of certifications
 const certifications: CertificationClass[] = [
   new CertificationClass(
     "React.Js development",
@@ -270,6 +290,49 @@ const certifications: CertificationClass[] = [
   ),
 ];
 
+const articles: ArticleClass[] = [
+  new ArticleClass(
+    "Implementing the Agile model with Scrum 💻. A deep dive into the Scrum framework.",
+    "In this article, I discussed various frameworks developed to implement the Agile model, such as Kanban, Scrum, Extreme programming, etc. Additionally, I explored the Scrum framework in detail, outlining the roles within Scrum, namely The Product Owner, the Scrum Master, and the development team. I also clarified other terms and concepts utilized in the Scrum framework, including Sprint, Sprint planning, Sprint retrospective, the product backlog, user stories, epics, etc. Lastly, I highlighted the benefits of incorporating Scrum frameworks in businesses and the product lifecycle.",
+    scrumArticleImage,
+    "https://medium.com/@onukwilip/implementing-the-agile-model-with-scrum-a-deep-dive-into-the-scrum-framework-859a3ad99763",
+    ["medium", "scrum", "agile"]
+  ),
+  new ArticleClass(
+    "Serverless for dummies 🤓! Everything you need to know about the Serverless architecture and deploying your application to Google Cloud’s serverless platform ☁️💻!",
+    "In this article, I explained what Serverless architecture is all about, the differences between Serverless architecture and other architectures, how to create a Node JS web server, wrap it in a Docker container, and publish the image build to Docker Hub; I also displayed how to create a Google Cloud account, and project, and how to deploy an application to the Google Cloud Run service.",
+    serverlessArticleImage,
+    "https://medium.com/@onukwilip/serverless-for-dummies-60e37a07c82c",
+    ["medium", "serverless", "devops", "google cloud run", "docker"]
+  ),
+  new ArticleClass(
+    "What is Agile, and all you need to know about the Agile model",
+    "In this article, I'll explain how the Agile model came about, its manifesto, core values, principles, and advantages.",
+    agileArticleImage,
+    "https://medium.com/@onukwilip/what-is-agile-and-all-you-need-to-know-about-the-agile-model-2c7986adec2e",
+    ["medium", "agile", "project management"]
+  ),
+  new ArticleClass(
+    "Integrating Prometheus into Node/Express Js app, using the prom-client library to monitor app metrics",
+    "Wrote an article explaining Prometheus and how to track a Node/Express JS web application's metrics e.g. HTTP response latency, CPU utilization, etc, using the prom-client npm library.",
+    prometheusArticleImage,
+    "https://medium.com/@onukwilip/integrating-prometheus-into-node-express-js-app-using-the-prom-client-library-to-monitor-app-604641049556",
+    ["medium", "prometheus", "node js", "application monitoring"]
+  ),
+  new ArticleClass(
+    "All you need to know about Microsoft Azure pricing factors",
+    "This article contains information about factors that affect resource pricing on Microsoft Azure. It's a good approach to consider other factors which might affect the cost of your resource on Azure even while calculating using the Pricing calculator, inorder to avoid excess billing on said resources.",
+    azurePricingArticleImage,
+    "https://medium.com/@onukwilip/all-you-need-to-know-about-microsoft-azure-pricing-1aeff97b71d7",
+    ["medium", "azure cloud", "devops"]
+  ),
+];
+
+/**
+ * The Achievement component
+ * @param props: The Achievement component props { achievement: The achievement object, index: The ndex of the object in the list }
+ * @returns JSX Achievement component
+ */
 const Achievement: FC<{ achievement: AchievementClass; index: number }> = ({
   achievement,
   index,
@@ -345,6 +408,12 @@ const Achievement: FC<{ achievement: AchievementClass; index: number }> = ({
     </motion.div>
   );
 };
+
+/**
+ * The Project component
+ * @param props: The Project component props { project: The project object, index: The ndex of the object in the list }
+ * @returns JSX Project component
+ */
 const Project: FC<{ project: ProjectClass; index: number }> = ({
   project,
   index,
@@ -401,6 +470,12 @@ const Project: FC<{ project: ProjectClass; index: number }> = ({
     </motion.div>
   );
 };
+
+/**
+ * The Certification component
+ * @param props: The Certification component props { certification: The certification object, index: The ndex of the object in the list }
+ * @returns JSX Certification component
+ */
 const Certification: FC<{
   certification: CertificationClass;
   index: number;
@@ -493,6 +568,162 @@ const Certification: FC<{
   );
 };
 
+/**
+ * The Modal article component
+ * @param props: The Modal article component props { article: The article object}
+ * @returns JSX Modal article component
+ */
+const ModalArticle: FC<{ article: ArticleClass }> = ({ article }) => {
+  const dispatch = useDispatch();
+  const variants = useMemo<Variants>(
+    () => ({
+      small: {
+        scale: 0,
+      },
+      big: {
+        scale: 1,
+      },
+    }),
+    []
+  );
+
+  return (
+    <>
+      <motion.div
+        variants={variants}
+        initial="small"
+        whileInView="big"
+        transition={{ duration: 0.1 }}
+        viewport={{ once: true }}
+        exit="small"
+        className={css.modal_article}
+      >
+        <div className={css.img_container}>
+          <img src={article.image} alt="" />
+          <div className={css.link_container}>
+            <a
+              href={article.URL}
+              target="_blank"
+              rel="noreferrer"
+              className={css.link}
+            >
+              <i className="fa-solid fa-arrow-up-right-from-square" />
+            </a>
+            <a
+              href="#"
+              onClick={() => dispatch(modalActions.hide())}
+              className={`${css.link} ${css.del}`}
+            >
+              <i className="fas fa-xmark"></i>
+            </a>
+          </div>
+        </div>
+        <div className={css.content}>{article.content}</div>
+        <div className={css.tags_container}>
+          {article.tags.map((tag) => (
+            <>
+              <span>#{tag}</span>
+            </>
+          ))}
+        </div>
+      </motion.div>
+    </>
+  );
+};
+
+/**
+ * The Article component
+ * @param props: The Article component props { article: The article object, index: The ndex of the object in the list }
+ * @returns JSX Article component
+ */
+const Article: FC<{ article: ArticleClass; index: number }> = ({
+  article,
+  index,
+}) => {
+  const dispatch = useDispatch();
+  const variants = useMemo<Variants>(
+    () => ({
+      down: {
+        y: 100,
+        opacity: 0,
+      },
+      up: {
+        y: 0,
+        opacity: 1,
+      },
+    }),
+    []
+  );
+
+  return (
+    <>
+      <motion.div
+        variants={variants}
+        initial="down"
+        whileInView="up"
+        transition={{ delay: index * 0.1, duration: 0.2 }}
+        viewport={{ once: true }}
+        className={css.article}
+        key={index}
+      >
+        <div className={css.img_container}>
+          <div className={css.demo_img}>
+            <a
+              href={article.URL}
+              target="_blank"
+              rel="noreferrer"
+              className={css.mobile_link_container}
+            >
+              <i className="fa-solid fa-arrow-up-right-from-square" />
+            </a>
+            <img src={article.image} alt="article" />
+          </div>
+        </div>
+        <div className={css.content_container}>
+          <div className={css.content}>
+            {article.content.length > 200 ? (
+              <>
+                {article.content.slice(0, 200)}...
+                <a
+                  href="#"
+                  onClick={() =>
+                    dispatch(
+                      modalActions.show(<ModalArticle article={article} />)
+                    )
+                  }
+                >
+                  See more
+                </a>{" "}
+              </>
+            ) : (
+              article.content
+            )}
+          </div>
+          <div className={css.tags_container}>
+            {article.tags.map((tag) => (
+              <>
+                <span>#{tag}</span>
+              </>
+            ))}
+          </div>
+        </div>
+        <a
+          href={article.URL}
+          target="_blank"
+          rel="noreferrer"
+          className={css.link_container}
+        >
+          <i className="fa-solid fa-arrow-up-right-from-square" />
+        </a>
+      </motion.div>
+    </>
+  );
+};
+
+/**
+ * The Achievement page commponent
+ * @returns JSX Achievements component
+ */
 const Achievements = () => {
   const [loading, setLoading] = useState(true);
   const headingLeftVariants = useMemo<Variants>(
@@ -611,6 +842,33 @@ const Achievements = () => {
         <div className={css.projects}>
           {otherProjects.map((project, i) => (
             <Project project={project} index={i} key={i} />
+          ))}
+        </div>
+      </div>
+      <div className={css.articles_container} id="articles">
+        <h2 className={css["heading"]}>
+          <motion.span
+            variants={headingLeftVariants}
+            initial="far"
+            whileInView="near"
+            viewport={{ once: true }}
+            className={css.text}
+          >
+            My articles
+          </motion.span>{" "}
+          <motion.span
+            variants={headingRightVariants}
+            initial="far"
+            whileInView="near"
+            viewport={{ once: true }}
+            className={css.line}
+          ></motion.span>
+        </h2>
+        <div className={css.articles}>
+          {articles.map((article, i) => (
+            <>
+              <Article article={article} index={i} />
+            </>
           ))}
         </div>
       </div>

@@ -90,6 +90,12 @@ export type MenuReducer = {
   display: boolean;
 };
 
+export type ModalReducer = {
+  display: boolean;
+  element: React.ReactNode | undefined;
+};
+
 export type SelectorType = {
   menu: MenuReducer;
+  modal: ModalReducer;
 };

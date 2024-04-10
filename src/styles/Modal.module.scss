@@ -1,0 +1,32 @@
+@import "./config.scss";
+
+.modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    overflow-y: auto;
+    @include flex(center, center, 0);
+    .bg {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(black, 0.5);
+    }
+    .modal_body {
+        position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%, -50%);
+        color: white;
+    }
+    @include media(max, 500px) {
+        align-items: start;
+        .modal_body {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+}

@@ -18,6 +18,16 @@ export class EachStackClass {
   ) {}
 }
 
+export class ArticleClass {
+  constructor(
+    public title: string,
+    public content: string,
+    public image: string,
+    public URL: string,
+    public tags: string[]
+  ) {}
+}
+
 export class EachSkillClass {
   constructor(
     public name: string,
