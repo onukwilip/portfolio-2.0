@@ -694,8 +694,8 @@
         .link {
             border-radius: 50%;
             @include flex(center, center, 0);
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             background: white;
             color: nth($colors, 1);
             text-decoration: none;

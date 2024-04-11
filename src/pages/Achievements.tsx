@@ -872,6 +872,9 @@ const Achievements = () => {
           ))}
         </div>
       </div>
+      <br />
+      <br />
+      <br />
       <div className={css["certifications-container"]} id="certifications">
         <h2 className={css["heading"]}>
           <motion.span
