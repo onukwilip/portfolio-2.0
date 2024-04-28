@@ -29,6 +29,7 @@ import prometheusArticleImage from "../assets/images/prometheus-article.png";
 import agileArticleImage from "../assets/images/Agile-Methodology-Illustration.png";
 import serverlessArticleImage from "../assets/images/Serverless-Architecture-A-Detailed-Guide.png";
 import azurePricingArticleImage from "../assets/images/azure-article.png";
+import jiraArticleImage from "../assets/images/jira-bg.jpg";
 import {
   AchievementClass,
   ArticleClass,
@@ -157,7 +158,7 @@ const achievements: AchievementClass[] = [
     ],
     [
       `https://github.com/onukwilip/NigTrak/tree/adding-typescript`,
-      `https://nigtrak.netlify.app/`,
+      `https://nigtrak.vercel.app/`,
     ],
     // window.innerWidth < 308 ? css["nigtrak-project"] : undefined,
     css["nigtrak-project"]
@@ -290,6 +291,7 @@ const certifications: CertificationClass[] = [
   ),
 ];
 
+// * The array of published articles
 const articles: ArticleClass[] = [
   new ArticleClass(
     "Implementing the Agile model with Scrum 💻. A deep dive into the Scrum framework.",
@@ -325,6 +327,13 @@ const articles: ArticleClass[] = [
     azurePricingArticleImage,
     "https://medium.com/@onukwilip/all-you-need-to-know-about-microsoft-azure-pricing-1aeff97b71d7",
     ["medium", "azure cloud", "devops"]
+  ),
+  new ArticleClass(
+    "Implementing the Scrum framework using Atlassian Jira 💻",
+    "In this article, I went through what Scrum was and how Jira helps implement it, I created an account and a project on Jira, organized and prioritized the Product backlog, created User stories and Epics, planned and created our first Sprint, and analyzed the ongoing Sprint's Burndown chart.",
+    jiraArticleImage,
+    "https://medium.com/@onukwilip/implementing-the-scrum-framework-using-atlassian-jira-4c022bed7b56",
+    ["medium", "scrum", "agile", "project management"]
   ),
 ];
 
