@@ -68,7 +68,7 @@ const achievements: AchievementClass[] = [
     ],
     [
       `https://github.com/go-charity/prometheus`,
-      `https://grafana-buim.onrender.com/`,
+      `https://snapshots.raintank.io/dashboard/snapshot/YdInadIEPad9zCJyZON76sgkhriSeoHy?orgId=0`,
     ],
     css["online-auction-project"]
   ),
