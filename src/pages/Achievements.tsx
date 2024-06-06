@@ -30,6 +30,7 @@ import agileArticleImage from "../assets/images/Agile-Methodology-Illustration.p
 import serverlessArticleImage from "../assets/images/Serverless-Architecture-A-Detailed-Guide.png";
 import azurePricingArticleImage from "../assets/images/azure-article.png";
 import jiraArticleImage from "../assets/images/jira-bg.jpg";
+import devOpsArticleImage from "../assets/images/devops_banner.jpeg";
 import {
   AchievementClass,
   ArticleClass,
@@ -334,6 +335,13 @@ const articles: ArticleClass[] = [
     jiraArticleImage,
     "https://medium.com/@onukwilip/implementing-the-scrum-framework-using-atlassian-jira-4c022bed7b56",
     ["medium", "scrum", "agile", "project management"]
+  ),
+  new ArticleClass(
+    "A rundown on DevOps and its concepts 👨🏾‍💻☁️🔁",
+    "n this article, I gave a brief but detailed overview of the concept of DevOps, its components, how it came about, how it advances the Agile software development model, and its benefits in the software development lifecycle.",
+    devOpsArticleImage,
+    "https://medium.com/@onukwilip/a-rundown-on-devops-and-its-concepts-%EF%B8%8F-1fbcc16b821b",
+    ["devops", "cloud computing", "agile", "software engineering", "medium"]
   ),
 ];
 
