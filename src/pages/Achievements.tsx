@@ -338,7 +338,7 @@ const articles: ArticleClass[] = [
   ),
   new ArticleClass(
     "A rundown on DevOps and its concepts 👨🏾‍💻☁️🔁",
-    "n this article, I gave a brief but detailed overview of the concept of DevOps, its components, how it came about, how it advances the Agile software development model, and its benefits in the software development lifecycle.",
+    "In this article, I gave a brief but detailed overview of the concept of DevOps, its components, how it came about, how it advances the Agile software development model, and its benefits in the software development lifecycle.",
     devOpsArticleImage,
     "https://medium.com/@onukwilip/a-rundown-on-devops-and-its-concepts-%EF%B8%8F-1fbcc16b821b",
     ["devops", "cloud computing", "agile", "software engineering", "medium"]
