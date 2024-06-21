@@ -137,13 +137,14 @@
         }
         .content {
             padding: 10px;
-            // background: lighten(nth($colors, 1), 7);
             background: nth($colors, 2);
             border-radius: 3px;
-            font-weight: 100;
-            // background: nth($colors, 5);
-            // font-weight: 400;
-            // color: nth($colors, 1);
+            font-weight: 200;
+            a {
+                color: white;
+                font-weight: 400;
+                text-decoration: none;
+            }
         }
         .skills {
             list-style-type: none;
@@ -664,7 +665,7 @@
         }
     }
 }
-.modal_article {
+.modal {
     @include flex(start, start, 0, column);
     position: relative;
     max-width: 500px;
@@ -674,6 +675,20 @@
     border-radius: 20px;
     background: nth($colors, 5);
     color: nth($colors, 1);
+    max-height: 85vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+    }
+    &::-webkit-scrollbar-thumb {
+        width: 5px;
+        border-radius: 2px;
+        background-color: nth($colors, 1);
+    }
+
     * {
         transition: 350ms;
     }
@@ -699,6 +714,9 @@
             background: white;
             color: nth($colors, 1);
             text-decoration: none;
+            i {
+                font-size: 20px;
+            }
             &.del {
                 background: red;
                 color: white;

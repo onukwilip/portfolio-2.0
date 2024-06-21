@@ -11,6 +11,8 @@ import goCyclopedia from "../assets/images/GOCyclopaedia.png";
 import threeJsMLImg from "../assets/images/three-js-ml-practice.png";
 import mdHubImg from "../assets/images/Manassel-data-hub.png";
 import onlineAuctionImg from "../assets/images/online-auction-img.png";
+import goCharityAuthImg from "../assets/images/GO-Charity-Authentication.png";
+import goCharityAcctImg from "../assets/images/GO-Charity account.png";
 import goCharityAuthServerImg from "../assets/images/GO.Charity Swagger-UI.png";
 import udemyLogo from "../assets/images/udemy.png";
 import courseraLogo from "../assets/images/coursera-logo.png";
@@ -51,11 +53,63 @@ import { modalActions } from "../store/store";
 // * The array of achievements
 const achievements: AchievementClass[] = [
   new AchievementClass(
+    goCharityAuthImg,
+    "GO.Charity Auth Microservice",
+    `Created an authentication microservice consisting of a client and server app for the GO.Charity platform. 
+    Created pages, and endpoints to create a new user, sign in an existing user, and to verify a User's email address via sending a One time password to his/her email address. 
+    Implemented the use of short lived access tokens and long lived refresh tokens for the OTP endpoints, and platform as a whole. 
+    Leveraged the use of Next Js, TypeScript, MUI, and SCSS for the client app interface. 
+    Used Node Js, Express Js, an MongoDB for the server app. 
+    Set up application monitoring using Prometheus for the server app.
+    Implemented a CI/CD pipeline using GitHub workflows and actions to test and build the client and server apps respectively on pull request to the main branch.
+    Implemented functional testing using Cypress on the client application, and Jest, and Supertest on the server platform.`,
+    [
+      "TDD - Jest, Cypress",
+      "Next Js",
+      "TypeScript",
+      "MERN",
+      "Node Js",
+      "MongoDB",
+      "Redux",
+      "Cloudinary",
+      "Docker",
+      "CI/CD - GitHub workflows",
+    ],
+    [
+      "https://github.com/go-charity/auth-interface",
+      "https://auth.gocharity.com.ng/login",
+    ]
+  ),
+  new AchievementClass(
+    goCharityAcctImg,
+    "GO.Charity Account Microservice",
+    `Leveraged the Next.Js framework and TypeScript in creating a full stack account dashboard for the GO.Charity platform. 
+    Developed the client-side of the Microservice leveraging Next Js, TypeScript, Redux, MUI, SCSS, etc, And the server side using Node/Express Js, Cloudinary (for object storage), and MongoDB. 
+    Implemented functional testing using Cypress on the client application, and Jest, and Supertest on the server platform. 
+    Implemented a CI/CD pipeline using GitHub workflows and actions to test and build the client and server apps respectively on pull request to the main branch`,
+    [
+      "TDD - Jest, Cypress",
+      "Next Js",
+      "TypeScript",
+      "MERN",
+      "Node Js",
+      "MongoDB",
+      "Redux",
+      "Cloudinary",
+      "Docker",
+      "CI/CD - GitHub workflows",
+    ],
+    [
+      "https://github.com/go-charity/orphanage-account-interface",
+      "https://account.gocharity.com.ng/orphanage/NjY2NDA4ZWM5NTU3ZmI5ZWI0MTUwOGVj",
+    ]
+  ),
+  new AchievementClass(
     goCharityMonitoringImg,
     "GO.Charity Moitoring Dashboard",
     `Used 'prom-client' and 'swagger-stats' to expose the metrics of the GO.Charity auth app e.g.
-    The total no. of HTTP requests made to the application, the HTTP response time for each request, average memory being used by the app, etc.
-    Set up Prometheus and Grafana to scrape and visualize said metrics at regular time intervals.
+    The total number of HTTP requests made to the application, the HTTP response time for each request, average memory being used by the app, etc. 
+    Set up Prometheus and Grafana to scrape and visualize said metrics at regular time intervals. 
     Deployed the servers to Docker containers, and enabled continuous deployment on the web services`,
     [
       `Prometheus`,
@@ -76,9 +130,10 @@ const achievements: AchievementClass[] = [
   new AchievementClass(
     goCharityAuthServerImg,
     "GO.Charity (Auth microservice)",
-    `Utilized Node, Express Js, Typescript, and MongoDB in the creation of a RESTful API microservice which authenticates user's access to a crowd-funding project.
-     Implemented a CI/CD workflow that tests and builds the feature branch on every pull request to the master branch before merging.
-     Integrated Swagger API for documenting the API endpoints. Implemented Unit and integration testing using libraries like Jest, and SuperTest.`,
+    `Utilized Node, Express Js, Typescript, and MongoDB in the creation of a RESTful API microservice which authenticates user's access to a crowd-funding project. 
+     Implemented a CI/CD workflow that tests and builds the feature branch on every pull request to the master branch before merging. 
+     Integrated Swagger API for documenting the API endpoints.
+     Implemented Unit and integration testing using libraries like Jest, and SuperTest.`,
     [
       `Node Js`,
       `Express Js`,
@@ -98,9 +153,9 @@ const achievements: AchievementClass[] = [
   new AchievementClass(
     onlineAuctionImg,
     "Online Auction",
-    `Utilized Next Js which allows for better SEO in the development of an online auctioning web app.
-     Implemented a CI/CD workflow which deploys the app container to Google Cloud Run serverless platform.
-     Made the web app a progressive web app which can not only be installed on a user's device, but aslo supports caching of client-side resources, e.g. pages, images, etc, web-notifications (when a user get's outbid) and offline support.`,
+    `Utilized Next Js which allows for better SEO in the development of an online auctioning web app. 
+     Implemented a CI/CD workflow which deploys the app container to Google Cloud Run serverless platform. 
+     Made the web app a progressive web app which can not only be installed on a user's device, but aslo supports caching of client-side resources, e.g, pages, images, etc, web-notifications (when a user get's outbid) and offline support.`,
     [
       `Next Js`,
       `Service workers`,
@@ -117,7 +172,9 @@ const achievements: AchievementClass[] = [
   new AchievementClass(
     freeCodeCampPRImg,
     "FreeCodeCamp",
-    `Had the opportunity to contribute to the Freecodecamp project. I collaborated with others on the platform in the creation of E2E tests using Microsoft Playwright. Fixed merge conflicts by rebasing the feature branch to the main branch`,
+    `Had the opportunity to contribute to the Freecodecamp project. 
+    I collaborated with others on the platform in the creation of E2E tests using Microsoft Playwright. 
+    Fixed merge conflicts by rebasing the feature branch to the main branch`,
     [`Playwright`, `React Js`, "JavaScript", "Git", "Open-source"],
     [
       `https://github.com/freeCodeCamp/freeCodeCamp/pull/52104`,
@@ -128,7 +185,7 @@ const achievements: AchievementClass[] = [
   new AchievementClass(
     hacktoberfestBadgeImg,
     "Hacktoberfest 2023",
-    `Leveled up in the ongoing Hacktoberfest programmme, by contributing to various open-source projects; the likes of Freecodecamp. I wrote E2E tests for the Freecodecamp’s website utilizing JavaScript and Playwright library 📚 `,
+    `Leveled up in the ongoing Hacktoberfest programmme, by contributing to various open-source projects; the likes of Freecodecamp. I wrote E2E tests for the Freecodecamp's website utilizing JavaScript and Playwright library 📚 `,
     [`Playwright`, `React Js`, `Next js`, "JavaScript", "Git", "Open-source"],
     [
       `https://www.holopin.io/hacktoberfest2023/userbadge/cloovsl7f311290gl3vjg6iy89`,
@@ -147,7 +204,7 @@ const achievements: AchievementClass[] = [
   new AchievementClass(
     nigtrakImg,
     "NigTrak",
-    `Utilized tools like MQTT, React Js, Google maps etc. to develop a real-time tracking software and inventory system, which tracks registered personnel and their assigned gadgets around the world in real-time via the application installed on their device.`,
+    `Utilized tools like MQTT, React Js, Google maps etc, to develop a real-time tracking software and inventory system, which tracks registered personnel and their assigned gadgets around the world in real-time via the application installed on their device.`,
     [
       `React Js`,
       "SCSS",
@@ -354,6 +411,7 @@ const Achievement: FC<{ achievement: AchievementClass; index: number }> = ({
   achievement,
   index,
 }) => {
+  const dispatch = useDispatch();
   const variants = useMemo<Variants>(
     () => ({
       down: {
@@ -397,7 +455,25 @@ const Achievement: FC<{ achievement: AchievementClass; index: number }> = ({
             <span className={css.heading}>{achievement.name}</span>
           </a>
         </div>
-        <div className={css.content}>{achievement.description}</div>
+        <div className={css.content}>
+          {" "}
+          {achievement.description.length > 200 ? (
+            <>
+              {achievement.description.slice(0, 200)}...
+              <br />
+              <a
+                href="#"
+                onClick={() =>
+                  dispatch(modalActions.show(<Modal data={achievement} />))
+                }
+              >
+                See more
+              </a>{" "}
+            </>
+          ) : (
+            achievement.description
+          )}
+        </div>
         <ul className={css.skills}>
           {achievement.skills.map((skill, i) => (
             <li key={i}>
@@ -613,7 +689,7 @@ const ModalArticle: FC<{ article: ArticleClass }> = ({ article }) => {
         transition={{ duration: 0.1 }}
         viewport={{ once: true }}
         exit="small"
-        className={css.modal_article}
+        className={css.modal}
       >
         <div className={css.img_container}>
           <img src={article.image} alt="" />
@@ -638,6 +714,83 @@ const ModalArticle: FC<{ article: ArticleClass }> = ({ article }) => {
         <div className={css.content}>{article.content}</div>
         <div className={css.tags_container}>
           {article.tags.map((tag) => (
+            <>
+              <span>#{tag}</span>
+            </>
+          ))}
+        </div>
+      </motion.div>
+    </>
+  );
+};
+
+/**
+ * The Modal component
+ * @param props: The Modal component props { data: The object data to be displayed - similar to the Achievement class}
+ * @returns JSX Modal component
+ */
+const Modal: FC<{ data: AchievementClass }> = ({ data }) => {
+  const dispatch = useDispatch();
+  const variants = useMemo<Variants>(
+    () => ({
+      small: {
+        scale: 0,
+      },
+      big: {
+        scale: 1,
+      },
+    }),
+    []
+  );
+
+  return (
+    <>
+      <motion.div
+        variants={variants}
+        initial="small"
+        whileInView="big"
+        transition={{ duration: 0.1 }}
+        viewport={{ once: true }}
+        exit="small"
+        className={css.modal}
+      >
+        <div className={css.img_container}>
+          <img src={data.image} alt="" />
+          <div className={css.link_container}>
+            <a
+              href={data.links[0]}
+              target="_blank"
+              rel="noreferrer"
+              className={css.link}
+            >
+              <i className="fa-brands fa-github-alt" />
+            </a>
+            <a
+              href={data.links[1]}
+              target="_blank"
+              rel="noreferrer"
+              className={css.link}
+            >
+              <i className="fa-solid fa-arrow-up-right-from-square" />
+            </a>
+            <a
+              href="#"
+              onClick={() => dispatch(modalActions.hide())}
+              className={`${css.link} ${css.del}`}
+            >
+              <i className="fas fa-xmark"></i>
+            </a>
+          </div>
+        </div>
+        <div className={css.content}>
+          {data.description.split(". ").map((each_desc, i) => (
+            <>
+              <li>{each_desc}</li>
+            </>
+          ))}
+        </div>
+        <div className={css.tags_container}>
+          {data.skills.map((tag) => (
             <>
               <span>#{tag}</span>
             </>
