@@ -68,6 +68,7 @@ export class AchievementClass {
     public description: string,
     public skills: string[],
     public links: [string, string],
+    public id: string,
     public className?: string
   ) {}
 }
@@ -79,10 +80,11 @@ export class ProjectClass extends AchievementClass {
     public description: string,
     public skills: string[],
     public links: [string, string],
+    public id: string,
     public className?: string,
     public is3D?: boolean
   ) {
-    super(image, name, description, skills, links, className);
+    super(image, name, description, skills, links, id, className);
   }
 }
 

@@ -47,6 +47,7 @@ import PopupModal from "../components/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalReducer, SelectorType } from "../types";
 import { modalActions } from "../store/store";
+import { useSearchParams } from "react-router-dom";
 
 // trying to trigger redeploy
 
@@ -78,7 +79,8 @@ const achievements: AchievementClass[] = [
     [
       "https://github.com/go-charity/auth-interface",
       "https://auth.gocharity.com.ng/login",
-    ]
+    ],
+    "gc_auth"
   ),
   new AchievementClass(
     goCharityAcctImg,
@@ -102,7 +104,8 @@ const achievements: AchievementClass[] = [
     [
       "https://github.com/go-charity/orphanage-account-interface",
       "https://account.gocharity.com.ng/orphanage/NjY2NDA4ZWM5NTU3ZmI5ZWI0MTUwOGVj",
-    ]
+    ],
+    "gc_account"
   ),
   new AchievementClass(
     goCharityMonitoringImg,
@@ -125,6 +128,7 @@ const achievements: AchievementClass[] = [
       `https://github.com/go-charity/prometheus`,
       `https://snapshots.raintank.io/dashboard/snapshot/YdInadIEPad9zCJyZON76sgkhriSeoHy?orgId=0`,
     ],
+    "gc_monitoring",
     css["online-auction-project"]
   ),
   new AchievementClass(
@@ -148,6 +152,7 @@ const achievements: AchievementClass[] = [
       `https://github.com/go-charity/auth-server`,
       `https://go-charity-auth-server.onrender.com/api-docs`,
     ],
+    "gc_auth_server",
     css["online-auction-project"]
   ),
   new AchievementClass(
@@ -166,6 +171,7 @@ const achievements: AchievementClass[] = [
       "CI/CD (GitHub Actions)",
     ],
     [`https://github.com/onukwilip/onlineAuction`, `https://bit.ly/3Thf9PG`],
+    "online_auction",
     // window.innerWidth < 410 ? css["online-auction-project"] : undefined
     css["online-auction-project"]
   ),
@@ -180,6 +186,7 @@ const achievements: AchievementClass[] = [
       `https://github.com/freeCodeCamp/freeCodeCamp/pull/52104`,
       `https://freecodecamp.org/`,
     ],
+    "freecodecamp",
     css["gopack-project"]
   ),
   new AchievementClass(
@@ -191,6 +198,7 @@ const achievements: AchievementClass[] = [
       `https://www.holopin.io/hacktoberfest2023/userbadge/cloovsl7f311290gl3vjg6iy89`,
       `https://www.holopin.io/hacktoberfest2023/userbadge/cloovsl7f311290gl3vjg6iy89`,
     ],
+    "hacktoberfest",
     css["nigtrak-project"]
   ),
   new AchievementClass(
@@ -199,6 +207,7 @@ const achievements: AchievementClass[] = [
     `Utilized technologies like Webpack, Node Js and Babel to develop a JavaScript bundling software. The product supports multiple javascript libraries like Typescript, Vue.Js, React.Js, jQuery, Angular.Js, etc`,
     [`Webpack`, `Node Js`, `Babel Js`, "Typescript"],
     [`https://github.com/onukwilip/gopack`, `https://gopack.vercel.app/`],
+    "gopack",
     css["gopack-project"]
   ),
   new AchievementClass(
@@ -218,6 +227,7 @@ const achievements: AchievementClass[] = [
       `https://github.com/onukwilip/NigTrak/tree/adding-typescript`,
       `https://nigtrak.vercel.app/`,
     ],
+    "nigtrak",
     // window.innerWidth < 308 ? css["nigtrak-project"] : undefined,
     css["nigtrak-project"]
   ),
@@ -234,6 +244,7 @@ const otherProjects: ProjectClass[] = [
       "https://github.com/onukwilip/three-js-materials-and-leva-practice",
       "https://three-js-materials-and-leva-practice.vercel.app/",
     ],
+    "",
     undefined,
     true
   ),
@@ -246,6 +257,7 @@ const otherProjects: ProjectClass[] = [
       "https://github.com/onukwilip/go-cyclopaedia",
       "https://go-cyclopaedia.vercel.app/",
     ],
+    "",
     undefined,
     true
   ),
@@ -255,6 +267,7 @@ const otherProjects: ProjectClass[] = [
     "A website I designed for an organization so they could gain online visibility using technologies like React Js, SCSS and Three Js. With features like Email integration, customers who visit the website can easily contact the organization.",
     ["React Js", "Three Js", "GSAP", "SCSS", "Typescript"],
     ["https://github.com/onukwilip/md-hub", "https://md-hub.vercel.app/"],
+    "",
     undefined,
     true
   ),
@@ -267,6 +280,7 @@ const otherProjects: ProjectClass[] = [
       "https://github.com/onukwilip/lendsqr-fe-test",
       "http://prince-c-onukwili-lendsqr-fe-test.netlify.app/",
     ],
+    "",
     undefined
   ),
   new ProjectClass(
@@ -278,6 +292,7 @@ const otherProjects: ProjectClass[] = [
       "https://github.com/onukwilip/GO-IT",
       "https://onukwilip.github.io/GO-IT/",
     ],
+    "",
     undefined
   ),
 ];
@@ -908,6 +923,9 @@ const Article: FC<{ article: ArticleClass; index: number }> = ({
  */
 const Achievements = () => {
   const [loading, setLoading] = useState(true);
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
+
   const headingLeftVariants = useMemo<Variants>(
     () => ({
       far: {
@@ -950,10 +968,29 @@ const Achievements = () => {
     setLoading(false);
   };
 
+  /**
+   * Displays the achievement specified in the request URL when the pahge is loaded
+   * @returns void
+   */
+  const displayAchievementOnLoad = () => {
+    const id = searchParams.get("achievement");
+    if (!id) return;
+
+    const achievement_to_display = achievements.find(
+      (achievement) => achievement.id === id
+    );
+
+    if (!achievement_to_display) return;
+
+    dispatch(modalActions.show(<Modal data={achievement_to_display} />));
+  };
+
   useEffect(() => {
     if (document.readyState === "complete") handleLoading();
 
     window.addEventListener("load", handleLoading);
+    // console.log("Params", searchParams.get("project"));
+    displayAchievementOnLoad();
 
     return () => {
       window.removeEventListener("load", handleLoading);
