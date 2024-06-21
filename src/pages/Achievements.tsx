@@ -475,11 +475,23 @@ const Achievement: FC<{ achievement: AchievementClass; index: number }> = ({
           )}
         </div>
         <ul className={css.skills}>
-          {achievement.skills.map((skill, i) => (
+          {achievement.skills.slice(0, 6).map((skill, i) => (
             <li key={i}>
               <code>{skill}</code>
             </li>
           ))}
+          {achievement.skills.length > 6 && (
+            <>
+              <li
+                className={css.view_more}
+                onClick={() =>
+                  dispatch(modalActions.show(<Modal data={achievement} />))
+                }
+              >
+                <code>View more</code>
+              </li>
+            </>
+          )}
         </ul>
         <div className={css["links"]}>
           <a
