@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState, useEffect } from "react";
+import { FC, useMemo, useState, useEffect } from "react";
 import css from "../styles/Achievements.module.scss";
 import bigSplash from "../assets/images/big-splash.png";
 import gopackImg from "../assets/images/GOPack.gif";
@@ -10,10 +10,8 @@ import lendSQRImg from "../assets/images/lend-sqr-dashboard.png";
 import goCyclopedia from "../assets/images/GOCyclopaedia.png";
 import threeJsMLImg from "../assets/images/three-js-ml-practice.png";
 import mdHubImg from "../assets/images/Manassel-data-hub.png";
-import onlineAuctionImg from "../assets/images/online-auction-img.png";
+import onlineAuctionImg from "../assets/images/Online-Auction-V2.png";
 import goCharityAuthImg from "../assets/images/GO-Charity-Authentication.png";
-import goCharityAcctImg from "../assets/images/GO-Charity account.png";
-import goCharityAuthServerImg from "../assets/images/GO.Charity Swagger-UI.png";
 import udemyLogo from "../assets/images/udemy.png";
 import courseraLogo from "../assets/images/coursera-logo.png";
 import reactJsCertificateImg from "../assets/images/react-certificate-1.png";
@@ -23,7 +21,6 @@ import reactThreeFiberCertificateImg from "../assets/images/react-3-fiber-certif
 import devopsCertificateImg from "../assets/images/devops-capstone.png";
 import containersCertificateImg from "../assets/images/docker-kubernetes-containerization-certification.png";
 import agileCertificateImg from "../assets/images/intro-to-agile-development-certificate.png";
-import goCharityMonitoringImg from "../assets/images/gocharity-grafana.png";
 import introToCloudCertificateImg from "../assets/images/introduction-to-cloud-computing-certificate-1.png";
 import cypressE2ETestingCertificateImg from "../assets/images/cypress-e2e-testing-certificate.jpg";
 import scrumArticleImage from "../assets/images/Scrum-Method-1024x751-1.jpg";
@@ -42,10 +39,7 @@ import {
 import * as rdd from "react-device-detect";
 import { Variants, motion } from "framer-motion";
 import Loader from "../components/Loader";
-import { createPortal } from "react-dom";
-import PopupModal from "../components/Modal";
-import { useDispatch, useSelector } from "react-redux";
-import { ModalReducer, SelectorType } from "../types";
+import { useDispatch } from "react-redux";
 import { modalActions } from "../store/store";
 import { useSearchParams } from "react-router-dom";
 
@@ -55,20 +49,32 @@ import { useSearchParams } from "react-router-dom";
 const achievements: AchievementClass[] = [
   new AchievementClass(
     goCharityAuthImg,
-    "GO.Charity Auth Microservice",
-    `Created an authentication microservice consisting of a client and server app for the GO.Charity platform. 
-    Created pages, and endpoints to create a new user, sign in an existing user, and to verify a User's email address via sending a One time password to his/her email address. 
-    Implemented the use of short lived access tokens and long lived refresh tokens for the OTP endpoints, and platform as a whole. 
-    Leveraged the use of Next Js, TypeScript, MUI, and SCSS for the client app interface. 
-    Used Node Js, Express Js, an MongoDB for the server app. 
-    Set up application monitoring using Prometheus for the server app.
-    Implemented a CI/CD pipeline using GitHub workflows and actions to test and build the client and server apps respectively on pull request to the main branch.
-    Implemented functional testing using Cypress on the client application, and Jest, and Supertest on the server platform.`,
+    "GO.Charity",
+    `I developed a charity crowd-funding platform for local orphanages, addressing their need for a reliable, dedicated space to showcase their projects and receive donations. The platform was architected using microservices, each deployed in its own Docker container, and managed on a Google Kubernetes Engine (GKE) Cluster. 
+
+🐋Created a GKE Cluster: Deployed each microservice as a deployment in separate Pods, with horizontal pod scaling enabled for efficiency. 
+
+📊Implemented Monitoring: Deployed Prometheus and Grafana within the cluster to monitor container performance and health. 
+
+🤖CI/CD Pipeline: Implemented a CI/CD pipeline using GitHub workflows and actions to test and build the client and server apps respectively on pull requests to the main branch.  
+
+🚀Terraform for IaC: Used Terraform to provision and manage resources on Google Cloud, making infrastructure management efficient and reproducible. 
+
+📃Created pages, and endpoints to create a new user, sign in an existing user, and to verify a User's email address via sending a One-time password to his/her email address. 
+
+🔐Implemented the use of short-lived access tokens and long-lived refresh tokens for the OTP endpoints and platform as a whole. 
+
+👨🏾‍💻Leveraged the use of Next Js, TypeScript, MUI, and SCSS for the client app interface
+Used Node Js, Express Js, Cloudinary, and MongoDB for the server app. 
+
+🧪Implemented functional testing using Cypress on the client application, and Jest, and Supertest on the server platform.`,
     [
+      "Google Kubernetes Engine",
+      "Terraform",
+      "MERN",
       "TDD - Jest, Cypress",
       "Next Js",
       "TypeScript",
-      "MERN",
       "Node Js",
       "MongoDB",
       "Redux",
@@ -76,91 +82,20 @@ const achievements: AchievementClass[] = [
       "Docker",
       "CI/CD - GitHub workflows",
     ],
-    [
-      "https://github.com/go-charity/auth-interface",
-      "https://auth.gocharity.com.ng/login",
-    ],
-    "gc_auth"
+    ["https://github.com/go-charity", "https://www.gocharity.com.ng/"],
+    "gc"
   ),
-  new AchievementClass(
-    goCharityAcctImg,
-    "GO.Charity Account Microservice",
-    `Leveraged the Next.Js framework and TypeScript in creating a full stack account dashboard for the GO.Charity platform. 
-    Developed the client-side of the Microservice leveraging Next Js, TypeScript, Redux, MUI, SCSS, etc, And the server side using Node/Express Js, Cloudinary (for object storage), and MongoDB. 
-    Implemented functional testing using Cypress on the client application, and Jest, and Supertest on the server platform. 
-    Implemented a CI/CD pipeline using GitHub workflows and actions to test and build the client and server apps respectively on pull request to the main branch`,
-    [
-      "TDD - Jest, Cypress",
-      "Next Js",
-      "TypeScript",
-      "MERN",
-      "Node Js",
-      "MongoDB",
-      "Redux",
-      "Cloudinary",
-      "Docker",
-      "CI/CD - GitHub workflows",
-    ],
-    [
-      "https://github.com/go-charity/orphanage-account-interface",
-      "https://account.gocharity.com.ng/orphanage/NjY2NDA4ZWM5NTU3ZmI5ZWI0MTUwOGVj",
-    ],
-    "gc_account"
-  ),
-  new AchievementClass(
-    goCharityMonitoringImg,
-    "GO.Charity Moitoring Dashboard",
-    `Used 'prom-client' and 'swagger-stats' to expose the metrics of the GO.Charity auth app e.g.
-    The total number of HTTP requests made to the application, the HTTP response time for each request, average memory being used by the app, etc. 
-    Set up Prometheus and Grafana to scrape and visualize said metrics at regular time intervals. 
-    Deployed the servers to Docker containers, and enabled continuous deployment on the web services`,
-    [
-      `Prometheus`,
-      `Grafana`,
-      `App monitoring`,
-      `Docker`,
-      "Swagger-stats",
-      "Prom-client",
-      `Node Js`,
-      "Typescript",
-    ],
-    [
-      `https://github.com/go-charity/prometheus`,
-      `https://snapshots.raintank.io/dashboard/snapshot/YdInadIEPad9zCJyZON76sgkhriSeoHy?orgId=0`,
-    ],
-    "gc_monitoring",
-    css["online-auction-project"]
-  ),
-  new AchievementClass(
-    goCharityAuthServerImg,
-    "GO.Charity (Auth microservice)",
-    `Utilized Node, Express Js, Typescript, and MongoDB in the creation of a RESTful API microservice which authenticates user's access to a crowd-funding project. 
-     Implemented a CI/CD workflow that tests and builds the feature branch on every pull request to the master branch before merging. 
-     Integrated Swagger API for documenting the API endpoints.
-     Implemented Unit and integration testing using libraries like Jest, and SuperTest.`,
-    [
-      `Node Js`,
-      `Express Js`,
-      "Typescript",
-      `Swagger`,
-      `MongoDB`,
-      `TDD - Jest`,
-      `Docker`,
-      "CI/CD (GitHub Actions)",
-    ],
-    [
-      `https://github.com/go-charity/auth-server`,
-      `https://go-charity-auth-server.onrender.com/api-docs`,
-    ],
-    "gc_auth_server",
-    css["online-auction-project"]
-  ),
+
   new AchievementClass(
     onlineAuctionImg,
     "Online Auction",
-    `Utilized Next Js which allows for better SEO in the development of an online auctioning web app. 
-     Implemented a CI/CD workflow which deploys the app container to Google Cloud Run serverless platform. 
-     Made the web app a progressive web app which can not only be installed on a user's device, but aslo supports caching of client-side resources, e.g, pages, images, etc, web-notifications (when a user get's outbid) and offline support.`,
+    `💻 Built an online auction platform using Next.js, allowing users to list items, place bids, and receive email alerts for expiring products and highest bids. 
+
+🤖 Set up a CI/CD pipeline deploying the app container to Google Cloud Run. 
+
+📱 Developed the web app as a Progressive Web App (PWA) with features like offline support, push notifications for outbids, and caching for faster load times. 
+
+🛠️ Used React.js for the front end, Next.js for APIs, MongoDB Atlas, Redis for data management, Cloudinary for media, and Docker for cloud deployment.`,
     [
       `Next Js`,
       `Service workers`,
@@ -213,7 +148,12 @@ const achievements: AchievementClass[] = [
   new AchievementClass(
     nigtrakImg,
     "NigTrak",
-    `Utilized tools like MQTT, React Js, Google maps etc, to develop a real-time tracking software and inventory system, which tracks registered personnel and their assigned gadgets around the world in real-time via the application installed on their device.`,
+    `🗺️Developed a real-time tracking and inventory application meant to track registered personnel and their assigned gadgets wherever they are, via their device. 
+Implemented Google Maps third-party APIs for displaying online devices on the map.
+
+🗼Utilized MQTT communication protocol for real-time communication with each device. 
+
+👨🏾‍💻Used React Js for the application interface development and Typescript for a better application development process and ensure a bug-free software`,
     [
       `React Js`,
       "SCSS",
