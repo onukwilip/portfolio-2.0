@@ -739,6 +739,10 @@
         padding: 1rem;
         font-weight: 400;
         text-align: justify;
+        @include flex(start, start, 1rem, column);
+        li {
+            width: 100%;
+        }
     }
     .tags_container {
         padding: 1rem;
