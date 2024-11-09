@@ -30,6 +30,8 @@ import serverlessArticleImage from "../assets/images/Serverless-Architecture-A-D
 import azurePricingArticleImage from "../assets/images/azure-article.png";
 import jiraArticleImage from "../assets/images/jira-bg.jpg";
 import devOpsArticleImage from "../assets/images/devops_banner.jpeg";
+import socio_africa_image from "../assets/images/socio-africa-auth.png";
+import heart_bridge_image from "../assets/images/Heart-Bridge-sign up.png";
 import {
   AchievementClass,
   ArticleClass,
@@ -47,6 +49,67 @@ import { useSearchParams } from "react-router-dom";
 
 // * The array of achievements
 const achievements: AchievementClass[] = [
+  new AchievementClass(
+    heart_bridge_image,
+    "Heart Bridge",
+    `I led a team of three to build Heart Bridge, a platform designed to connect orphanages with donors, ensuring secure, transparent, and accessible charity efforts. 
+
+🔹User Authentication 🔐 powered by Appwrite Auth, enabling both registered and anonymous users to participate securely. 
+🔹Payment Integration 💳 via PayStack, facilitating seamless donations with secure processing and bank account verification. 
+🔹Real-Time Notifications 🛎️ using Appwrite Real-Time, keeping orphanages and donors instantly updated when donations are made or calls/visits are scheduled. 
+🔹Nearby Orphanage Search 🗺️ using Google Maps API, allowing donors to search for orphanages near their location for greater trust and local engagement. 
+🔹Implemented a distributed system using Google Cloud Managed Instance Groups with auto-scaling for high availability 📈. 
+🔹Set up load balancing to efficiently route traffic between multiple instances, ensuring consistent performance ⚡. 
+🔹Established an automated CI/CD pipeline to update images to Docker Hub and automatically provision infrastructure using Terraform 🔄. 
+🔹Managed sensitive credentials such as Appwrite API keys, PayStack secrets, and Google Maps API keys securely using Infisical 🔒.
+`,
+    [
+      "Google managed instance group",
+      "Terraform",
+      "Next JS",
+      "Paystack",
+      "Google Maps API",
+      "TypeScript",
+      "Appwrite",
+      "Docker",
+      "CI/CD - GitHub workflows",
+    ],
+    [
+      "https://github.com/onukwilip/heart-bridge",
+      "https://heartbridge.com.ng/",
+    ],
+    "hb"
+  ),
+  new AchievementClass(
+    socio_africa_image,
+    "Socio Africa",
+    `Co-engineered Socio Africa, an African-led social media platform, as one of its founding software engineers which scaled to over 4,000+ active users within months. 
+
+🛠️ Developed API endpoints and integrated MongoDB for seamless data storage. 
+🖼️ Utilized Cloudinary for storing and managing images from user profiles, communities, and posts. 
+🔒 Implemented secure user authentication with access and refresh tokens. 
+✍️ Created algorithms for users to create, edit, comment, and react to posts. 
+🚀 Optimized performance with a pagination algorithm for loading posts and communities efficiently. 
+🌐 Enabled users to create and engage in topic-based communities, sharing posts within groups. 
+⚡ Improved database operations with indexing, reducing query times and latency.`,
+    [
+      "Google Kubernetes Engine",
+      "Terraform",
+      "MERN",
+      "TDD - Jest, Cypress",
+      "Next Js",
+      "TypeScript",
+      "Node Js",
+      "MongoDB",
+      "Redux",
+      "Cloudinary",
+      "Docker",
+      "CI/CD - GitHub workflows",
+    ],
+    ["#", "https://www.socio.africa/"],
+    "socio"
+  ),
+
   new AchievementClass(
     goCharityAuthImg,
     "GO.Charity",

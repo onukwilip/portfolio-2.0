@@ -183,8 +183,8 @@ const Landing = () => {
             initial="down"
             animate="up"
           >
-            A software developer with two years of experience developing
-            enterprise software in Agile and DevOps environments
+            A software developer with extensive experience developing enterprise
+            software in Agile and DevOps environments
             <br />
             <br />
             <div className={css.actions}>

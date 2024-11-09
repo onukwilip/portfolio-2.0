@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useMemo, useState } from "react";
 import css from "../styles/Experience.module.scss";
 import gopack from "../assets/images/gopack_logo_new.png";
+import socio_africa from "../assets/images/socio-africa-logo.png";
 import momas from "../assets/images/momas-logo-2.png";
 import upwork from "../assets/images/upwork-logo.png";
 import eduBg from "../assets/images/education-bg.jpg";
@@ -16,6 +17,24 @@ import { useInView } from "react-intersection-observer";
 import * as rdd from "react-device-detect";
 
 const workExperience: WorkClass[] = [
+  new WorkClass(
+    "Socio Africa",
+    "https://www.socio.africa/",
+    "Lead backend engineer",
+    {
+      start: new WorkDurationClass("July", "2024"),
+      end: undefined,
+    },
+    {
+      list: [
+        `Co-engineered Socio Africa, an African-led social media platform, as one of its founding software engineers which scaled to over 4,000+ active users within months`,
+        `Developed the server-side application using Node.js, Express.js, TypeScript, and MongoDB for robust API endpoints and databases`,
+        `Created algorithms for users to create, edit, comment, and react to posts, facilitating interactive community engagement.`,
+        `Enhanced query performance through database indexing, reducing latency and improving user experience.`,
+      ],
+    },
+    socio_africa
+  ),
   new WorkClass(
     "GOPack",
     "https://gopack.vercel.app/",
